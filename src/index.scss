@@ -1,0 +1,31 @@
+:root {
+
+  // font
+  font-family: sans-serif;
+
+  // colors
+  --main-clr: #edd0d0;
+  --text-clr: #191919;
+  --bg-clr: #f6eeee;
+
+  // shadows
+  --big-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+  --mid-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+  --sml-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
+
+  // radius
+  --big-radius: 10px;
+  --mid-radius: 6px;
+  --sml-radius: 3px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+button,
+a,
+label {
+  cursor: pointer;
+}
