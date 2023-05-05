@@ -16,11 +16,15 @@
             .profile-img {
                 width: 40px;
                 height: 40px;
-                background-color: white;
+                padding: 0;
                 border-radius: 60px;
+                background-color: white;
             }
 
-            .profile-name {}
+            .profile-name {
+                font-weight: 500;
+                color: var(--sec-text-clr);
+            }
         }
 
         .nav-section {
@@ -28,6 +32,20 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
+
+            .nav-link {
+                color: var(--text-clr);
+                background-color: var(--bg-clr);
+
+                &.active {
+                    top: -1px;
+                    background-color: var(--sec-clr);
+
+                    &:active {
+                        top: 0px;
+                    }
+                }
+            }
         }
 
         .logo-section {
@@ -41,6 +59,12 @@
                 height: 40px;
                 background-color: white;
                 border-radius: 60px;
+            }
+
+            .logo-text {
+                font-family: 'Solitreo', cursive;
+                font-size: 2em;
+                color: var(--sec-text-clr);
             }
         }
     }

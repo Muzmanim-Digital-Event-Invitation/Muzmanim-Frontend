@@ -1,10 +1,11 @@
 :root {
 
   // font
-  font-family: sans-serif;
+  font-family: 'Rubik', sans-serif;
 
   // colors
   --main-clr: #007EFF;
+  --sec-clr: #dce9f7;
   --main-text-clr: #191919;
   --sec-text-clr: white;
   --bg-clr: #f6eeee;
@@ -32,4 +33,23 @@ label {
   text-decoration: none;
 }
 
-.btn {}
+.btn {
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  border: none;
+  font-weight: bold;
+  border-radius: var(--sml-radius);
+  padding: 5px 10px;
+  box-shadow: var(--mid-shadow);
+  color: var(--sec-text-clr);
+  background-color: var(--main-clr);
+
+  &:hover {
+    box-shadow: var(--sml-shadow);
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
