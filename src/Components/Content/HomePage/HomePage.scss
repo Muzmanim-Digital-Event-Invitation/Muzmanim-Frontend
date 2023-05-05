@@ -12,7 +12,8 @@
     }
 
     .create_invitation_btn {
-        height: 50px;
+        height: 70px;
+        font-size: larger;
     }
 
     .container {
@@ -20,10 +21,10 @@
         height: 200px;
         display: flex;
         flex-direction: row;
-        border: 1px solid var(--sec-clr);
-        border-radius: var(--mid-radius);
-        box-shadow: var(--mid-shadow);
-        margin-top: 40px;
+        // border: 1px solid var(--sec-clr);
+        // border-radius: var(--mid-radius);
+        // box-shadow: var(--mid-shadow);
+        margin-top: 80px;
 
     }
 
@@ -36,12 +37,16 @@
             width: 40%;
 
             p {
+                font-size: 40px;
                 margin: 10px 0;
+            }
+            h1{
+                font-size: 60px;
             }
         }
 
         img {
-            height: 180px;
+            height: 380px;
         }
 
     }
@@ -100,8 +105,19 @@
     }
 
     .examples_container {
-        justify-content: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
         height: 800px;
+        .imgs_container{
+            display: flex;
+            img{
+                height: 550px;
+                width: 630px;
+            }
+        }
     }
 
     .recommend_container {
@@ -126,7 +142,7 @@
             .review_img {
                 height: 120px;
                 width: 120px;
-                border: 5px solid var(--sec-clr);
+                border: 10px solid var(--sec-clr);
                 border-radius: 50%;
                 box-shadow: var(--sml-shadow);
             }
