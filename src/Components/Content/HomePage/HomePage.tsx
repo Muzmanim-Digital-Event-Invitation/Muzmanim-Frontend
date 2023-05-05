@@ -12,7 +12,7 @@ function HomePage(): JSX.Element {
                 <div className="deatils_container">
                     <h1>ברוכים הבאים</h1>
                     <p>ברוכים הבאים לאתר מוזמנים, כאן תוכלו ליצור בחינם הזמנות דיגטליות ולנהל את רשימת המוזמנים לכל אירוע</p>
-                    <button className="btn create_invitation_btn">ליצירת הזמנה בחינם לחצו כאן</button>
+                    <button className="btn create_invitation_btn">ליצירת הזמנה בחינם  </button>
                 </div>
                 <div className="image_container">
                     <img src="https://img.freepik.com/free-vector/birthday-cap-with-confetti-serpentine-explosion_1017-17924.jpg?w=826&t=st=1683308783~exp=1683309383~hmac=322526bca6bedfc5e41c35c1df190af8e16e66de3348a415040ffcf5cd4a3276" alt="" />
