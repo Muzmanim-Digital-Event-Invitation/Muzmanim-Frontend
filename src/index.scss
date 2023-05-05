@@ -4,8 +4,9 @@
   font-family: sans-serif;
 
   // colors
-  --main-clr: #edd0d0;
-  --text-clr: #191919;
+  --main-clr: #007EFF;
+  --main-text-clr: #191919;
+  --sec-text-clr: white;
   --bg-clr: #f6eeee;
 
   // shadows
@@ -28,4 +29,7 @@ button,
 a,
 label {
   cursor: pointer;
+  text-decoration: none;
 }
+
+.btn {}
