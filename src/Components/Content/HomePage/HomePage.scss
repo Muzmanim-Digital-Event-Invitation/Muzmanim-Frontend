@@ -30,7 +30,7 @@
     .welcome_container {
         justify-content: space-around;
         align-items: center;
-        height: 250px;
+        height: 400px;
 
         .deatils_container {
             width: 40%;
@@ -51,7 +51,12 @@
         flex-direction: column;
         align-items: center;
         height: 290px;
+        width: 95%;
         background-color: var(--main-clr);
+        border-radius: 93% 7% 97% 3% / 8% 86% 14% 92%   ;
+        border: none;
+        // border-radius: 100% 0% 98% 2% / 5% 80% 20% 95%        ;
+
 
         h1 {
             color: var(--sec-clr);
@@ -79,8 +84,8 @@
 
                 border-radius: 50px;
                 background: #016eda;
-                box-shadow:  -20px 20px 60px #015eb9,
-                             20px -20px 60px #017ffb;
+                box-shadow: -20px 20px 60px #015eb9,
+                    20px -20px 60px #017ffb;
 
                 display: flex;
                 flex-direction: column;
@@ -96,7 +101,7 @@
 
     .examples_container {
         justify-content: center;
-        height: 400px;
+        height: 800px;
     }
 
     .recommend_container {
