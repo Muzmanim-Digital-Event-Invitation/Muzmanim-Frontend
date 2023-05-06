@@ -1,0 +1,62 @@
+.PageNotFound {
+	margin-bottom: 350px;
+    margin-top: 150px;
+
+    .pageNotFound_Container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+    }
+
+    .notFoundNumber{
+        color: var( --main-clr);
+        font-size: 140px;
+    }
+    
+    .notFountText{
+        color: var(  --main-text-clr);
+        font-size: 60px;
+    
+    }
+
+    .btn{
+        width: 200px;
+        margin: 50px auto;
+        border-radius: 20px;
+        border: none;
+        padding: 15px ;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 680px) {
+ .notFoundNumber{
+    font-size: 60px;
+ }
+
+ .notFountText{
+    font-size: 40px;
+ }
+ .pageNotFound_Container{
+    margin-bottom: -350px;
+ }
+}
