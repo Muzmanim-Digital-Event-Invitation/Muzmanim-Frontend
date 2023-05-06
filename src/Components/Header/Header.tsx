@@ -13,7 +13,7 @@ function Header(): JSX.Element {
                 </div>
                 <nav className="nav-section">
                     <NavLink className="btn nav-link" to={"/"}>בית</NavLink>
-                    <NavLink className="btn nav-link" to={"/stam"}>בדיקה אחרת</NavLink>
+                    <NavLink className="btn nav-link" to={"/dashboard"}> איזור אישי</NavLink>
                     <NavLink className="btn nav-link" to={"/stam2"}>סתם מילה</NavLink>
                 </nav>
                 <div className="logo-section">
