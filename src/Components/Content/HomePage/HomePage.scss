@@ -13,9 +13,9 @@
 
     .create_invitation_btn {
         height: 60px;
+        width: 400px;
         font-size: larger;
-        background-color: #EEA700;
-        // color: black;
+        background-color: var(--btn-bg-clr);
     }
 
     .container {
