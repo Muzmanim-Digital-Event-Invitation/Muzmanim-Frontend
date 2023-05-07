@@ -3,8 +3,12 @@ import listImg from "./list.png"
 import liveImg from "./live.png"
 import whatsappImg from "./whatsapp.png"
 import gpsImg from "./gps.png"
+import { useNavigate } from "react-router-dom";
 
 function HomePage(): JSX.Element {
+    const navigate = useNavigate()
+
+
     return (
         <div className="HomePage">
 
@@ -12,7 +16,7 @@ function HomePage(): JSX.Element {
                 <div className="deatils_container">
                     <h1>ברוכים הבאים</h1>
                     <p>ברוכים הבאים לאתר מוזמנים, כאן תוכלו ליצור בחינם הזמנות דיגטליות ולנהל את רשימת המוזמנים לכל אירוע</p>
-                    <button className="btn create_invitation_btn">ליצירת הזמנה בחינם  </button>
+                    <button className="btn create_invitation_btn" onClick={() => navigate('/newEvent')}>ליצירת הזמנה בחינם  </button>
                 </div>
 
                 <div className="image_container">
