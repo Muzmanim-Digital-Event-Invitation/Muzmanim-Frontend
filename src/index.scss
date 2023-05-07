@@ -9,12 +9,18 @@
   --main-text-clr: #191919;
   --sec-text-clr: white;
   --bg-clr: #f6eeee;
+  --sec-bg-clt: #1C1B2D;
   --btn-bg-clr: #EEA700;
 
   // shadows
-  --big-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
-  --mid-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
-  --sml-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
+  --big-shadow: 0 0 8px #00000059;
+  --mid-shadow: 0 0 5px #00000059;
+  --sml-shadow: 0 0 3px #00000059;
+
+  // glow
+  --big-glow: 0 0 35px #54a1ee92;
+  --mid-glow: 0 0 23px #2072c492;
+  --sml-glow: 0 0 13px #3c89d692;
 
   // radius
   --big-radius: 20px;
@@ -25,6 +31,7 @@
 * {
   padding: 0;
   margin: 0;
+  color: var(--main-text-clr);
 }
 
 button,

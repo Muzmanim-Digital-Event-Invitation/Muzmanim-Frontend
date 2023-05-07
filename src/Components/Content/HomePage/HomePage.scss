@@ -83,8 +83,9 @@
                 width: 190px;
                 border-radius: var(--big-radius);
                 background: #016eda;
-                box-shadow: -20px 20px 60px #015eb9,
-                    20px -20px 60px #017ffb;
+                box-shadow: var(--big-glow), var(--mid-glow);
+                // box-shadow: -20px 20px 60px #015eb9,
+                //     20px -20px 60px #017ffb;
 
                 h3 {
                     color: var(--sec-clr);
@@ -154,8 +155,13 @@
                 text-align: center;
                 padding: 20px;
 
+                h3 {
+                    color: var(--sec-text-clr);
+                }
+
                 p {
                     width: 150px;
+                    color: var(--sec-text-clr);
                 }
             }
         }
