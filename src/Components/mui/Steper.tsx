@@ -10,8 +10,8 @@ import { StepIconProps } from '@mui/material/StepIcon';
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
         top: 10,
-        left: 'calc(-50% + 16px)',
-        right: 'calc(50% + 16px)',
+        left: 'calc(50% + 16px)',
+        right: 'calc(-50% + 16px)',
     },
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
@@ -59,9 +59,9 @@ function QontoStepIcon(props: StepIconProps) {
     return (
         <QontoStepIconRoot ownerState={{ active }} className={className}>
             {completed ? (
-                <div className="QontoStepIcon-circle" />
-            ) : (
                 <Check className="QontoStepIcon-completedIcon" />
+            ) : (
+                <div className="QontoStepIcon-circle" />
             )}
         </QontoStepIconRoot>
     );
@@ -72,7 +72,7 @@ const steps = ['פרטי האירוע', 'עיצוב הזמנה'];
 export default function CustomizedSteppers() {
     return (
         <Stack sx={{ width: '100%' }} spacing={4}>
-            <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
+            <Stepper alternativeLabel activeStep={0} connector={<QontoConnector />}>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
