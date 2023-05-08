@@ -15,12 +15,12 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
     },
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            borderColor: '#784af4',
+            borderColor: 'var(--sec-clr)',
         },
     },
     [`&.${stepConnectorClasses.completed}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            borderColor: '#784af4',
+            borderColor: 'var(--main-clr)',
         },
     },
     [`& .${stepConnectorClasses.line}`]: {
@@ -48,7 +48,7 @@ const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(
             width: 8,
             height: 8,
             borderRadius: '50%',
-            backgroundColor: 'currentColor',
+            backgroundColor: 'var(--main-text-clr)',
         },
     }),
 );
@@ -67,15 +67,17 @@ function QontoStepIcon(props: StepIconProps) {
     );
 }
 
-const steps = ['פרטי האירוע', 'עיצוב הזמנה'];
+const steps = ['פרטים', 'עיצוב', 'שיתוף'];
 
 export default function CustomizedSteppers() {
     return (
-        <Stack sx={{ width: '100%' }} spacing={4}>
-            <Stepper alternativeLabel activeStep={0} connector={<QontoConnector />}>
+        <Stack sx={{ width: '200%' }} spacing={4}>
+            <Stepper alternativeLabel activeStep={2} connector={<QontoConnector />}>
                 {steps.map((label) => (
                     <Step key={label}>
-                        <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
+                        <StepLabel StepIconComponent={QontoStepIcon}>
+                            {label}
+                        </StepLabel>
                     </Step>
                 ))}
             </Stepper>

@@ -1,4 +1,4 @@
-import CustomizedSteppers from "../../mui/Steper";
+import CustomizedSteppers from "./Steper";
 import "./NewEvent.scss";
 
 function NewEvent(): JSX.Element {
