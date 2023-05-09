@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import testReducer from "./testSlice";
+import newEventReducer from "./newEventSlice";
 
 
 export default configureStore({
     reducer: {
-        test: testReducer
+        newEvent: newEventReducer
     }
 })
