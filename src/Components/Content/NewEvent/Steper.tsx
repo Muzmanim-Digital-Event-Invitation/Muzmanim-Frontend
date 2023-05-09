@@ -69,10 +69,10 @@ function QontoStepIcon(props: StepIconProps) {
 
 const steps = ['פרטים', 'עיצוב', 'שיתוף'];
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers({ stepNumber }: { stepNumber : number }) {
     return (
         <Stack sx={{ width: '200%' }} spacing={4}>
-            <Stepper alternativeLabel activeStep={2} connector={<QontoConnector />}>
+            <Stepper alternativeLabel activeStep={stepNumber} connector={<QontoConnector />}>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={QontoStepIcon}>
