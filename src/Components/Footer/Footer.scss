@@ -1,5 +1,7 @@
 .Footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    padding: 10px;
+    height: 50px;
     background-color: var(--sec-bg-clt);
 }
