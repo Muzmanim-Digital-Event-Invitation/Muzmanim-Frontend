@@ -1,4 +1,4 @@
-import "./EventDesign.css";
+import "./EventDesign.scss";
 
 function EventDesign({ stepNumber, setStepNumber } : { stepNumber : number, setStepNumber : (sn: number) => void}): JSX.Element {
     
