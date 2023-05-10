@@ -8,7 +8,6 @@ function EventInfo( { stepNumber, setStepNumber } : { stepNumber : number, setSt
     }
     
     function stepForward() {
-        if(stepNumber > 2) return;
         setStepNumber(stepNumber + 1) 
     }
 
