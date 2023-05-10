@@ -1,14 +1,29 @@
+import React, { useEffect } from "react";
 import "./EventInfo.scss";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { newEventAction } from "../../../../App/newEventSlice";
 
 function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepNumber: (sn: number) => void }): JSX.Element {
 
     const { register, handleSubmit } = useForm();
+    const dispatch = useDispatch();
 
+    const eventType = useSelector((state: any) => state.newEvent)
 
+    useEffect(() => {
+        console.log(eventType);
+        
+    })
 
     function onSubmit(data:any){
-        console.log(data);
+        // console.log(data);
+
+          const mergedData = { ...eventType, ...data };
+          console.log(mergedData);
+          
+        dispatch(newEventAction(mergedData));
+
 
         stepForward();
     }

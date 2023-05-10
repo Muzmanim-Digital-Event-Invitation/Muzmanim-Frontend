@@ -4,6 +4,7 @@ import { useState } from "react";
 import EventInfo from "./EventInfo/EventInfo";
 import EventDesign from "./EventDesign/EventDesign";
 import EventType from "./EventType/EventType";
+import React from "react";
 
 function NewEvent(): JSX.Element {
     const [stepNumber, setStepNumber] = useState<number>(0);

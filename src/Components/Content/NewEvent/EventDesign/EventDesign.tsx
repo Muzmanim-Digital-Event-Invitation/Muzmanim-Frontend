@@ -1,3 +1,4 @@
+import React from "react";
 import "./EventDesign.scss";
 
 function EventDesign({ stepNumber, setStepNumber } : { stepNumber : number, setStepNumber : (sn: number) => void}): JSX.Element {
@@ -17,7 +18,7 @@ function EventDesign({ stepNumber, setStepNumber } : { stepNumber : number, setS
     return (
         <div className="EventDesign">
 
-            
+
 
           <button onClick={() => stepBack()}>Step Back</button>
           <button onClick={() => stepForward()}>Step Forward</button>

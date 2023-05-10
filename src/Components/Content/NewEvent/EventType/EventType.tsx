@@ -1,17 +1,30 @@
 import { useState } from "react";
 import "./EventType.css";
 import { useForm } from 'react-hook-form';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { newEventAction } from "../../../../App/newEventSlice";
 
 function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setStepNumber : (sn: number) => void}): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isFood, setIsFood] = useState(false);
-    const [eventTypeNumber, setEventTypeNumber] = useState();
+  const dispatch = useDispatch();
+
+  const [eventTypeNumber, setEventTypeNumber] = useState();
   function stepForward() {
     setStepNumber(stepNumber + 1);
   }
 
   function onSubmit(data: any) {
-    console.log(data);
+    if(!data.food){
+        data.kids = false;
+        data.regular = false;
+        data.vegan = false;
+        data.vegetarian = false;
+    }
+    // console.log(data);
+
+    dispatch(newEventAction(data))
     stepForward();
   }
 
@@ -62,13 +75,14 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
                         <label htmlFor="supportCheckbox" className="formbold-checkbox-label">
 
                         <div className="formbold-relative">
-                    <input
-                    type="checkbox"
-                    id="supportCheckbox"
-                    className="formbold-input-checkbox"
-                     {...register("food")}
-                     onClick={() => setIsFood(!isFood)}
-                    />
+                        <input
+                            type="checkbox"
+                            id="supportCheckbox"
+                            className="formbold-input-checkbox"
+                            {...register("food")}
+                            onClick={() => setIsFood(!isFood)}
+                            />
+
                     <div className="formbold-checkbox-inner">
                     <span className="formbold-opacity-0">
                         <svg
@@ -99,28 +113,28 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
                         {" "}
                         מנה רגילה{" "}
                     </label>
-                    <input id="regular" type="checkbox" checked={true}  {...register("regular")} />
+                    <input defaultChecked={true}  id="regular" type="checkbox"   {...register("regular", { value: false })} />
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegan" className="formbold-form-label">
                         {" "}
                         צמחוני{" "}
                     </label>
-                    <input id="vegan" type="checkbox"  {...register("vegan")}/>
+                    <input defaultChecked={false}  id="vegan" type="checkbox"  {...register("vegan", { value: false })}/>
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegetarian" className="formbold-form-label">
                         {" "}
                         טבעוני{" "}
                     </label>
-                    <input id="vegetarian" type="checkbox"   {...register("vegetarian")}/>
+                    <input defaultChecked={false}  id="vegetarian" type="checkbox"   {...register("vegetarian", { value: false })}/>
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="kids" className="formbold-form-label">
                         {" "}
                         מנת ילדים{" "}
                     </label>
-                    <input id="kids" type="checkbox"  {...register("kids")} />
+                    <input defaultChecked={false}  id="kids" type="checkbox"  {...register("kids", { value: false })} />
                     </div>   
                 </div>
                 : <></>
