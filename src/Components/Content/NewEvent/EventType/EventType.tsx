@@ -2,15 +2,16 @@ import { useState } from "react";
 import "./EventType.css";
 import { useForm } from 'react-hook-form';
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { newEventAction } from "../../../../App/newEventSlice";
 
 function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setStepNumber : (sn: number) => void}): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [isFood, setIsFood] = useState(false);
+  const eventType = useSelector((state: any) => state.newEvent)
+  const [isFood, setIsFood] = useState(eventType && eventType.food ? true : false);
   const dispatch = useDispatch();
 
-  const [eventTypeNumber, setEventTypeNumber] = useState();
+  const [eventTypeNumber, setEventTypeNumber] = useState( eventType && eventType.eventType ? eventType.eventType : "");
   function stepForward() {
     setStepNumber(stepNumber + 1);
   }
@@ -35,7 +36,7 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="formbold-input-flex">
               <p>סוג האירוע:</p>
-              <select {...register("eventType", { required: true })} onInput={(e : any) => setEventTypeNumber(e.target.value)}>
+              <select  {...register("eventType", { required: true })} onInput={(e : any) => setEventTypeNumber(e.target.value)}  defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
                 <option value="">בחר סוג אירוע</option>
                 <option value="birthday">יום הולדת</option>
                 <option value="wedding">חתונה</option>
@@ -49,13 +50,13 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
             <div className="formbold-input-flex">
               <div>
                 <label htmlFor="name1" className="formbold-form-label">שם</label>
-                <input type="text"  id="name1" className="formbold-form-input" {...register("name1", { required: true })} />
+                <input type="text"    defaultValue={eventType && eventType.name1 ? eventType.name1 : ""}  id="name1" className="formbold-form-input" {...register("name1", { required: true })} />
                 {errors.name1 && <span className="error-message">זהו שדה חובה</span>}
               </div>
               {eventTypeNumber == "wedding" ? 
               <div>
                 <label htmlFor="name2" className="formbold-form-label">שם שני (אופציונלי)</label>
-                <input type="text" id="name2" className="formbold-form-input" {...register("name2")} />
+                <input type="text"  defaultValue={eventType && eventType.name2 ? eventType.name2 : ""}  id="name2" className="formbold-form-input" {...register("name2")} />
                 {errors.name2 && <span className="error-message">זהו שדה חובה</span>}
               </div>
         : <></>}
@@ -64,7 +65,7 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
             <div className="formbold-input-flex">
               <div>
                 <label htmlFor="hallName" className="formbold-form-label">שם המתחם</label>
-                <input type="text"  id="hallName" className="formbold-form-input" {...register("hallName", { required: true })} />
+                <input type="text"  defaultValue={eventType && eventType.hallName ? eventType.hallName : ""}   id="hallName" className="formbold-form-input" {...register("hallName", { required: true })} />
                 {errors.hallName && <span className="error-message">זהו שדה חובה</span>}
               </div>
             </div>
@@ -79,6 +80,7 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
                             type="checkbox"
                             id="supportCheckbox"
                             className="formbold-input-checkbox"
+                            defaultChecked={eventType && eventType.food ? eventType.food : ""}
                             {...register("food")}
                             onClick={() => setIsFood(!isFood)}
                             />
@@ -113,28 +115,28 @@ function EventType( { stepNumber , setStepNumber } : { stepNumber : number, setS
                         {" "}
                         מנה רגילה{" "}
                     </label>
-                    <input defaultChecked={true}  id="regular" type="checkbox"   {...register("regular", { value: false })} />
+                    <input id="regular" type="checkbox"   {...register("regular", { value: false })}  defaultChecked={eventType && eventType.regular ? true  : false} />
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegan" className="formbold-form-label">
                         {" "}
                         צמחוני{" "}
                     </label>
-                    <input defaultChecked={false}  id="vegan" type="checkbox"  {...register("vegan", { value: false })}/>
+                    <input  id="vegan" type="checkbox"  {...register("vegan", { value: false })} defaultChecked={eventType && eventType.vegan ? true  : false} />
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegetarian" className="formbold-form-label">
                         {" "}
                         טבעוני{" "}
                     </label>
-                    <input defaultChecked={false}  id="vegetarian" type="checkbox"   {...register("vegetarian", { value: false })}/>
+                    <input  id="vegetarian" type="checkbox"   {...register("vegetarian", { value: false })} defaultChecked={eventType && eventType.vegetarian ? true  : false} />
                     </div>   
                     <div className="formbold-checkbox-wrapper">
                     <label htmlFor="kids" className="formbold-form-label">
                         {" "}
                         מנת ילדים{" "}
                     </label>
-                    <input defaultChecked={false}  id="kids" type="checkbox"  {...register("kids", { value: false })} />
+                    <input  id="kids" type="checkbox"  {...register("kids", { value: false })} defaultChecked={eventType && eventType.kids ? true  : false}  />
                     </div>   
                 </div>
                 : <></>
