@@ -137,9 +137,8 @@ function EventDesign(props: ownProps): JSX.Element {
             </div>
             
             <div className="formbold-form-confirm">
-
-            <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
-            <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
+                <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
+                <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
             </div>
         </div>
     );
