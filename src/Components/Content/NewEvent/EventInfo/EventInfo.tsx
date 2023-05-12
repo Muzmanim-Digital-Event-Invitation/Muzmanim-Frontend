@@ -13,15 +13,15 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
 
     useEffect(() => {
         console.log(eventType);
-        
+
     })
 
-    function onSubmit(data:any){
+    function onSubmit(data: any) {
         // console.log(data);
 
-          const mergedData = { ...eventType, ...data };
-          console.log(mergedData);
-          
+        const mergedData = { ...eventType, ...data };
+        console.log(mergedData);
+
         dispatch(newEventAction(mergedData));
 
 
@@ -33,7 +33,7 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
     }
 
     function stepForward() {
-        setStepNumber(stepNumber + 1) 
+        setStepNumber(stepNumber + 1)
 
     }
 
@@ -41,70 +41,80 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
 
 
         <div className="EventInfo">
-    
-            <div className="formbold-form-wrapper">
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="formbold-main-wrapper">
+                <div className="formbold-form-wrapper">
+                    <form onSubmit={handleSubmit(onSubmit)}>
 
+                        <div>
 
-                    <div className="formbold-form-step-1 active">
-                        <div className="formbold-input-flex">
-                            <div>
-                                <label  htmlFor="city" className="formbold-form-label"> עיר </label>
-                                <input
-                                    type="text"
-                                    required
-                                    id="city"
-                                    className="formbold-form-input"
-                                    {...register("city")}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="street" className="formbold-form-label">רחוב</label>
-                                <input
-                                    type="text"
-                                    required
-                                    id="street"
-                                    className="formbold-form-input"
-                                    {...register("street")}
-                                />
-                            </div>
-                        </div>
+                            <div className="formbold-form-step-1 active">
+                                <div className="formbold-input-flex">
+                                    <div>
+                                        <label htmlFor="city" className="formbold-form-label"> עיר </label>
+                                        <input
+                                        defaultValue={eventType && eventType.city ? eventType.city : ""}
+                                            type="text"
+                                            id="city"
+                                            className="formbold-form-input"
+                                            {...register("city")}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
 
-                        <div className="formbold-input-flex">
-                            <div>
-                                <label htmlFor="eventDate" className="formbold-form-label">תאריך</label>
-                                <input
-                                    type="date"
-                                    required
-                                    id="eventDate"
-                                    className="formbold-form-input"
-                                    {...register("eventDate")}
-                                />
+                                        <label htmlFor="street" className="formbold-form-label">רחוב</label>
+                                        <input
+                                        defaultValue={eventType && eventType.street ? eventType.street : ""}
+                                            type="text"
+                                            id="street"
+                                            className="formbold-form-input"
+                                            {...register("street")}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <label htmlFor="eventStartHour" className="formbold-form-label">שעת התחלה</label>
-                                <input
-                                    type="time"
-                                    id="eventStartHour"
-                                    className="formbold-form-input"
-                                    {...register("eventStartHour")}
-                                />
+
+                            <div className="formbold-input-flex">
+                                <div>
+                                    <label htmlFor="eventDate" className="formbold-form-label">תאריך</label>
+                                    <input
+                                     defaultValue={eventType && eventType.eventDate ? eventType.eventDate : ""}
+                                        type="date"
+                                        id="eventDate"
+                                        className="formbold-form-input"
+                                        {...register("eventDate")}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                  
+
+                            <div className="formbold-input-flex">
+                                <div>
+                                    <label htmlFor="eventStartHour" className="formbold-form-label">שעת התחלה</label>
+                                    <input
+                                     defaultValue={eventType && eventType.eventStartHour ? eventType.eventStartHour : ""}
+                                        type="time"
+                                        id="eventStartHour"
+                                        className="formbold-form-input"
+                                        {...register("eventStartHour")}
+                                    />
+                                </div>
+                            </div>
+
 
                             <div className="formbold-form-confirm">
 
-                                <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
-                                <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
+                                <button className="  formbold-btn " onClick={() => stepBack()}>חזור אחורה</button>
+                                <button type="submit" className="  formbold-btn active" > שלב הבא</button>
                             </div>
 
                         </div>
-                
 
 
 
-                </form>
+
+                    </form>
+                </div>
             </div>
         </div>
 
