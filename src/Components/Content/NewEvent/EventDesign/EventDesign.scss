@@ -1,14 +1,34 @@
 .EventDesign {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     justify-content: center;
-    // max-width: 600px;
+    gap: 25px;
+    width: 100%;
+
+    input {
+        border: none;
+    }
 
     .design-form {
         display: flex;
         flex-direction: column;
-        height: 550px;
         gap: 20px;
+
+        .radio-input-wraper {
+            position: relative;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            input[type="radio"]:checked~.radio-label {
+                box-sizing: border-box;
+                border: solid 2px var(--main-clr);
+            }
+        }
 
         .form-section {
             display: flex;
@@ -22,25 +42,102 @@
         .bg-selection {
             display: flex;
             gap: 10px;
+            overflow: auto;
 
-            .bg-option {
-                width: 120px;
-                height: 150px;
-                background-color: aqua;
-                border-radius: var(--mid-radius);
+            .radio-input-wraper {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .color-selector {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    width: 25px;
+                    height: 25px;
+                    z-index: 1;
+
+                    .color-selector-label {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--sec-clr);
+                        border-radius: 50%;
+                    }
+
+                    .color-selector-input {
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translate(-50%, 50%);
+                        opacity: 0;
+                    }
+                }
+
+                #select-bg-clr~label {
+                    background-color: #ffe4c4;
+                }
+
+
+                .bg-image {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                    border-radius: var(--mid-radius);
+                }
+
+                .bg-option {
+                    flex-shrink: 0;
+                    aspect-ratio: 2 / 3;
+                    width: 100px;
+                    border-radius: var(--mid-radius);
+
+                    &.bg-clr {
+                        background-color: bisque;
+                    }
+                }
             }
         }
 
         .font-selection {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+            overflow: auto;
+            gap: 10px;
 
             .font-option {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100px;
-                height: 25px;
+                width: 90%;
+                height: 30px;
+                background-color: aquamarine;
+                border-radius: var(--sml-radius);
+
+            }
+        }
+
+        .icons-section {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            gap: 10px;
+            justify-items: center;
+            overflow: auto;
+
+            .icon-option {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
                 background-color: aquamarine;
                 border-radius: var(--sml-radius);
             }
@@ -51,11 +148,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        max-width: 400px;
 
         .preview {
-            width: 450px;
-            height: 550px;
-            background-color: aquamarine;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            background-color: #ffe4c4;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     }
 
