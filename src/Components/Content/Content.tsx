@@ -4,6 +4,7 @@ import HomePage from "./HomePage/HomePage";
 import PageNotFound from "./PageNotFound/PageNotFound";
 import Dashboard from "./Dashboard/Dashboard";
 import NewEvent from "./NewEvent/NewEvent";
+import EventManagement from "./Dashboard/EventManagement/EventManagement";
 
 function Content(): JSX.Element {
     return (
@@ -12,6 +13,7 @@ function Content(): JSX.Element {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/newEvent" element={<NewEvent />} />
+                <Route path="/EventManagement/:id" element={<EventManagement />} />
                 <Route path="/*" element={<PageNotFound />} />
             </Routes>
         </div>

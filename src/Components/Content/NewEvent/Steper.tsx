@@ -68,7 +68,7 @@ function QontoStepIcon(props: StepIconProps) {
     );
 }
 
-const steps = ['פרטים', 'עיצוב', 'שיתוף'];
+const steps = ['פרטים', 'מיקום', 'עיצוב', 'שיתוף'];
 
 export default function CustomizedSteppers({ stepNumber }: { stepNumber : number }) {
     return (
