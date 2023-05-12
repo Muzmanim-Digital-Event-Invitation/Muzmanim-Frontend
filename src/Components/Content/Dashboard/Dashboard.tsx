@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
 
 function Dashboard(): JSX.Element {
+    const navigate = useNavigate()
     return (
         <div className="Dashboard">
 			<h1>איזור אישי</h1>
@@ -9,7 +11,7 @@ function Dashboard(): JSX.Element {
             </div>
             <div className="events_container">
 
-                <div className="event_card">
+                <div className="event_card" onClick={() => navigate("/EventManagement/1")}>
                     <div className="card_details">
                     <h3>07/05/2023</h3>
                     <h3>אלי & מור</h3>
