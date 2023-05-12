@@ -72,7 +72,7 @@ const steps = ['פרטים', 'מיקום', 'עיצוב', 'שיתוף'];
 
 export default function CustomizedSteppers({ stepNumber }: { stepNumber : number }) {
     return (
-        <Stack sx={{ width: '200%' }} spacing={4}>
+        <Stack sx={{ width: "600px" }} spacing={4}>
             <Stepper alternativeLabel activeStep={stepNumber} connector={<QontoConnector />}>
                 {steps.map((label) => (
                     <Step key={label}>
