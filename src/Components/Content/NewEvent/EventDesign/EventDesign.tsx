@@ -49,6 +49,13 @@ function EventDesign({ stepNumber, setStepNumber }: { stepNumber: number, setSte
             <div className="preview-wraper">
                 <div className="preview"></div>
             </div>
+
+            
+            <div className="formbold-form-confirm">
+
+            <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
+            <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
+            </div>
         </div>
     );
 }
