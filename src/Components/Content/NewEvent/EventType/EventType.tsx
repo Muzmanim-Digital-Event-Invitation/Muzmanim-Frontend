@@ -34,6 +34,7 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
       <div className="formbold-main-wrapper">
         <div className="formbold-form-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
+            
             <div className="formbold-input-flex">
               <p>סוג האירוע:</p>
               <select  {...register("eventType", { required: true })} onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
@@ -142,11 +143,12 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                 : <></>
             }
 
-            <div className="formbold-input-flex"></div>
-
-            <button type="submit" className="formbold-btn">
+            {/* <div className="formbold-input-flex"></div> */}
+            <div className="formbold-form-confirm">
+            <button type="submit" className=" formbold-btn ">
               לשלב הבא
             </button>
+            </div>
           </form>
         </div>
       </div>
