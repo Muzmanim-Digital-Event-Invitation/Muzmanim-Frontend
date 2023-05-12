@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    width: 90%;
+    max-width: 1200px;
 
 .formbold-form-wrapper {
     margin: 0 auto;
@@ -85,3 +86,4 @@
       display: flex;
       gap: 15px;
     }
+}
