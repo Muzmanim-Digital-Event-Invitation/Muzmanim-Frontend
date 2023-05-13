@@ -41,16 +41,10 @@ function EditEventInfo(): JSX.Element {
 
   function onSubmit(data: any) {
     console.log(data);
-    
-    // if (!data.food) {
-    //   data.kids = false;
-    //   data.regular = false;
-    //   data.vegan = false;
-    //   data.vegetarian = false;
-    // }
-    // console.log(data);
-    // dispatch(newEventAction(data))
-    // stepForward();
+    data.eventDate = servicesFunctions.extractDateFromISOString(data.eventDate)
+    servicesFunctions.editEvent(data, id).then(() => {
+        navigate("/eventManagement/" + id)
+    })
   }
 
   return (
@@ -86,7 +80,7 @@ function EditEventInfo(): JSX.Element {
                     </label>
                     <input
                       type="text"
-                      value={event && event.name1 ? event.name1 : ""}
+                      defaultValue={event && event.name1 ? event.name1 : ""}
                       id="name1"
                       className="formbold-form-input"
                       {...register("name1", { required: event && event.name1 ? false : true })}
