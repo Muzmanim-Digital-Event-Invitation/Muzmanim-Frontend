@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 function HomePage(): JSX.Element {
     const navigate = useNavigate()
 
-
     return (
         <div className="HomePage">
 

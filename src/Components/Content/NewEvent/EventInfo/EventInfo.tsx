@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./EventInfo.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +52,7 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                     <div>
                                         <label htmlFor="city" className="formbold-form-label"> עיר </label>
                                         <input
-                                        defaultValue={eventType && eventType.city ? eventType.city : ""}
+                                            defaultValue={eventType && eventType.city ? eventType.city : ""}
                                             type="text"
                                             id="city"
                                             className="formbold-form-input"
@@ -65,7 +65,7 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
 
                                         <label htmlFor="street" className="formbold-form-label">רחוב</label>
                                         <input
-                                        defaultValue={eventType && eventType.street ? eventType.street : ""}
+                                            defaultValue={eventType && eventType.street ? eventType.street : ""}
                                             type="text"
                                             id="street"
                                             className="formbold-form-input"
@@ -79,7 +79,7 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                 <div>
                                     <label htmlFor="eventDate" className="formbold-form-label">תאריך</label>
                                     <input
-                                     defaultValue={eventType && eventType.eventDate ? eventType.eventDate : ""}
+                                        defaultValue={eventType && eventType.eventDate ? eventType.eventDate : ""}
                                         type="date"
                                         id="eventDate"
                                         className="formbold-form-input"
@@ -92,7 +92,7 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                 <div>
                                     <label htmlFor="eventStartHour" className="formbold-form-label">שעת התחלה</label>
                                     <input
-                                     defaultValue={eventType && eventType.eventStartHour ? eventType.eventStartHour : ""}
+                                        defaultValue={eventType && eventType.eventStartHour ? eventType.eventStartHour : ""}
                                         type="time"
                                         id="eventStartHour"
                                         className="formbold-form-input"
@@ -109,10 +109,6 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                             </div>
 
                         </div>
-
-
-
-
                     </form>
                 </div>
             </div>
