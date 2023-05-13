@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./EventType.scss";
 import { useForm } from 'react-hook-form';
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newEventAction } from "../../../../App/newEventSlice";
 
@@ -39,11 +38,11 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
               <p>סוג האירוע:</p>
               <select  {...register("eventType", { required: true })} onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
                 <option value="">בחר סוג אירוע</option>
-                <option value="birthday">יום הולדת</option>
-                <option value="wedding">חתונה</option>
-                <option value="bris">ברית</option>
-                <option value="fire">על האש</option>
-                <option value="other">אחר...</option>
+                <option value="1">יום הולדת</option>
+                <option value="2">חתונה</option>
+                <option value="3">ברית</option>
+                <option value="4">על האש</option>
+                <option value="5">אחר...</option>
               </select>
               {errors.eventType && <span className="error-message">זהו שדה חובה</span>}
             </div>
@@ -54,7 +53,7 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                 <input type="text" defaultValue={eventType && eventType.name1 ? eventType.name1 : ""} id="name1" className="formbold-form-input" {...register("name1", { required: true })} />
                 {errors.name1 && <span className="error-message">זהו שדה חובה</span>}
               </div>
-              {eventTypeNumber == "wedding" ?
+              {eventTypeNumber == "2" ?
                 <div>
                   <label htmlFor="name2" className="formbold-form-label">שם שני (אופציונלי)</label>
                   <input type="text" defaultValue={eventType && eventType.name2 ? eventType.name2 : ""} id="name2" className="formbold-form-input" {...register("name2")} />

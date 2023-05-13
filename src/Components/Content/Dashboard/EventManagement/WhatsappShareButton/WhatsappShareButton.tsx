@@ -1,8 +1,18 @@
+import { config } from "../../../../../Services/config";
 import "./WhatsappShareButton.scss";
 
-function WhatsappShareButton(): JSX.Element {
+function WhatsappShareButton({ id }: { id: string }): JSX.Element {
+
+    const handleSendWhatsApp = () => {
+        const url = config.WEB_URL + "/event/" + id;
+        const message = "הנכם מוזמנים לאירוע שלנו, נשמח לראותכם";
+        const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}%20${encodeURIComponent(url)}`;
+    
+        window.open(whatsappLink, "_blank");
+      };
+    
     return (
-        <div className="WhatsappShareButton">
+        <div className="WhatsappShareButton" onClick={handleSendWhatsApp}>
 			     <div className="share_container">
                     <button className="whatsapp_share_btn ">שליחה בווצאפ
                     <div className="star-1">

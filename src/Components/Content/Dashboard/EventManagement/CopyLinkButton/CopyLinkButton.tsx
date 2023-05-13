@@ -1,8 +1,13 @@
+import { config } from "../../../../../Services/config";
 import "./CopyLinkButton.scss";
 
-function CopyLinkButton(): JSX.Element {
+function CopyLinkButton({id} : {id: string}): JSX.Element {
+    const url = config.WEB_URL + "/event/" + id;
+
+
     return (
-        <div className="CopyLinkButton">
+        <div className="CopyLinkButton" onClick={() => navigator.clipboard.writeText(url)
+}>
 			     <div className="share_container">
                     <button className="copy_link_btn ">העתק קישור
                     <div className="star-1">
