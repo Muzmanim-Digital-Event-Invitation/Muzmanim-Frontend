@@ -73,6 +73,7 @@ function EventManagement(): JSX.Element {
       }, 0) ?? 0;
 
     return (
+
       <div className="EventManagement">
         {/* <div>
                     <button className="display_event_btn btn">לצפייה בזמנה</button>
@@ -104,7 +105,7 @@ function EventManagement(): JSX.Element {
               </div>
             : <></> }
             {event?.vegetarian ? 
-              <div className="vegetarian_food box">
+              <div className="vegetarian_food box" >
                 <p className="p_number">{vegetarianFoodCount}</p>
                 <span className="span_title">טבעוני</span>
               </div>
