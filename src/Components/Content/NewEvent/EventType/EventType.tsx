@@ -23,8 +23,9 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
       data.vegetarian = false;
     }
     // console.log(data);
-
-    dispatch(newEventAction(data))
+    const mergedData = { ...eventType, ...data };
+    dispatch(newEventAction(mergedData));
+    // dispatch(newEventAction(data))
     stepForward();
   }
 

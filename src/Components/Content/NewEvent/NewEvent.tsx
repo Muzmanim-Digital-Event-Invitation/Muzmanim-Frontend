@@ -16,16 +16,18 @@ function NewEvent(): JSX.Element {
       <CustomizedSteppers stepNumber={stepNumber} />
       {stepNumber === 0 ?
         <EventType stepNumber={stepNumber} setStepNumber={setStepNumber} />
+
         : <></>}
       {stepNumber === 1 ?
         <EventInfo stepNumber={stepNumber} setStepNumber={setStepNumber} />
         : <></>}
       {stepNumber === 2 ?
         <EventDesign stepNumber={stepNumber} setStepNumber={setStepNumber} />
+
         : <></>}
 
 
-    </div>
+    </div> 
   );
 }
 
