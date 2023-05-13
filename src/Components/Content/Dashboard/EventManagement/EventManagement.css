@@ -68,6 +68,7 @@
     justify-content: space-between;
     /* max-width: 1400px; */
     gap: 50px;
+    
     margin-top: 30px;
     width: 60%;
     max-width: 700px;
@@ -78,6 +79,8 @@
     /* border: 1px solid black; */
     display: flex;
     gap: 30px;
+    justify-content: space-evenly;
+    width: 40%;
     padding: 40px;
     border-radius: 15px;
 
@@ -139,6 +142,9 @@
     max-height: 350px;
     overflow-y: auto;
     margin: 30px;
+    box-shadow: 1px 0px 8px 0px #00000025;
+    border-radius: 20px;
+
 
 }
 
@@ -149,7 +155,7 @@
     max-width: 700px;
     width: 80vw;
     /* background-color: black; */
-    box-shadow: 1px 0px 8px 0px #00000025;
+    /* box-shadow: 1px 0px 8px 0px #00000025; */
     position: relative; /* Add this line */
 
 }
@@ -171,11 +177,14 @@
     padding: 12px;
     text-align: center;
     cursor: pointer;
+}
+
+.EventManagement tr {
     border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.EventManagement tr:first-child {
-    background-color: var(--main-clr);
+.EventManagement tr:last-child {
+    border-bottom: none;
 }
 
 .EventManagement tr:first-child th {

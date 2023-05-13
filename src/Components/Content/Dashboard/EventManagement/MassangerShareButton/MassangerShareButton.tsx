@@ -1,8 +1,19 @@
+import { config } from "../../../../../Services/config";
 import "./MassangerShareButton.scss";
 
-function MassangerShareButton(): JSX.Element {
+function MassangerShareButton({ id }: { id: string }): JSX.Element {
+
+    
+    const handleSendFacebookMessenger = () => {
+        const url = config.WEB_URL + "/event/" + id;
+        const message = "הנכם מוזמנים לאירוע שלנו, נשמח לראותכם";
+        const facebookMessengerLink = `https://www.facebook.com/dialog/send?app_id=YOUR_APP_ID&link=${encodeURIComponent(url)}&redirect_uri=YOUR_REDIRECT_URI&quote=${encodeURIComponent(message)}`;
+    
+        window.open(facebookMessengerLink, "_blank");
+      };
+
     return (
-        <div className="MassangerShareButton">
+        <div className="MassangerShareButton" onClick={handleSendFacebookMessenger}>
 			     <div className="share_container">
                     <button className="massanger_share_btn ">שליחה בפייסבוק
                     <div className="star-1">
