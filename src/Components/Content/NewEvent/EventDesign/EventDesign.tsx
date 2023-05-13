@@ -17,19 +17,21 @@ function EventDesign(props: ownProps): JSX.Element {
 
     const { register, handleSubmit, watch } = useForm<any>();
     const [bgColor, setBgColor] = useState<string>();
+    const [background, setBackground] = useState<string>(null);
     const watchBackground = watch("background", null);
-
-    useEffect(() => {
-        console.log(watchBackground);
-    }, [watchBackground])
 
     function colorSelection(e: any) {
         setBgColor(e.target.value);
+        setBackground(e.target.value);
     }
 
     function onSubmit(data: any) {
         console.log(data);
     }
+
+    useEffect(() => {
+        setBackground(watchBackground);
+    }, [watchBackground])
 
     return (
         <div className="EventDesign">
@@ -130,12 +132,12 @@ function EventDesign(props: ownProps): JSX.Element {
                 <div
                     className="preview"
                     style={{
-                        backgroundImage: `url(${watchBackground})`,
-                        backgroundColor: watchBackground
+                        backgroundImage: `url(${background})`,
+                        backgroundColor: background
                     }}
                 ></div>
             </div>
-            
+
             <div className="formbold-form-confirm">
                 <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
                 <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
