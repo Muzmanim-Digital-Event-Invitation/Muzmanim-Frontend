@@ -15,17 +15,17 @@ function NewEvent(): JSX.Element {
       <h1>test</h1>
       <CustomizedSteppers stepNumber={stepNumber} />
       {stepNumber === 2 ?
-        <EventType stepNumber={stepNumber} setStepNumber={setStepNumber} />
+        <EventDesign stepNumber={stepNumber} setStepNumber={setStepNumber} />
         : <></>}
       {stepNumber === 1 ?
         <EventInfo stepNumber={stepNumber} setStepNumber={setStepNumber} />
         : <></>}
       {stepNumber === 0 ?
-        <EventDesign stepNumber={stepNumber} setStepNumber={setStepNumber} />
+        <EventType stepNumber={stepNumber} setStepNumber={setStepNumber} />
         : <></>}
 
 
-    </div>
+    </div> 
   );
 }
 

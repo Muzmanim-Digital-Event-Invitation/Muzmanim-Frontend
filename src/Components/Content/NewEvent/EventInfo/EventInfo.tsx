@@ -6,7 +6,7 @@ import { newEventAction } from "../../../../App/newEventSlice";
 
 function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepNumber: (sn: number) => void }): JSX.Element {
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit , getValues} = useForm();
     const dispatch = useDispatch();
 
     const eventType = useSelector((state: any) => state.newEvent)
@@ -17,18 +17,18 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
     })
 
     function onSubmit(data: any) {
-        // console.log(data);
-
         const mergedData = { ...eventType, ...data };
-        console.log(mergedData);
-
         dispatch(newEventAction(mergedData));
-
-
         stepForward();
     }
+
     function stepBack() {
         if (stepNumber < 0) return;
+        const currentData = getValues();
+        console.log(currentData);
+        const mergedData = { ...eventType, ...currentData };
+        console.log(mergedData);
+        dispatch(newEventAction(mergedData));
         setStepNumber(stepNumber - 1)
     }
 
