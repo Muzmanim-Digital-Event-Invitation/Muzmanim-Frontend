@@ -119,7 +119,7 @@
     .recommend_container {
         flex-direction: column;
         width: 100%;
-        padding: 20px;
+        // padding: 20px;
         background-color: var(--main-clr);
 
 
@@ -129,6 +129,7 @@
         }
 
         .all_reviews {
+            height: 350px;
             display: flex;
             align-items: start;
             justify-content: center;
