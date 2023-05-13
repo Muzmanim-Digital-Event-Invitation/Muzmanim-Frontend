@@ -6,6 +6,7 @@ import bgImage4 from "../../../../assets/invitation-bg-4.jpg"
 import { useEffect, useState } from "react";
 import { IoMdColorPalette } from 'react-icons/io';
 import { useForm } from "react-hook-form";
+import Invite from "../../../Invite/Invite";
 
 
 interface ownProps {
@@ -17,19 +18,40 @@ function EventDesign(props: ownProps): JSX.Element {
 
     const { register, handleSubmit, watch } = useForm<any>();
     const [bgColor, setBgColor] = useState<string>();
+    const [background, setBackground] = useState<string>(null);
     const watchBackground = watch("background", null);
+    const watchFont = watch("font", null);
 
-    useEffect(() => {
-        console.log(watchBackground);
-    }, [watchBackground])
+    const dataPlaceHolder = {
+        id: 1,
+        userEmail: 'hen,daniel47@gmail.com',
+        eventType: 'ewdding',
+        hallName: 'אולמות דניאל',
+        name1: 'דוד ביטון',
+        name2: 'סימה עציוני',
+        food: true,
+        vegetarian: true,
+        vegan: true,
+        kids: true,
+        regular: true,
+        city: 'כפר סבא',
+        street: 'נלקין 9',
+        eventDate: '2023-05-14',
+        eventStartHour: '19:00'
+    }
 
     function colorSelection(e: any) {
         setBgColor(e.target.value);
+        setBackground(e.target.value);
     }
 
     function onSubmit(data: any) {
         console.log(data);
     }
+
+    useEffect(() => {
+        setBackground(watchBackground);
+    }, [watchBackground])
 
     return (
         <div className="EventDesign">
@@ -70,17 +92,21 @@ function EventDesign(props: ownProps): JSX.Element {
                 <div className="form-section">
                     <h3>פונט</h3>
                     <div className="font-selection">
-                        <div className="font-option">
-                            פונט
+                        <div className="radio-input-wraper font-option font-1">
+                            <input type="radio" id="select-font1" {...register("font")} value={1} />
+                            <label className="radio-label font-option" htmlFor="select-font1">משמח</label>
                         </div>
-                        <div className="font-option">
-                            פונט
+                        <div className="radio-input-wraper font-option font-2">
+                            <input type="radio" id="select-font2" {...register("font")} value={2} />
+                            <label className="radio-label font-option" htmlFor="select-font2">משוגע</label>
                         </div>
-                        <div className="font-option">
-                            פונט
+                        <div className="radio-input-wraper font-option font-3">
+                            <input type="radio" id="select-font3" {...register("font")} value={3} />
+                            <label className="radio-label font-option" htmlFor="select-font3">כיף</label>
                         </div>
-                        <div className="font-option">
-                            פונט
+                        <div className="radio-input-wraper font-option font-4">
+                            <input type="radio" id="select-font4" {...register("font")} value={4} />
+                            <label className="radio-label font-option" htmlFor="select-font4">חגיגי</label>
                         </div>
                     </div>
                 </div>
@@ -127,19 +153,17 @@ function EventDesign(props: ownProps): JSX.Element {
                 </div>
             </form >
             <div className="preview-wraper">
-                <div
-                    className="preview"
-                    style={{
-                        backgroundImage: `url(${watchBackground})`,
-                        backgroundColor: watchBackground
-                    }}
-                ></div>
+                <Invite
+                    eventData={dataPlaceHolder}
+                    background={background}
+                    font={watchFont}
+                />
             </div>
-            
-            <div className="formbold-form-confirm">
+
+            {/* <div className="formbold-form-confirm">
                 <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
                 <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
-            </div>
+            </div> */}
         </div>
     );
 }

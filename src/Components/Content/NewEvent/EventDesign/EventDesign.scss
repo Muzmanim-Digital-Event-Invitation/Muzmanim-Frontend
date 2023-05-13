@@ -4,6 +4,7 @@
     justify-content: center;
     gap: 25px;
     width: 100%;
+    margin-top: 30px;
 
     input {
         border: none;
@@ -37,18 +38,26 @@
             padding: 10px;
             border: solid 1px var(--main-text-clr);
             border-radius: var(--mid-radius);
+            z-index: 0;
         }
 
         .bg-selection {
             display: flex;
             gap: 10px;
-            overflow: auto;
+            padding: 5px 0;
+            overflow-x: scroll;
 
             .radio-input-wraper {
                 position: relative;
+                top: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transition: top 100ms ease-out;
+
+                &:hover {
+                    top: -5px;
+                }
 
                 .color-selector {
                     position: absolute;
@@ -106,21 +115,37 @@
         }
 
         .font-selection {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            justify-items: center;
-            overflow: auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
 
             .font-option {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 90%;
+                width: 100px;
+                font-size: 1em;
+                font-weight: 400;
                 height: 30px;
-                background-color: aquamarine;
+                background-color: var(--sec-clr);
                 border-radius: var(--sml-radius);
 
+                &.font-1 {
+                    font-family: var(--invite-font1);
+                }
+
+                &.font-2 {
+                    font-family: var(--invite-font2);
+                }
+
+                &.font-3 {
+                    font-family: var(--invite-font3);
+                }
+
+                &.font-4 {
+                    font-family: var(--invite-font4);
+                }
             }
         }
 
@@ -149,15 +174,6 @@
         align-items: center;
         justify-content: center;
         max-width: 400px;
-
-        .preview {
-            width: 100%;
-            aspect-ratio: 2 / 3;
-            background-color: #ffe4c4;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
     }
 
 }
