@@ -7,7 +7,7 @@ function Dashboard(): JSX.Element {
         <div className="Dashboard">
             <h1>איזור אישי</h1>
             <div>
-                <button className="btn create_event_btn">ליצירת הזמנה חדשה</button>
+                <button className="btn create_event_btn" onClick={() => navigate('/newEvent')}>ליצירת הזמנה חדשה</button>
             </div>
             <div className="events_container">
 
