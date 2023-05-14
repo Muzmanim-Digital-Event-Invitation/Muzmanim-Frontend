@@ -3,6 +3,20 @@ import "./EventType.scss";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { newEventAction } from "../../../../App/newEventSlice";
+import { config } from "../../../../Services/config";
+
+
+
+import * as React from 'react';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select, { SelectChangeEvent } from '@mui/material/Select';
+// import { ThemeProvider } from "@emotion/react";
+// import { createTheme } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, createTheme, ThemeProvider } from '@mui/material';
+
+
 
 function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepNumber: (sn: number) => void }): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -29,6 +43,50 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
     stepForward();
   }
 
+  const options = Object.keys(config.eventTypeMapping).map((key: string) => ({
+    value: parseInt(key),
+    label: config.eventTypeMapping[parseInt(key)].label,
+    icon: config.getIconComponent(config.eventTypeMapping[parseInt(key)].icon)
+  }));
+
+
+  
+
+  const theme = createTheme({
+    direction: 'rtl',
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            '& fieldset': {
+              textAlign: 'right',
+            },
+          },
+        },
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          formControl: {
+            right: "-5px",
+            '&[data-shrink="false"]': {
+              right: '25px',
+            },
+          },
+        },
+      },
+      MuiSelect: {
+        styleOverrides: {
+          icon: {
+            left: 0,
+            right: 'unset',
+            color: 'inherit',
+          },
+        },
+      },
+    },
+  });
+  
+
   return (
     <div className="EventType">
       <div className="formbold-main-wrapper">
@@ -37,14 +95,33 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
             
             <div className="formbold-input-flex">
               <p>סוג האירוע:</p>
-              <select  {...register("eventType", { required: true })} onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
+
+              <ThemeProvider theme={theme}>
+              <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
+                <InputLabel id="demo-select-small-label">בחר סוג אירוע</InputLabel>
+                <Select
+                 {...register("eventType", { required: true })}
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}
+                label="בחר סוג אירוע"
+                onInput={(e: any) => setEventTypeNumber(e.target.value)}
+                              >
+                {options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.icon && <option.icon />} {option.label}
+                </MenuItem>
+              ))}
+
+              </Select>
+
+              </FormControl>
+            </ThemeProvider>
+
+              {/* <select  {...register("eventType", { required: true })}  onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
                 <option value="">בחר סוג אירוע</option>
-                <option value="1">יום הולדת</option>
-                <option value="2">חתונה</option>
-                <option value="3">ברית</option>
-                <option value="4">על האש</option>
-                <option value="5">אחר...</option>
-              </select>
+                {options}
+              </select> */}
               {errors.eventType && <span className="error-message">זהו שדה חובה</span>}
             </div>
 
