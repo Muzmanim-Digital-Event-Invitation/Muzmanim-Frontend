@@ -38,7 +38,7 @@ function Dashboard(): JSX.Element {
                     <div className="card_details">
                         <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
                         <h3>{event.name1}</h3>
-                        <h3>{config.eventTypeMapping[event.eventType]}</h3>
+                        <h3>{config.eventTypeMapping[event.eventType].label}</h3>
                     </div>
                     <button className="card_button">לחץ לעוד מידע</button>
                 </div>
