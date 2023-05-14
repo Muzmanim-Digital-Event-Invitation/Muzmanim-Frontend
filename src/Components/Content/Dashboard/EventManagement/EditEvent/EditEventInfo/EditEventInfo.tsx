@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useNavigate} from "react-router-dom";
+import { config } from "../../../../../../Services/config";
 
 function EditEventInfo(): JSX.Element {
   const { id } = useParams();
@@ -47,6 +48,10 @@ function EditEventInfo(): JSX.Element {
     })
   }
 
+  const options = Object.keys(config.eventTypeMapping).map((key) => (
+    <option value={key} selected={key === config.eventTypeMapping}>{config.eventTypeMapping[key]}</option>
+  ));
+
   return (
     <div className="EditEventInfo">
       <div className="formbold-main-wrapper">
@@ -62,11 +67,7 @@ function EditEventInfo(): JSX.Element {
                     value={eventTypeNumber}
                         >
                     <option value="">בחר סוג אירוע</option>
-                    <option value={1}>יום הולדת</option>
-                    <option value={2}>חתונה</option>
-                    <option value={3}>ברית</option>
-                    <option value={4}>על האש</option>
-                    <option value={5}>אחר...</option>
+                    {options}
                   </select>
                   {errors.eventType && (
                     <span className="error-message">זהו שדה חובה</span>

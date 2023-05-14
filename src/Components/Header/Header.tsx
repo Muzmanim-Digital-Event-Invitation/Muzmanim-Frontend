@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
+import logo from "../../assets/logo-muzmanim.png"
 
 
 function Header(): JSX.Element {
@@ -17,10 +18,12 @@ function Header(): JSX.Element {
                     <NavLink className="btn nav-link" to={"/stam2"}>סתם מילה</NavLink>
                 </nav>
                 <div className="logo-section">
-                    <span className="logo-text">
+                    {/* <span className="logo-text">
                         מוזמנים
-                    </span>
-                    <div className="logo"></div>
+                    </span> */}
+                        <img src={logo} className="logo" alt="" />
+                    {/* <div className="logo">
+                    </div> */}
                 </div>
             </div>
         </header>

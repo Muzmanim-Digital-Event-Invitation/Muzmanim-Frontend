@@ -3,6 +3,7 @@ import "./EventType.scss";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { newEventAction } from "../../../../App/newEventSlice";
+import { config } from "../../../../Services/config";
 
 function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepNumber: (sn: number) => void }): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -29,6 +30,10 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
     stepForward();
   }
 
+  const options = Object.keys(config.eventTypeMapping).map((key) => (
+    <option value={key} selected={key === config.eventTypeMapping}>{config.eventTypeMapping[key]}</option>
+  ));
+
   return (
     <div className="EventType">
       <div className="formbold-main-wrapper">
@@ -37,13 +42,9 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
             
             <div className="formbold-input-flex">
               <p>סוג האירוע:</p>
-              <select  {...register("eventType", { required: true })} onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
+              <select  {...register("eventType", { required: true })}  onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
                 <option value="">בחר סוג אירוע</option>
-                <option value="1">יום הולדת</option>
-                <option value="2">חתונה</option>
-                <option value="3">ברית</option>
-                <option value="4">על האש</option>
-                <option value="5">אחר...</option>
+                {options}
               </select>
               {errors.eventType && <span className="error-message">זהו שדה חובה</span>}
             </div>
