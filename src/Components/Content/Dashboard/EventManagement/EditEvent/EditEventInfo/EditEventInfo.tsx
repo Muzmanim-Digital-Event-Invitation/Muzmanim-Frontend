@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import { config } from "../../../../../../Services/config";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 function EditEventInfo(): JSX.Element {
   const { id } = useParams();
@@ -48,10 +50,55 @@ function EditEventInfo(): JSX.Element {
     })
   }
 
-  const options = Object.keys(config.eventTypeMapping).map((key) => (
-    <option value={key} selected={key === config.eventTypeMapping}>{config.eventTypeMapping[key]}</option>
-  ));
+  // const options = Object.keys(config.eventTypeMapping).map((key) => (
+  //   <option value={key} selected={key === config.eventTypeMapping}>{config.eventTypeMapping[key]}</option>
+  // ));
 
+
+  
+  const options = Object.keys(config.eventTypeMapping).map((key: string) => ({
+    value: parseInt(key),
+    label: config.eventTypeMapping[parseInt(key)].label,
+    icon: config.getIconComponent(config.eventTypeMapping[parseInt(key)].icon)
+  }));
+
+
+  
+
+  const theme = createTheme({
+    direction: 'rtl',
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            '& fieldset': {
+              textAlign: 'right',
+            },
+          },
+        },
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          formControl: {
+            right: "-5px",
+            '&[data-shrink="false"]': {
+              right: '25px',
+            },
+          },
+        },
+      },
+      MuiSelect: {
+        styleOverrides: {
+          icon: {
+            left: 0,
+            right: 'unset',
+            color: 'inherit',
+          },
+        },
+      },
+    },
+  });
+  
   return (
     <div className="EditEventInfo">
       <div className="formbold-main-wrapper">
@@ -61,6 +108,34 @@ function EditEventInfo(): JSX.Element {
               <div>
                 <div className="formbold-input-flex" style={{marginBottom: "0"}}>
                   <label className="formbold-form-label">סוג האירוע:</label>
+
+
+                  
+              <ThemeProvider theme={theme}>
+              <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
+                <InputLabel id="demo-select-small-label">בחר סוג אירוע</InputLabel>
+                <Select
+                    {...register("eventType", { required: event && event.eventType ? false : true  })}
+                    labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={eventTypeNumber}
+                label="בחר סוג אירוע"
+                onInput={(e: any) => setEventTypeNumber(e.target.value)}
+                              >
+                {options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.icon && <option.icon />} {option.label}
+                </MenuItem>
+              ))}
+
+              </Select>
+
+              </FormControl>
+            </ThemeProvider>
+
+
+{/* 
+
                   <select
                     {...register("eventType", { required: event && event.eventType ? false : true  })}
                     onInput={(e: any) => setEventTypeNumber(e.target.value)}
@@ -68,7 +143,7 @@ function EditEventInfo(): JSX.Element {
                         >
                     <option value="">בחר סוג אירוע</option>
                     {options}
-                  </select>
+                  </select> */}
                   {errors.eventType && (
                     <span className="error-message">זהו שדה חובה</span>
                   )}

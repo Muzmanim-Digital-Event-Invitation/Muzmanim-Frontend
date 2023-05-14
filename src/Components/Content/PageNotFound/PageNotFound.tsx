@@ -10,7 +10,7 @@ function PageNotFound(): JSX.Element {
             <div className="pageNotFound_Container">
                 <h1 className="notFoundNumber">404</h1>
                 <h1 className="notFountText">העמוד לא נמצא...</h1>
-                <button className="btn" onClick={() => navigate("/")}>חזרה לאזור האישי</button>
+                <button className="btn" onClick={() => navigate("/")}>חזרה לדף הבית</button>
 
             </div>
         </div>
