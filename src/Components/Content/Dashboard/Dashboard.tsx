@@ -1,8 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
+import { useEffect, useState } from "react";
+import { servicesFunctions } from "../../../Services/ServicesFunctions";
+import { EventModel } from "../../../Models/EventModel";
 
 function Dashboard(): JSX.Element {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [events, setEvents] = useState<EventModel[]>();
+
+    const eventTypeMapping : any = {
+        1: "יום הולדת",
+        2: "חתונה",
+        3: "ברית",
+        4: "על האש",
+        5: "אחר...",
+        // Add more mappings as needed
+      };
+
+    useEffect(() => {
+        servicesFunctions.getEventByUser().then((res) => {
+            setEvents(res);
+            console.log(res);
+            
+        } )
+    }, [])
+
     return (
         <div className="Dashboard">
             <h1>איזור אישי</h1>
@@ -10,56 +32,16 @@ function Dashboard(): JSX.Element {
                 <button className="btn create_event_btn" onClick={() => navigate('/newEvent')}>ליצירת הזמנה חדשה</button>
             </div>
             <div className="events_container">
-
-                <div className="event_card" onClick={() => navigate("/EventManagement/1")}>
+                {events?.map((event : EventModel) => (
+                <div className="event_card" onClick={() => navigate("/EventManagement/" + event.id)}>
                     <div className="card_details">
-                        <h3>07/05/2023</h3>
-                        <h3>אלי & מור</h3>
-                        <h3>חתונה</h3>
+                        <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
+                        <h3>{event.name1}</h3>
+                        <h3>{eventTypeMapping[event.eventType]}</h3>
                     </div>
                     <button className="card_button">לחץ לעוד מידע</button>
                 </div>
-
-                <div className="event_card">
-                    <div className="card_details">
-                        <h3>07/05/2023</h3>
-                        <h3>כנס</h3>
-                        <h3>AI משתלט על העולם</h3>
-
-                    </div>
-                    <button className="card_button">לחץ לעוד מידע</button>
-                </div>
-
-                <div className="event_card">
-                    <div className="card_details">
-                        <h3>18/05/2023</h3>
-                        <h3>על האש</h3>
-                        <h3>הראל</h3>
-
-                    </div>
-                    <button className="card_button">לחץ לעוד מידע</button>
-
-                </div>
-
-                <div className="event_card">
-                    <div className="card_details">
-                        <h3>02/06/2023</h3>
-                        <h3>בר מיצווה</h3>
-                        <h3>אלון</h3>
-                    </div>
-                    <button className="card_button">לחץ לעוד מידע</button>
-
-                </div>
-
-                <div className="event_card">
-                    <div className="card_details">
-                        <h3>12/05/2023</h3>
-                        <h3>יום הולדת</h3>
-                        <h3>רן</h3>
-                    </div>
-                    <button className="card_button">לחץ לעוד מידע</button>
-
-                </div>
+                ))}
 
             </div>
         </div>
