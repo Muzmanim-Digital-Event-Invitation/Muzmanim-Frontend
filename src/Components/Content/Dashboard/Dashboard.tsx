@@ -3,19 +3,20 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { servicesFunctions } from "../../../Services/ServicesFunctions";
 import { EventModel } from "../../../Models/EventModel";
+import { config } from "../../../Services/config";
 
 function Dashboard(): JSX.Element {
     const navigate = useNavigate();
     const [events, setEvents] = useState<EventModel[]>();
 
-    const eventTypeMapping : any = {
-        1: "יום הולדת",
-        2: "חתונה",
-        3: "ברית",
-        4: "על האש",
-        5: "אחר...",
-        // Add more mappings as needed
-      };
+    // const eventTypeMapping : any = {
+    //     1: "יום הולדת",
+    //     2: "חתונה",
+    //     3: "ברית",
+    //     4: "על האש",
+    //     5: "אחר...",
+    //     // Add more mappings as needed
+    //   };
 
     useEffect(() => {
         servicesFunctions.getEventByUser().then((res) => {
@@ -37,7 +38,7 @@ function Dashboard(): JSX.Element {
                     <div className="card_details">
                         <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
                         <h3>{event.name1}</h3>
-                        <h3>{eventTypeMapping[event.eventType]}</h3>
+                        <h3>{config.eventTypeMapping[event.eventType]}</h3>
                     </div>
                     <button className="card_button">לחץ לעוד מידע</button>
                 </div>
