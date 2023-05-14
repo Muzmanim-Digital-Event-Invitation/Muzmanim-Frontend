@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
-
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function Header(): JSX.Element {
 
@@ -12,6 +13,16 @@ function Header(): JSX.Element {
                     <span className="profile-name">דניאל חן</span>
                 </div>
                 <nav className="nav-section">
+                <GoogleOAuthProvider clientId="615150774728-8oo11iin9i3pfhoej96k8e4ikg0kk1o2.apps.googleusercontent.com">
+                    <GoogleLogin
+                        onSuccess={credentialResponse => {
+                            console.log(credentialResponse);
+                        }}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                    />
+                    </GoogleOAuthProvider>
                     <NavLink className="btn nav-link" to={"/"}>בית</NavLink>
                     <NavLink className="btn nav-link" to={"/dashboard"}> איזור אישי</NavLink>
                     <NavLink className="btn nav-link" to={"/stam2"}>סתם מילה</NavLink>
