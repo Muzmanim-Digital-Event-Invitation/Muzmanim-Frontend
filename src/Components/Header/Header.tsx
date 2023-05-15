@@ -3,13 +3,14 @@ import "./Header.scss";
 
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import logo from "../../assets/logo-muzmanim.png"
-
+import logo from "../../assets/logo-muzmanim.png";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 function Header(): JSX.Element {
+    const navigate = useNavigate();
 
     return (
         <header className="Header">
@@ -37,7 +38,9 @@ function Header(): JSX.Element {
                     {/* <span className="logo-text">
                         מוזמנים
                     </span> */}
-                        <img src={logo} className="logo" alt="" />
+                    {/* <a href="/"> */}
+                        <img onClick={() => navigate("/")} src={logo} className="logo" alt="" />
+                    {/* </a> */}
                     {/* <div className="logo">
                     </div> */}
                 </div>
