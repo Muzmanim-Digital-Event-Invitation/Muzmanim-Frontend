@@ -23,7 +23,7 @@ class Config {
         2: { label: "חתונה", icon: "GiBigDiamondRing" },
         3: { label: "ברית", icon: "FaBaby" },
         4: { label: "על האש", icon: "MdOutdoorGrill" },
-        5: { label: "אחר...", icon: "FaEllipsisH" },
+        5: { label: "אחר", icon: "FaEllipsisH" },
         // Add more mappings as needed
       };
     
