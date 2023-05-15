@@ -114,11 +114,7 @@ function EditEventInfo(): JSX.Element {
                     {...register("eventType", { required: event && event.eventType ? false : true  })}
                     labelId="demo-select-small-label"
                 id="demo-select-small"
-                // value={eventTypeNumber}
-                // defaultValue={eventTypeNumber}
                 value={eventTypeNumber}
-
-                // defaultValue={event && event.eventType ? event.eventType : ""}
                 label="בחר סוג אירוע"
                 onChange={(e: any) => setEventTypeNumber(e.target.value)}
                               >
@@ -134,17 +130,6 @@ function EditEventInfo(): JSX.Element {
               </FormControl>
             </ThemeProvider>
 
-
-{/* 
-
-                  <select
-                    {...register("eventType", { required: event && event.eventType ? false : true  })}
-                    onInput={(e: any) => setEventTypeNumber(e.target.value)}
-                    value={eventTypeNumber}
-                        >
-                    <option value="">בחר סוג אירוע</option>
-                    {options}
-                  </select> */}
                   {errors.eventType && (
                     <span className="error-message">זהו שדה חובה</span>
                   )}

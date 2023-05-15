@@ -110,7 +110,7 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                 id="demo-select-small"
                 defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}
                 label="בחר סוג אירוע"
-                onInput={(e: any) => setEventTypeNumber(e.target.value)}
+                onChange={(e: any) => setEventTypeNumber(e.target.value)}
                               >
                 {options.map((option) => (
                 <MenuItem key={option.value} value={option.value}   sx={{ gap: '10px' }}> 
@@ -123,10 +123,6 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
               </FormControl>
             </ThemeProvider>
 
-              {/* <select  {...register("eventType", { required: true })}  onInput={(e: any) => setEventTypeNumber(e.target.value)} defaultValue={eventType && eventType.eventType ? eventType.eventType : ""}>
-                <option value="">בחר סוג אירוע</option>
-                {options}
-              </select> */}
               {errors.eventType && <span className="error-message">זהו שדה חובה</span>}
             </div>
 
