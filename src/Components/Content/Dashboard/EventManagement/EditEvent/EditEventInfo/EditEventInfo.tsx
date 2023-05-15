@@ -123,7 +123,8 @@ function EditEventInfo(): JSX.Element {
                 onInput={(e: any) => setEventTypeNumber(e.target.value)}
                               >
                 {options.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem key={option.value} value={option.value}   sx={{ gap: '10px' }}
+                >
                   {option.icon && <option.icon />} {option.label}
                 </MenuItem>
               ))}
