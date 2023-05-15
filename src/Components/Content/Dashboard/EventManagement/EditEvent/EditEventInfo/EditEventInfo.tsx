@@ -16,9 +16,11 @@ function EditEventInfo(): JSX.Element {
   const [isFood, setIsFood] = useState<boolean>();
   const [eventTypeNumber, setEventTypeNumber] = useState(event && event.eventType ? event.eventType : "");
   const navigate = useNavigate();
+
+
   useEffect(() => {
     console.log(id);
-    
+
     servicesFunctions.getSpesificEvent(id).then((res) => {
       setEvent(res);
       setIsFood(res?.food);
@@ -49,12 +51,6 @@ function EditEventInfo(): JSX.Element {
         navigate("/eventManagement/" + id)
     })
   }
-
-  // const options = Object.keys(config.eventTypeMapping).map((key) => (
-  //   <option value={key} selected={key === config.eventTypeMapping}>{config.eventTypeMapping[key]}</option>
-  // ));
-
-
   
   const options = Object.keys(config.eventTypeMapping).map((key: string) => ({
     value: parseInt(key),
@@ -80,7 +76,7 @@ function EditEventInfo(): JSX.Element {
       MuiInputLabel: {
         styleOverrides: {
           formControl: {
-            right: "-5px",
+            right: "-10px",
             '&[data-shrink="false"]': {
               right: '25px',
             },
@@ -118,9 +114,13 @@ function EditEventInfo(): JSX.Element {
                     {...register("eventType", { required: event && event.eventType ? false : true  })}
                     labelId="demo-select-small-label"
                 id="demo-select-small"
+                // value={eventTypeNumber}
+                // defaultValue={eventTypeNumber}
                 value={eventTypeNumber}
+
+                // defaultValue={event && event.eventType ? event.eventType : ""}
                 label="בחר סוג אירוע"
-                onInput={(e: any) => setEventTypeNumber(e.target.value)}
+                onChange={(e: any) => setEventTypeNumber(e.target.value)}
                               >
                 {options.map((option) => (
                 <MenuItem key={option.value} value={option.value}   sx={{ gap: '10px' }}

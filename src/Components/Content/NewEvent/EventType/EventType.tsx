@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./EventType.scss";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +28,11 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
   function stepForward() {
     setStepNumber(stepNumber + 1);
   }
+
+  useEffect(() => {
+    console.log(eventType);
+    
+  }, [])
 
   function onSubmit(data: any) {
     if (!data.food) {
@@ -67,7 +72,7 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
       MuiInputLabel: {
         styleOverrides: {
           formControl: {
-            right: "-5px",
+            right: "-10px",
             '&[data-shrink="false"]': {
               right: '25px',
             },
