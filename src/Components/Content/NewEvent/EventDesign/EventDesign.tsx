@@ -5,8 +5,15 @@ import bgImage3 from "../../../../assets/invitation-bg-3.jpg"
 import bgImage4 from "../../../../assets/invitation-bg-4.jpg"
 import { useEffect, useState } from "react";
 import { IoMdColorPalette } from 'react-icons/io';
+import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
+import { TbWashDrycleanOff } from 'react-icons/tb';
+import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
+import { FaBirthdayCake } from 'react-icons/fa';
+import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
+
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
+import { useDispatch, useSelector } from "react-redux";
 
 
 interface ownProps {
@@ -21,24 +28,26 @@ function EventDesign(props: ownProps): JSX.Element {
     const [background, setBackground] = useState<string>(null);
     const watchBackground = watch("background", null);
     const watchFont = watch("font", null);
+    const watchIcon = watch("icon", null);
+    const dataPlaceHolder = useSelector((state: any) => state.newEvent)
 
-    const dataPlaceHolder = {
-        id: 1,
-        userEmail: 'hen,daniel47@gmail.com',
-        eventType: 'ewdding',
-        hallName: 'אולמות דניאל',
-        name1: 'דוד ביטון',
-        name2: 'סימה עציוני',
-        food: true,
-        vegetarian: true,
-        vegan: true,
-        kids: true,
-        regular: true,
-        city: 'כפר סבא',
-        street: 'נלקין 9',
-        eventDate: '2023-05-14',
-        eventStartHour: '19:00'
-    }
+    // const dataPlaceHolder = {
+    //     id: 1,
+    //     userEmail: 'hen,daniel47@gmail.com',
+    //     eventType: 'ewdding',
+    //     hallName: 'אולמות דניאל',
+    //     name1: 'דוד ביטון',
+    //     name2: 'סימה עציוני',
+    //     food: true,
+    //     vegetarian: true,
+    //     vegan: true,
+    //     kids: true,
+    //     regular: true,
+    //     city: 'כפר סבא',
+    //     street: 'נלקין 9',
+    //     eventDate: '2023-05-14',
+    //     eventStartHour: '19:00'
+    // }
 
     function colorSelection(e: any) {
         setBgColor(e.target.value);
@@ -110,6 +119,54 @@ function EventDesign(props: ownProps): JSX.Element {
                         </div>
                     </div>
                 </div>
+
+                <div className="form-section">
+                <h3>אייקון</h3>
+                <div className="icons-section">
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon1" {...register("icon")} value="" />
+                        <label className="radio-label icon-option" htmlFor="select-icon1"><TbWashDrycleanOff/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon2" {...register("icon")} value="<GiDiamondRing/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon2"><GiDiamondRing/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon3" {...register("icon")} value="<GiBabyBottle/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon3"><GiBabyBottle/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon4" {...register("icon")} value="<MdOutlineOutdoorGrill/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon4"><MdOutlineOutdoorGrill/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon5" {...register("icon")} value="<FaBirthdayCake/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon5"><FaBirthdayCake/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon6" {...register("icon")} value="<BsGenderMale/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon6"><BsGenderMale/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon7" {...register("icon")} value="<BsGenderFemale/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon7"><BsGenderFemale/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon8" {...register("icon")} value="<MdEventAvailable/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon8"><MdEventAvailable/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon9" {...register("icon")} value="<BsTrophy/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon9"><BsTrophy/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon10" {...register("icon")} value="<MdOutlineMilitaryTech/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon10"><MdOutlineMilitaryTech/></label>
+                    </div>
+                </div>
+            </div>
+
+{/* 
                 <div className="form-section">
                     <h3>אייקון</h3>
                     <div className="icons-section">
@@ -117,7 +174,7 @@ function EventDesign(props: ownProps): JSX.Element {
                             <div className="icon">❤️</div>
                         </div>
                         <div className="icon-option">
-                            <div className="icon">☎️</div>
+                            <div className="icon"><GiDiamondRing/></div>
                         </div>
                         <div className="icon-option">
                             <div className="icon">🌻</div>
@@ -144,7 +201,7 @@ function EventDesign(props: ownProps): JSX.Element {
                             <div className="icon">☎️</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="form-section">
                     <h3>תמונה</h3>
                     <div className="image-section">
@@ -157,6 +214,7 @@ function EventDesign(props: ownProps): JSX.Element {
                     eventData={dataPlaceHolder}
                     background={background}
                     font={watchFont}
+                    icon={watchIcon}
                 />
             </div>
 
