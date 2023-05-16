@@ -3,19 +3,19 @@ import bgImage1 from "../../../../assets/invitation-bg-1.jpg";
 import bgImage2 from "../../../../assets/invitation-bg-2.jpg";
 import bgImage3 from "../../../../assets/invitation-bg-3.jpg";
 import bgImage4 from "../../../../assets/invitation-bg-4.jpg";
-
-
-import { useEffect, useState } from "react";
-import { IoMdColorPalette } from 'react-icons/io';
 import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
 import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 
+import { useEffect, useState } from "react";
+import { IoMdColorPalette } from 'react-icons/io';
+
+
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 interface ownProps {
@@ -65,12 +65,34 @@ function EventDesign(props: ownProps): JSX.Element {
     }, [watchBackground])
 
 
-    const handleFileUpload = (e : any) => {
+    const [uploadedImages, setUploadedImages] = useState([]);
+    const [imageSrc, setImageSrc] = useState<any>();
+  
+    const handleFileUpload = (e: any) => {
         const file = e.target.files[0];
-        // handle the file upload here
-        // e.g., upload the file to a server or convert it to a base64 string
-      }
-
+        const reader = new FileReader();
+      
+        reader.onloadend = () => {
+            setUploadedImages(prevImages => [reader.result, ...prevImages]);
+            setImageSrc(reader.result);
+        };
+      
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+    }
+      
+      const handleRadioChange = (e: any) => {
+        setImageSrc(e.target.value);
+      };
+    
+    
+      useEffect(() => {
+        if (uploadedImages.length > 0) {
+          const radios = document.getElementsByName('image');
+          (radios[radios.length - (uploadedImages.length + 1)] as HTMLInputElement).checked = true;
+        }
+      }, [uploadedImages]);
       
     return (
         <div className="EventDesign">
@@ -130,28 +152,86 @@ function EventDesign(props: ownProps): JSX.Element {
                     </div>
                 </div>
 
+
+
                 <div className="form-section">
-                <h3>תמונה</h3>
-                <div className="image-selection">
-                    <div className=" upload_image">
-                        <img className="image-image" src="https://cdn-icons-png.flaticon.com/512/685/685686.png?w=826&t=st=1684263121~exp=1684263721~hmac=ea65ad0b3a4c22c98deea1a6e261e8241ef13e4f2e35dde580cc7b3d751e478f" alt="image-image" />
-                        <input type="file" className="input_upload_image" onChange={(e: any) => handleFileUpload(e)} />
+                <h3>אייקון</h3>
+                <div className="icons-section">
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon1" {...register("icon")} value="" />
+                        <label className="radio-label icon-option" htmlFor="select-icon1"><TbWashDrycleanOff/></label>
                     </div>
-                        <div className="radio-input-wraper">
-                            <img className="image-image" src="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" alt="image-image" />
-                            <input type="radio" id="select-image1" {...register("ïmage")} value="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" />
-                            <label className="radio-label image-option" htmlFor="select-image1" />
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon2" {...register("icon")} value="<GiDiamondRing/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon2"><GiDiamondRing/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon3" {...register("icon")} value="<GiBabyBottle/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon3"><GiBabyBottle/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon4" {...register("icon")} value="<MdOutlineOutdoorGrill/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon4"><MdOutlineOutdoorGrill/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon5" {...register("icon")} value="<FaBirthdayCake/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon5"><FaBirthdayCake/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon6" {...register("icon")} value="<BsGenderMale/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon6"><BsGenderMale/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon7" {...register("icon")} value="<BsGenderFemale/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon7"><BsGenderFemale/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon8" {...register("icon")} value="<MdEventAvailable/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon8"><MdEventAvailable/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon9" {...register("icon")} value="<BsTrophy/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon9"><BsTrophy/></label>
+                    </div>
+                    <div className="radio-input-wraper icon-option">
+                        <input type="radio" id="select-icon10" {...register("icon")} value="<MdOutlineMilitaryTech/>" />
+                        <label className="radio-label icon-option" htmlFor="select-icon10"><MdOutlineMilitaryTech/></label>
+                    </div>
+                </div>
+            </div>
+
+
+                <div className="form-section">
+                    <h3>תמונה</h3>
+                    <div className="image-selection">
+                        <div className=" upload_image">
+                        <img className="image-image" src="https://cdn-icons-png.flaticon.com/512/685/685686.png?w=826&t=st=1684263121~exp=1684263721~hmac=ea65ad0b3a4c22c98deea1a6e261e8241ef13e4f2e35dde580cc7b3d751e478f" alt="image-image" />
+                        <input type="file" className="input_upload_image" onChange={handleFileUpload} />
                         </div>
+                        {uploadedImages.map((image, index) => (
+                        <div className="radio-input-wraper" key={index}>
+                            <img className="image-image" src={image} alt="Uploaded" />
+                            <input type="radio" id={`uploaded-image${index}`} {...register("image")} value={image} onChange={handleRadioChange} />
+                            <label className="radio-label image-option" htmlFor={`uploaded-image${index}`} />
+                        </div>
+                        ))}
+                    <div className="radio-input-wraper">
+                    <img className="image-image" src="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" alt="image-image" />
+                    <input type="radio" id="select-image-1" {...register("image")} value="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" onChange={handleRadioChange} />
+                    <label className="radio-label image-option" htmlFor="select-image-1" />
+                    </div>
+
                         <div className="radio-input-wraper">
-                            <img className="image-image" src="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" alt="image-image" />
-                            <input type="radio" id="select-image1" {...register("ïmage")} value="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" />
-                            <label className="radio-label image-option" htmlFor="select-image1" />
+                            <img className="image-image" src="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" alt="image-image"  />
+                            <input type="radio" id="select-image-2" {...register("ïmage")} value="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" onChange={handleRadioChange} />
+                            <label className="radio-label image-option" htmlFor="select-image-2" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="image-image" src="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" alt="image-image" />
-                            <input type="radio" id="select-image1" {...register("ïmage")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" />
-                            <label className="radio-label image-option" htmlFor="select-image1" />
+                            <input type="radio" id="select-image-3" {...register("ïmage")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" onChange={handleRadioChange} />
+                            <label className="radio-label image-option" htmlFor="select-image-3" />
                         </div>
+                        
                 </div>
                 </div>
 {/* 
@@ -176,6 +256,7 @@ function EventDesign(props: ownProps): JSX.Element {
                     background={background}
                     font={watchFont}
                     icon={watchIcon}
+                    image={imageSrc}
                 />
             </div>
 

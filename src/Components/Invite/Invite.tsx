@@ -9,7 +9,8 @@ interface ownProps {
     eventData: any;
     background: string;
     font: number;
-    icon: string
+    icon: string;
+    image: any;
 }
 
 function Invite(props: ownProps): JSX.Element {
@@ -19,6 +20,11 @@ function Invite(props: ownProps): JSX.Element {
             backgroundColor: props.background,
             fontFamily: `var(--invite-font${props.font})`
         }}>
+            {props.image ? 
+            <div className="image">
+                <img src={props.image} alt="" />
+            </div>
+            : <div style={{ paddingTop: "20px"}}> </div>}
             <header>
                 <h1>הזמנה לחתונה!</h1>
             </header>
