@@ -1,9 +1,15 @@
 import "./Invite.scss";
+import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
+import { TbWashDrycleanOff } from 'react-icons/tb';
+import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
+import { FaBirthdayCake } from 'react-icons/fa';
+import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 
 interface ownProps {
     eventData: any;
     background: string;
     font: number;
+    icon: string
 }
 
 function Invite(props: ownProps): JSX.Element {
@@ -21,7 +27,23 @@ function Invite(props: ownProps): JSX.Element {
             </div>
             <div className="names-section">
                 <span className="name">{props.eventData.name1}</span>
-                <span>icon</span>
+                <span className="icon">
+                    {props.icon === "" && ""}
+                    {props.icon === "<GiDiamondRing/>" && <GiDiamondRing />}
+                    {props.icon === "<GiBabyBottle/>" && <GiBabyBottle />}
+                    {props.icon === "<TbWashDrycleanOff/>" && <TbWashDrycleanOff />}
+                    {props.icon === "<MdOutlineOutdoorGrill/>" && <MdOutlineOutdoorGrill />}
+                    {props.icon === "<MdEventAvailable/>" && <MdEventAvailable />}
+                    {props.icon === "<MdOutlineMilitaryTech/>" && <MdOutlineMilitaryTech />}
+                    {props.icon === "<FaBirthdayCake/>" && <FaBirthdayCake />}
+                    {props.icon === "<BsGenderFemale/>" && <BsGenderFemale />}
+                    {props.icon === "<BsGenderMale/>" && <BsGenderMale />}
+                    {props.icon === "<BsTrophy/>" && <BsTrophy />}
+                
+                
+                
+                
+                </span>
                 <span className="name">{props.eventData.name2}</span>
             </div>
             <div className="details-section">
