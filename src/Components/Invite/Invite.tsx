@@ -1,4 +1,5 @@
 import "./Invite.scss";
+import { useEffect } from "react"; 
 import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
 import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
@@ -14,6 +15,11 @@ interface ownProps {
 }
 
 function Invite(props: ownProps): JSX.Element {
+
+    useEffect(() => {
+        console.log(props.eventData);
+        
+    })
     return (
         <div className="Invite" style={{
             backgroundImage: `url(${props.background})`,
@@ -26,10 +32,26 @@ function Invite(props: ownProps): JSX.Element {
             </div>
             : <div style={{ paddingTop: "20px"}}> </div>}
             <header>
+                {props.eventData.eventType == 1 ? 
+                <h1>הזמנה ליום הולדתי!</h1>
+                : props.eventData.eventType == 2 ? 
                 <h1>הזמנה לחתונה!</h1>
+                : props.eventData.eventType == 3 ? 
+                <h1>הזמנה לברית!</h1>
+                : props.eventData.eventType == 4 ? 
+                <h1>הזמנה לעל האש!</h1>
+                : 
+                <h1>הזמנה!</h1>
+                }
             </header>
             <div className="free-text-section">
+                {props.eventData.eventType == 1 ? 
+                <p>אנחנו מתרגשים להזמינכם ליום הולדתי אשמח לראותכם</p>
+                 : props.eventData.eventType == 2 ? 
                 <p>אנחנו מתרגשים להזמינכם לחתונתנו נשמח לראותכם בין אורחנו</p>
+                : 
+                <p>נשמח לראותכם בין אורחנו</p>
+                }
             </div>
             <div className="names-section">
                 <span className="name">{props.eventData.name1}</span>
