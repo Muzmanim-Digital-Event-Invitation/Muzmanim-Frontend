@@ -9,12 +9,8 @@ import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from '
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import { useEffect, useState } from "react";
 import { IoMdColorPalette } from 'react-icons/io';
-
-import Button from '@mui/material/Button';
-
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
 import { useSelector } from "react-redux";
@@ -59,7 +55,9 @@ function EventDesign(props: ownProps): JSX.Element {
     }
 
     function onSubmit(data: any) {
-        console.log(data);
+        const mergedData = { ...dataPlaceHolder, ...data };
+
+        console.log(mergedData);
     }
 
     useEffect(() => {
@@ -87,6 +85,8 @@ function EventDesign(props: ownProps): JSX.Element {
       const handleRadioChange = (e: any) => {
         setImageSrc(e.target.value);
       };
+
+      
     
     
       useEffect(() => {
@@ -217,10 +217,22 @@ function EventDesign(props: ownProps): JSX.Element {
                 <div className="form-section">
                     <div className="image-title-and-delete-button">
                         <h3>תמונה</h3>
-                        <button className="delete-image-icon" onClick={handleDelete}>
-                        <DeleteIcon className="delete-icon"     />
+                        <div className="radio-input-wraper">
+                        <label htmlFor="no-image" className="delete-image-icon">
+                            <DeleteIcon className="delete-icon" />
                             ללא תמונה
-                        </button>
+                            <input
+                                type="radio"
+                                id="no-image"
+                                {...register("image")}
+                                value=""
+                                onChange={handleRadioChange}
+                                className="hidden-radio"
+                            />
+                        </label>
+                    </div>
+
+
                     </div>
                     
                     <div className="image-selection">
@@ -240,15 +252,15 @@ function EventDesign(props: ownProps): JSX.Element {
                     <input type="radio" id="select-image-1" {...register("image")} value="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" onChange={handleRadioChange} />
                     <label className="radio-label image-option" htmlFor="select-image-1" />
                     </div>
-
                         <div className="radio-input-wraper">
                             <img className="image-image" src="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" alt="image-image"  />
-                            <input type="radio" id="select-image-2" {...register("ïmage")} value="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" onChange={handleRadioChange} />
+                            <input type="radio" id="select-image-2" {...register("image")} value="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" onChange={handleRadioChange} />
                             <label className="radio-label image-option" htmlFor="select-image-2" />
                         </div>
+
                         <div className="radio-input-wraper">
                             <img className="image-image" src="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" alt="image-image" />
-                            <input type="radio" id="select-image-3" {...register("ïmage")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" onChange={handleRadioChange} />
+                            <input type="radio" id="select-image-3" {...register("image")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" onChange={handleRadioChange} />
                             <label className="radio-label image-option" htmlFor="select-image-3" />
                         </div>
                         
@@ -269,6 +281,10 @@ function EventDesign(props: ownProps): JSX.Element {
                         <input type="file" />
                     </div>
                 </div> */}
+                <div className="formbold-form-confirm">
+                <button className="formbold-confirm-btn " >חזור אחורה</button>
+                <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
+            </div>
             </form >
             <div className="preview-wraper">
                 <Invite
@@ -280,10 +296,7 @@ function EventDesign(props: ownProps): JSX.Element {
                 />
             </div>
 
-            {/* <div className="formbold-form-confirm">
-                <button className="formbold-confirm-btn " onClick={() => stepBack()}>חזור אחורה</button>
-                <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
-            </div> */}
+            
         </div>
     );
 }
