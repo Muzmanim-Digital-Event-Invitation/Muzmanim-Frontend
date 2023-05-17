@@ -8,10 +8,12 @@ import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useEffect, useState } from "react";
 import { IoMdColorPalette } from 'react-icons/io';
 
+import Button from '@mui/material/Button';
 
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
@@ -93,6 +95,17 @@ function EventDesign(props: ownProps): JSX.Element {
           (radios[radios.length - (uploadedImages.length + 1)] as HTMLInputElement).checked = true;
         }
       }, [uploadedImages]);
+
+      const handleDelete = () => {
+        // Uncheck all radio buttons
+        const radios = document.getElementsByName('image');
+        for(let i = 0; i < radios.length; i++){
+            (radios[i] as HTMLInputElement).checked = false;
+        }
+    
+        // Clear image source
+        setImageSrc(null);
+    };
       
     return (
         <div className="EventDesign">
@@ -202,7 +215,14 @@ function EventDesign(props: ownProps): JSX.Element {
 
 
                 <div className="form-section">
-                    <h3>תמונה</h3>
+                    <div className="image-title-and-delete-button">
+                        <h3>תמונה</h3>
+                        <button className="delete-image-icon" onClick={handleDelete}>
+                        <DeleteIcon className="delete-icon"     />
+                            ללא תמונה
+                        </button>
+                    </div>
+                    
                     <div className="image-selection">
                         <div className=" upload_image">
                         <img className="image-image" src="https://cdn-icons-png.flaticon.com/512/685/685686.png?w=826&t=st=1684263121~exp=1684263721~hmac=ea65ad0b3a4c22c98deea1a6e261e8241ef13e4f2e35dde580cc7b3d751e478f" alt="image-image" />

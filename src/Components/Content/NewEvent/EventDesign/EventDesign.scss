@@ -6,6 +6,41 @@
     width: 100%;
     margin-top: 30px;
 
+    .image-title-and-delete-button {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        .delete-image-icon {
+            position: relative;
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--main-clr);
+            padding: 5px 10px;
+            border: 1px solid var(--main-clr);
+            border-radius: 10px;
+            background-color: white;
+            &:hover {
+                transition: 0.2s;
+                top: -2px;
+            }
+
+            &:active {
+                background-color: var(--main-clr);
+                color: white;
+            
+                .delete-icon {
+                    fill: white;
+                }
+            }
+
+            
+            .delete-icon {
+                fill: var(--main-clr);
+            }
+        }
+    }
     input {
         border: none;
     }
