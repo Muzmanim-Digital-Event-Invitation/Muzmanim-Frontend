@@ -1,11 +1,13 @@
 import "./Invite.scss";
-import { useEffect } from "react"; 
+import { useEffect, useState } from "react"; 
 import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
 import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 import TextField from '@mui/material/TextField';
+import { BsCheck } from "react-icons/bs";
+import { HiXMark } from "react-icons/hi2";
 
 interface ownProps {
     eventData: any;
@@ -17,10 +19,13 @@ interface ownProps {
 
 function Invite(props: ownProps): JSX.Element {
 
-    useEffect(() => {
+  const [guestsCounter, setGuestsCounter] = useState<number>(1);
+
+  useEffect(() => {
         console.log(props.eventData);
         
     })
+
     return (
       <div
         className="Invite"
@@ -108,16 +113,26 @@ function Invite(props: ownProps): JSX.Element {
             <div>
               <div className="guests_count_container">
                 <p> כמה אתם?</p>
-                {/* <div> */}
-                  <div>+</div>
-                  <div>1</div>
-                  <div>-</div>
-                {/* </div> */}
+                <div className="counter_btns">
+                  <button onClick={(e) => {
+                    e.preventDefault(),
+                    setGuestsCounter(guestsCounter + 1)}
+                  }
+                  >+</button>
+                  <div>{guestsCounter}</div>
+                  <button onClick={(e) => {
+                    e.preventDefault(),
+                    setGuestsCounter(guestsCounter - 1)}
+                  }>-</button>
+                </div>
               </div>
-              <div>
-                <p>לעדכון מצב הגעה יש להזין את מספר הנייד שלכם</p>
+              <div className="guests_edit_container">
+                <p  className="guests_edit_container_p">לעדכון מצב הגעה יש להזין את מספר הנייד שלכם</p>
               </div>
-              <div>
+
+
+
+              {/* <div>
                 <label>
                   <input type="radio" name="arrival" value="yes" />
                   <span>V מגיעים</span>
@@ -126,8 +141,25 @@ function Invite(props: ownProps): JSX.Element {
                   <input type="radio" name="arrival" value="no" />
                   <span>X לא מגיעים</span>
                 </label>
-              </div>
+              </div> */}
+
+
+                <div className="form-section">
+                    <div className="guests-accept-radio">
+                        <div className="radio-input-wraper-guest accept">
+                            <input type="radio"id="accept"  name="guest"  />
+                            <label className="radio-label "  htmlFor="accept"> <BsCheck/> מגיעים</label>
+                        </div>
+                        <div className="radio-input-wraper-guest  unaccept">
+                            <input type="radio" id="unaccept" name="guest"    />
+                            <label className="radio-label "  htmlFor="unaccept"><HiXMark/> לא מגיעים</label>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            <button type="submit">Submit</button>
+
           </form>
         </footer>
       </div>
