@@ -6,7 +6,7 @@ import { newEventAction } from "../../../../App/newEventSlice";
 
 function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepNumber: (sn: number) => void }): JSX.Element {
 
-    const { register, handleSubmit , getValues} = useForm();
+    const { register, handleSubmit , getValues, formState: { errors }} = useForm();
     const dispatch = useDispatch();
 
     const eventType = useSelector((state: any) => state.newEvent)
@@ -56,8 +56,9 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                             type="text"
                                             id="city"
                                             className="formbold-form-input"
-                                            {...register("city")}
-                                        />
+                                            {...register("city", { required: true })}
+                                            />
+                                            {errors.city && <p className="error-message">זהו שדה חובה.</p>}
                                     </div>
                                 </div>
                                 <div>
@@ -69,8 +70,10 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                             type="text"
                                             id="street"
                                             className="formbold-form-input"
-                                            {...register("street")}
+                                            {...register("street", { required: true })}
                                         />
+                                            {errors.street && <p className="error-message">זהו שדה חובה.</p>}
+
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +86,10 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                         type="date"
                                         id="eventDate"
                                         className="formbold-form-input"
-                                        {...register("eventDate")}
+                                        {...register("eventDate", { required: true })}
                                     />
+
+                                            {errors.eventDate && <p className="error-message">זהו שדה חובה.</p>}
                                 </div>
                             </div>
 
@@ -96,8 +101,10 @@ function EventInfo({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                                         type="time"
                                         id="eventStartHour"
                                         className="formbold-form-input"
-                                        {...register("eventStartHour")}
+                                        {...register("eventStartHour", { required: true })}
                                     />
+                                            {errors.eventStartHour && <p className="error-message">זהו שדה חובה.</p>}
+
                                 </div>
                             </div>
 
