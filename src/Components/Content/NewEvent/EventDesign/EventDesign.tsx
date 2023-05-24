@@ -4,18 +4,18 @@ import bgImage2 from "../../../../assets/invitation-bg-2.jpg";
 import bgImage3 from "../../../../assets/invitation-bg-3.jpg";
 import bgImage4 from "../../../../assets/invitation-bg-4.jpg";
 
-import bgImage5 from "../../../../assets/invitation-bg-5.jpg";
-import bgImage6 from "../../../../assets/invitation-bg-6.jpg";
-import bgImage7 from "../../../../assets/invitation-bg-7.jpg";
-import bgImage8 from "../../../../assets/invitation-bg-8.jpg";
-import bgImage9 from "../../../../assets/invitation-bg-9.jpg";
-import bgImage10 from "../../../../assets/invitation-bg-10.jpg";
-import bgImage11 from "../../../../assets/invitation-bg-11.jpg";
-import bgImage12 from "../../../../assets/invitation-bg-12.jpg";
-import bgImage13 from "../../../../assets/invitation-bg-13.jpg";
-import bgImage14 from "../../../../assets/invitation-bg-14.jpg";
-import bgImage15 from "../../../../assets/invitation-bg-15.jpg";
-import bgImage16 from "../../../../assets/invitation-bg-16.jpg";
+import bgImage5 from "../../../../assets/invitation-bg-5.png";
+import bgImage6 from "../../../../assets/invitation-bg-6.png";
+import bgImage7 from "../../../../assets/invitation-bg-7.png";
+import bgImage8 from "../../../../assets/invitation-bg-8.png";
+import bgImage9 from "../../../../assets/invitation-bg-9.png";
+import bgImage10 from "../../../../assets/invitation-bg-10.png";
+import bgImage11 from "../../../../assets/invitation-bg-11.png";
+import bgImage12 from "../../../../assets/invitation-bg-12.png";
+import bgImage13 from "../../../../assets/invitation-bg-13.png";
+import bgImage14 from "../../../../assets/invitation-bg-14.png";
+import bgImage15 from "../../../../assets/invitation-bg-15.png";
+import bgImage16 from "../../../../assets/invitation-bg-16.png";
 
 import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
 import { TbWashDrycleanOff } from 'react-icons/tb';
@@ -162,6 +162,67 @@ function EventDesign(props: ownProps): JSX.Element {
                             <label className="radio-label bg-option" htmlFor="select-bg5" />
                         </div>
 
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage6} alt="bg-image" />
+                            <input type="radio" id="select-bg6" {...register("background")} value={bgImage6} />
+                            <label className="radio-label bg-option" htmlFor="select-bg6" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage7} alt="bg-image" />
+                            <input type="radio" id="select-bg7" {...register("background")} value={bgImage7} />
+                            <label className="radio-label bg-option" htmlFor="select-bg7" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage8} alt="bg-image" />
+                            <input type="radio" id="select-bg8" {...register("background")} value={bgImage8} />
+                            <label className="radio-label bg-option" htmlFor="select-bg8" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage9} alt="bg-image" />
+                            <input type="radio" id="select-bg9" {...register("background")} value={bgImage9} />
+                            <label className="radio-label bg-option" htmlFor="select-bg9" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage10} alt="bg-image" />
+                            <input type="radio" id="select-bg10" {...register("background")} value={bgImage10} />
+                            <label className="radio-label bg-option" htmlFor="select-bg10" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage11} alt="bg-image" />
+                            <input type="radio" id="select-bg11" {...register("background")} value={bgImage11} />
+                            <label className="radio-label bg-option" htmlFor="select-bg11" />
+                        </div>
+                        
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage12} alt="bg-image" />
+                            <input type="radio" id="select-bg12" {...register("background")} value={bgImage12} />
+                            <label className="radio-label bg-option" htmlFor="select-bg12" />
+                        </div>
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage13} alt="bg-image" />
+                            <input type="radio" id="select-bg13" {...register("background")} value={bgImage13} />
+                            <label className="radio-label bg-option" htmlFor="select-bg13" />
+                        </div>
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage14} alt="bg-image" />
+                            <input type="radio" id="select-bg14" {...register("background")} value={bgImage14} />
+                            <label className="radio-label bg-option" htmlFor="select-bg14" />
+                        </div>
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage15} alt="bg-image" />
+                            <input type="radio" id="select-bg15" {...register("background")} value={bgImage15} />
+                            <label className="radio-label bg-option" htmlFor="select-bg15" />
+                        </div>
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage16} alt="bg-image" />
+                            <input type="radio" id="select-bg16" {...register("background")} value={bgImage16} />
+                            <label className="radio-label bg-option" htmlFor="select-bg16" />
+                        </div>
 
                     </div>
                 </div>
