@@ -123,15 +123,16 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
               </FormControl>
             </ThemeProvider>
 
-              {errors.eventType && <span className="error-message">זהו שדה חובה</span>}
             </div>
+              {errors.eventType && <span className="error-message" id="error-eventType">זהו שדה חובה</span>}
 
             <div className="formbold-input-flex">
               <div>
                 <label htmlFor="name1" className="formbold-form-label">שם</label>
                 <input type="text" defaultValue={eventType && eventType.name1 ? eventType.name1 : ""} id="name1" className="formbold-form-input" {...register("name1", { required: true })} />
-                {errors.name1 && <span className="error-message">זהו שדה חובה</span>}
               </div>
+                {errors.name1 && <span className="error-message">זהו שדה חובה</span>}
+              
               {eventTypeNumber == "2" ?
                 <div>
                   <label htmlFor="name2" className="formbold-form-label">שם שני (אופציונלי)</label>

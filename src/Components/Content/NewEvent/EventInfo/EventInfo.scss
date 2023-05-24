@@ -54,6 +54,10 @@
       display: block;
     }
 
+    .EventType .error-message{
+      color: rgba(255, 0, 0, 0.678);
+    }
+
     .formbold-btn:hover {
       box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
     }
