@@ -3,6 +3,20 @@ import bgImage1 from "../../../../assets/invitation-bg-1.jpg";
 import bgImage2 from "../../../../assets/invitation-bg-2.jpg";
 import bgImage3 from "../../../../assets/invitation-bg-3.jpg";
 import bgImage4 from "../../../../assets/invitation-bg-4.jpg";
+
+import bgImage5 from "../../../../assets/invitation-bg-5.jpg";
+import bgImage6 from "../../../../assets/invitation-bg-6.jpg";
+import bgImage7 from "../../../../assets/invitation-bg-7.jpg";
+import bgImage8 from "../../../../assets/invitation-bg-8.jpg";
+import bgImage9 from "../../../../assets/invitation-bg-9.jpg";
+import bgImage10 from "../../../../assets/invitation-bg-10.jpg";
+import bgImage11 from "../../../../assets/invitation-bg-11.jpg";
+import bgImage12 from "../../../../assets/invitation-bg-12.jpg";
+import bgImage13 from "../../../../assets/invitation-bg-13.jpg";
+import bgImage14 from "../../../../assets/invitation-bg-14.jpg";
+import bgImage15 from "../../../../assets/invitation-bg-15.jpg";
+import bgImage16 from "../../../../assets/invitation-bg-16.jpg";
+
 import { GiDiamondRing, GiBabyBottle } from 'react-icons/gi';
 import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
@@ -141,6 +155,14 @@ function EventDesign(props: ownProps): JSX.Element {
                             <input type="radio" id="select-bg4" {...register("background")} value={bgImage4} />
                             <label className="radio-label bg-option" htmlFor="select-bg4" />
                         </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="bg-image" src={bgImage5} alt="bg-image" />
+                            <input type="radio" id="select-bg5" {...register("background")} value={bgImage5} />
+                            <label className="radio-label bg-option" htmlFor="select-bg5" />
+                        </div>
+
+
                     </div>
                 </div>
                 <div className="form-section">
