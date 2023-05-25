@@ -18,8 +18,13 @@ interface ownProps {
 }
 
 function Invite(props: ownProps): JSX.Element {
-
+  const [isAccepted, setIsAccepted] = useState(true);
+ 
   const [guestsCounter, setGuestsCounter] = useState<number>(1);
+
+  const handleAcceptChange = (event : any) => {
+    setIsAccepted(event.target.value === 'accept');
+  };
 
   useEffect(() => {
         console.log(props.eventData);
@@ -132,71 +137,162 @@ function Invite(props: ownProps): JSX.Element {
 
 
 
-              {/* <div>
-                <label>
-                  <input type="radio" name="arrival" value="yes" />
-                  <span>V מגיעים</span>
-                </label>
-                <label>
-                  <input type="radio" name="arrival" value="no" />
-                  <span>X לא מגיעים</span>
-                </label>
-              </div> */}
+              <div className="form-section">
+                <div className="guests-accept-radio">
+                  <div className="radio-input-wraper-guest accept">
+                    <input type="radio" id="accept" name="guest" value="accept"  checked={isAccepted} onChange={handleAcceptChange} />
+                    <label className="radio-label" htmlFor="accept"> <BsCheck /> מגיעים </label>
+                  </div>
+                  <div className="radio-input-wraper-guest unaccept">
+                    <input type="radio" id="unaccept" name="guest" value="unaccept" checked={!isAccepted} onChange={handleAcceptChange} />
+                    <label className="radio-label" htmlFor="unaccept"> <HiXMark /> לא מגיעים </label>
+                  </div>
+                </div>
+              </div>
 
 
-                <div className="form-section">
-                    <div className="guests-accept-radio">
-                        <div className="radio-input-wraper-guest accept">
-                            <input type="radio"id="accept"  name="guest"  />
-                            <label className="radio-label "  htmlFor="accept"> <BsCheck/> מגיעים</label>
-                        </div>
-                        <div className="radio-input-wraper-guest  unaccept">
-                            <input type="radio" id="unaccept" name="guest"    />
-                            <label className="radio-label "  htmlFor="unaccept"><HiXMark/> לא מגיעים</label>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="guest_food_choice">
+   {isAccepted && props.eventData.food && (
+  <div className="guest_food_choice">
+    <div className="form-section">
+      {[...Array(guestsCounter)].map((_, index) => (
+        <div key={index} className="guests-food-radio">
+          <div className="guest_number_title">אורח {index + 1}:</div>
 
-
-                <div className="form-section">
-                <div className="guest_number_title">אורח 1:</div>
-                <div className="guests-food-radio">
-                <div className="radio-input-wraper-guest-food">
-                    <input type="radio" name="guest_food_choice" id="regular" />
-                    <label className="radio-label" htmlFor="regular">
-                        <BsCheck /> מנה רגילה
-                    </label>
-                </div>
-                <div className="radio-input-wraper-guest-food">
-                    <input type="radio" name="guest_food_choice" id="vegetarian" />
-                    <label className="radio-label" htmlFor="vegetarian">
-                        <BsCheck /> צמחוני
-                    </label>
-                </div>
-                <div className="radio-input-wraper-guest-food">
-                    <input type="radio" name="guest_food_choice" id="vegan" />
-                    <label className="radio-label" htmlFor="vegan">
-                        <BsCheck /> טבעוני
-                    </label>
-                </div>
-                <div className="radio-input-wraper-guest-food">
-                    <input type="radio" name="guest_food_choice" id="kids" />
-                    <label className="radio-label" htmlFor="kids">
-                        <BsCheck /> מנת ילדים
-                    </label>
-                </div>
+          {props.eventData.regular && (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} />
+              <label className="radio-label" htmlFor={`regular_${index}`}>
+                <BsCheck /> מנה רגילה
+              </label>
             </div>
+          )}
 
-
-                </div>
-
+          {props.eventData.vegetarian && (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} />
+              <label className="radio-label" htmlFor={`vegetarian_${index}`}>
+                <BsCheck /> צמחוני
+              </label>
             </div>
+          )}
+
+          {props.eventData.vegan && (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} />
+              <label className="radio-label" htmlFor={`vegan_${index}`}>
+                <BsCheck /> טבעוני
+              </label>
+            </div>
+          )}
+
+          {props.eventData.kids && (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} />
+              <label className="radio-label" htmlFor={`kids_${index}`}>
+                <BsCheck /> מנת ילדים
+              </label>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+
+{/* {isAccepted && props.eventData.food && (
+  <div className="guest_food_choice">
+    <div className="form-section">
+      {[...Array(guestsCounter)].map((_, index) => (
+        <div key={index} className="guests-food-radio">
+          <div className="guest_number_title">אורח {index + 1}:</div>
+
+          {props.eventData.regular && (
+            <div className="radio-input-wraper-guest-food">
+              <input
+                type="radio"
+                name={`guest_food_choice_${index}`}
+                id={`regular_${index}`}
+                defaultChecked
+              />
+              <label className="radio-label" htmlFor={`regular_${index}`}>
+                <BsCheck /> מנה רגילה
+              </label>
+            </div>
+          )}
+
+          {props.eventData.vegetarian && (
+            <div className="radio-input-wraper-guest-food">
+              <input
+                type="radio"
+                name={`guest_food_choice_${index}`}
+                id={`vegetarian_${index}`}
+                defaultChecked
+              />
+              <label className="radio-label" htmlFor={`vegetarian_${index}`}>
+                <BsCheck /> צמחוני
+              </label>
+            </div>
+          )}
+
+          {props.eventData.vegan && (
+            <div className="radio-input-wraper-guest-food">
+              <input
+                type="radio"
+                name={`guest_food_choice_${index}`}
+                id={`vegan_${index}`}
+                defaultChecked
+              />
+              <label className="radio-label" htmlFor={`vegan_${index}`}>
+                <BsCheck /> טבעוני
+              </label>
+            </div>
+          )}
+
+          {props.eventData.kids && (
+            <div className="radio-input-wraper-guest-food">
+              <input
+                type="radio"
+                name={`guest_food_choice_${index}`}
+                id={`kids_${index}`}
+                defaultChecked
+              />
+              <label className="radio-label" htmlFor={`kids_${index}`}>
+                <BsCheck /> מנת ילדים
+              </label>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+)} */}
+
 
             
             </div>
-            <button type="submit">Submit</button>
+            <button className="submit_guest_form" type="submit">מאשר
+            
+            <div className="star-1">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+                    <div className="star-2">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+                    <div className="star-3">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+                    <div className="star-4">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+                    <div className="star-5">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+                    <div className="star-6">
+                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
+                    </div>
+            </button>
 
           </form>
         </footer>
