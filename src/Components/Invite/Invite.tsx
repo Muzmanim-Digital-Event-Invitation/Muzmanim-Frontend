@@ -8,6 +8,9 @@ import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 import TextField from '@mui/material/TextField';
 import { BsCheck } from "react-icons/bs";
 import { HiXMark } from "react-icons/hi2";
+import { useParams } from "react-router-dom";
+import { servicesFunctions } from "../../Services/ServicesFunctions";
+import { EventModel } from "../../Models/EventModel";
 
 interface ownProps {
     eventData: any;
@@ -18,18 +21,13 @@ interface ownProps {
 }
 
 function Invite(props: ownProps): JSX.Element {
-  const [isAccepted, setIsAccepted] = useState(true);
+  const [isAccepted, setIsAccepted] = useState(false);
  
   const [guestsCounter, setGuestsCounter] = useState<number>(1);
 
   const handleAcceptChange = (event : any) => {
     setIsAccepted(event.target.value === 'accept');
   };
-
-  useEffect(() => {
-        console.log(props.eventData);
-        
-    })
 
     return (
       <div
@@ -92,7 +90,7 @@ function Invite(props: ownProps): JSX.Element {
         </div>
         <div className="details-section">
           <div className="time">
-            <span>{props.eventData.eventDate}</span>
+          <span>{props.eventData.eventDate && servicesFunctions.extractDateFromISOString(props.eventData.eventDate)}</span>
             <span>{props.eventData.eventStartHour}</span>
           </div>
           <div className="location">
@@ -140,11 +138,11 @@ function Invite(props: ownProps): JSX.Element {
               <div className="form-section">
                 <div className="guests-accept-radio">
                   <div className="radio-input-wraper-guest accept">
-                    <input type="radio" id="accept" name="guest" value="accept"  checked={isAccepted} onChange={handleAcceptChange} />
+                    <input type="radio" id="accept" name="guest" value="accept" onChange={handleAcceptChange} />
                     <label className="radio-label" htmlFor="accept"> <BsCheck /> מגיעים </label>
                   </div>
                   <div className="radio-input-wraper-guest unaccept">
-                    <input type="radio" id="unaccept" name="guest" value="unaccept" checked={!isAccepted} onChange={handleAcceptChange} />
+                    <input type="radio" id="unaccept" name="guest" value="unaccept" onChange={handleAcceptChange} />
                     <label className="radio-label" htmlFor="unaccept"> <HiXMark /> לא מגיעים </label>
                   </div>
                 </div>
