@@ -102,7 +102,7 @@
 
 
     footer {
-
+        margin-top: 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -224,7 +224,47 @@
                         font-size: 18px;
                     }
             }
+
+            .formbold-checkbox-label {
+                display: flex;
+                cursor: pointer;
+                user-select: none;
+                font-size: 16px;
+                line-height: 24px;
+                color: #536387;
+              }
+               .formbold-checkbox-label a {
+                margin-left: 5px;
+                color: #6a64f1;
+              }
+               .formbold-input-checkbox {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+              }
+               .formbold-checkbox-inner {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                margin-right: 16px;
+                margin-top: 2px;
+                border: 0.7px solid #dde3ec;
+                border-radius: 3px;
+              }
+    
+              
         }
+
+
+  
         }
     }
 
@@ -313,22 +353,104 @@
     }
 }
 
-.radio-input-wraper {
-    position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
-    input[type="radio"] {
-        display: none;
+
+
+.guest_food_choice {
+    display: flex;
+    justify-content: center;
+    max-width: 250px ;
+    align-items: center;
+
+    .guest_number_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        font-size: 12px;
     }
 
-    input[type="radio"]:checked~.radio-label {
-        box-sizing: border-box;
-        border: solid 2px var(--main-clr);
+    .form-section {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        z-index: 0;
     }
-}
-
+    .guests-food-radio {
+        display: flex;
+        gap: 15px;
+    }
+    .radio-input-wraper-guest-food {
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        height: 20px;
+        // background-color: rgba(0, 0, 0, 0.527);
+        background-color: white;
+        opacity: 90%;
+        border-radius: 5px;
+     
     
+    
+        input[type="radio"] {
+            display: none;
+        }
+    
+        input[type="radio"]:checked~.radio-label {
+            box-sizing: border-box;
+            // border: solid 2px var(--main-clr);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-radius: 5px;
+            
+        }
+    
+        svg {
+            display: none;
+            // fill: white;
+            fill: #292929;
+            font-size: 15px;
+            width: 10px;
+    
+        }
+        input[type="radio"]:checked ~ .radio-label  svg {
+            display: block;
+        }
+        
+        
+    
+        // input[type="radio"]:checked + .radio-label[for="accept"] {
+        //     background-color: rgb(56, 216, 56);
+        // }
+        
+        // input[type="radio"]:checked + .radio-label[for="unaccept"] {
+        //     background-color: red;
+        // }
+        label {
+            // color: white;
+            color: #292929;
+            font-size: 10px;
+            font-weight: 400;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 5px;
+            padding-right: 4px;
+            width: 100%;
+    
+        }
+    
+    
+    }
+    
+}
 }
 

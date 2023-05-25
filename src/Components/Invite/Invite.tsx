@@ -157,6 +157,44 @@ function Invite(props: ownProps): JSX.Element {
                     </div>
                 </div>
 
+                <div className="guest_food_choice">
+
+
+                <div className="form-section">
+                <div className="guest_number_title">אורח 1:</div>
+                <div className="guests-food-radio">
+                <div className="radio-input-wraper-guest-food">
+                    <input type="radio" name="guest_food_choice" id="regular" />
+                    <label className="radio-label" htmlFor="regular">
+                        <BsCheck /> מנה רגילה
+                    </label>
+                </div>
+                <div className="radio-input-wraper-guest-food">
+                    <input type="radio" name="guest_food_choice" id="vegetarian" />
+                    <label className="radio-label" htmlFor="vegetarian">
+                        <BsCheck /> צמחוני
+                    </label>
+                </div>
+                <div className="radio-input-wraper-guest-food">
+                    <input type="radio" name="guest_food_choice" id="vegan" />
+                    <label className="radio-label" htmlFor="vegan">
+                        <BsCheck /> טבעוני
+                    </label>
+                </div>
+                <div className="radio-input-wraper-guest-food">
+                    <input type="radio" name="guest_food_choice" id="kids" />
+                    <label className="radio-label" htmlFor="kids">
+                        <BsCheck /> מנת ילדים
+                    </label>
+                </div>
+            </div>
+
+
+                </div>
+
+            </div>
+
+            
             </div>
             <button type="submit">Submit</button>
 
