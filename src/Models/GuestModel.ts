@@ -1,5 +1,5 @@
 export interface GuestModel {
-    id: number;
+    id?: number;
     eventId: string;
     firstName: string;
     lastName: string;
