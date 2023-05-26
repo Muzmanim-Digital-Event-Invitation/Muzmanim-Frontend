@@ -13,13 +13,34 @@ import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { GuestModel } from "../../Models/GuestModel";
 
+import bgImage1 from "../../assets/invitation-bg-1.jpg"
+import bgImage2 from "../../assets/invitation-bg-2.jpg"
+import bgImage3 from "../../assets/invitation-bg-3.jpg"
+import bgImage4 from "../../assets/invitation-bg-4.jpg"
+import bgImage5 from "../../assets/invitation-bg-5.png"
+import bgImage6 from "../../assets/invitation-bg-6.png"
+import bgImage7 from "../../assets/invitation-bg-7.png"
+import bgImage8 from "../../assets/invitation-bg-8.png"
+import bgImage9 from "../../assets/invitation-bg-9.png"
+import bgImage10 from "../../assets/invitation-bg-10.png"
+import bgImage11 from "../../assets/invitation-bg-11.png"
+import bgImage12 from "../../assets/invitation-bg-12.png"
+import bgImage13 from "../../assets/invitation-bg-13.png"
+import bgImage14 from "../../assets/invitation-bg-14.png"
+import bgImage15 from "../../assets/invitation-bg-15.png"
+import bgImage16 from "../../assets/invitation-bg-16.png"
+
 interface ownProps {
     eventData: any;
-    background: string;
+    background: string ;
     font: number;
     icon: string;
     image: any;
 }
+
+const bgImages = [bgImage1, bgImage2, bgImage3, bgImage4,bgImage5, bgImage6, bgImage7, bgImage8,bgImage9, bgImage10, bgImage11, bgImage12,bgImage13, bgImage14, bgImage15, bgImage16]; 
+
+
 
 function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
@@ -32,9 +53,6 @@ function Invite(props: ownProps): JSX.Element {
   const handleAcceptChange = (event : any) => {
     setIsAccepted(event.target.value === 'accept');
   };
-  // const onSubmit = (data: any) => {
-  //   console.log(data); // Access the form data here as an object
-  // };
 
   useEffect(() => {
     if(props.eventData.regular === 0) {
@@ -88,11 +106,21 @@ function Invite(props: ownProps): JSX.Element {
   console.log(formData);
   
   }
+
+  const userSelectedBgImage = bgImages[Number(props.background) - 1]; 
+  console.log(userSelectedBgImage);
+  
+  useEffect(() => {
+    
+    console.log(props.background);
+    console.log(userSelectedBgImage);
+  }, [userSelectedBgImage])
+  
     return (
       <div
         className="Invite"
         style={{
-          backgroundImage: `url(${props.background})`,
+          backgroundImage: `url(${userSelectedBgImage})`,
           backgroundColor: props.background,
           fontFamily: `var(--invite-font${props.font})`,
         }}

@@ -75,6 +75,11 @@ function EventDesign(props: ownProps): JSX.Element {
     }
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+      }, [])
+
+    useEffect(() => {
         setBackground(watchBackground);
     }, [watchBackground])
 
@@ -101,7 +106,19 @@ function EventDesign(props: ownProps): JSX.Element {
       };
 
       
-    
+      function stepBack() {
+        if (props.stepNumber < 0) return;
+        // const currentData = getValues();
+        // console.log(currentData);
+        // const mergedData = { ...props.eventType, ...currentData };
+        // console.log(mergedData);
+        // dispatch(newEventAction(mergedData));
+        props.setStepNumber(props.stepNumber - 1)
+    }
+
+    function stepForward() {
+        props.setStepNumber(props.stepNumber + 1)
+    }
     
       useEffect(() => {
         if (uploadedImages.length > 0) {
@@ -137,90 +154,90 @@ function EventDesign(props: ownProps): JSX.Element {
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage1} alt="bg-image" />
-                            <input type="radio" id="select-bg1" {...register("background")} value={bgImage1} />
+                            <input type="radio" id="select-bg1" {...register("background")} value={1} />
                             <label className="radio-label bg-option" htmlFor="select-bg1" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage2} alt="bg-image" />
-                            <input type="radio" id="select-bg2" {...register("background")} value={bgImage2} />
+                            <input type="radio" id="select-bg2" {...register("background")} value={2} />
                             <label className="radio-label bg-option" htmlFor="select-bg2" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage3} alt="bg-image" />
-                            <input type="radio" id="select-bg3" {...register("background")} value={bgImage3} />
+                            <input type="radio" id="select-bg3" {...register("background")} value={3} />
                             <label className="radio-label bg-option" htmlFor="select-bg3" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage4} alt="bg-image" />
-                            <input type="radio" id="select-bg4" {...register("background")} value={bgImage4} />
+                            <input type="radio" id="select-bg4" {...register("background")} value={4} />
                             <label className="radio-label bg-option" htmlFor="select-bg4" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage5} alt="bg-image" />
-                            <input type="radio" id="select-bg5" {...register("background")} value={bgImage5} />
+                            <input type="radio" id="select-bg5" {...register("background")} value={5} />
                             <label className="radio-label bg-option" htmlFor="select-bg5" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage6} alt="bg-image" />
-                            <input type="radio" id="select-bg6" {...register("background")} value={bgImage6} />
+                            <input type="radio" id="select-bg6" {...register("background")} value={6} />
                             <label className="radio-label bg-option" htmlFor="select-bg6" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage7} alt="bg-image" />
-                            <input type="radio" id="select-bg7" {...register("background")} value={bgImage7} />
+                            <input type="radio" id="select-bg7" {...register("background")} value={7} />
                             <label className="radio-label bg-option" htmlFor="select-bg7" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage8} alt="bg-image" />
-                            <input type="radio" id="select-bg8" {...register("background")} value={bgImage8} />
+                            <input type="radio" id="select-bg8" {...register("background")} value={8} />
                             <label className="radio-label bg-option" htmlFor="select-bg8" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage9} alt="bg-image" />
-                            <input type="radio" id="select-bg9" {...register("background")} value={bgImage9} />
+                            <input type="radio" id="select-bg9" {...register("background")} value={9} />
                             <label className="radio-label bg-option" htmlFor="select-bg9" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage10} alt="bg-image" />
-                            <input type="radio" id="select-bg10" {...register("background")} value={bgImage10} />
+                            <input type="radio" id="select-bg10" {...register("background")} value={10} />
                             <label className="radio-label bg-option" htmlFor="select-bg10" />
                         </div>
 
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage11} alt="bg-image" />
-                            <input type="radio" id="select-bg11" {...register("background")} value={bgImage11} />
+                            <input type="radio" id="select-bg11" {...register("background")} value={11} />
                             <label className="radio-label bg-option" htmlFor="select-bg11" />
                         </div>
                         
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage12} alt="bg-image" />
-                            <input type="radio" id="select-bg12" {...register("background")} value={bgImage12} />
+                            <input type="radio" id="select-bg12" {...register("background")} value={12} />
                             <label className="radio-label bg-option" htmlFor="select-bg12" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage13} alt="bg-image" />
-                            <input type="radio" id="select-bg13" {...register("background")} value={bgImage13} />
+                            <input type="radio" id="select-bg13" {...register("background")} value={13} />
                             <label className="radio-label bg-option" htmlFor="select-bg13" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage14} alt="bg-image" />
-                            <input type="radio" id="select-bg14" {...register("background")} value={bgImage14} />
+                            <input type="radio" id="select-bg14" {...register("background")} value={14} />
                             <label className="radio-label bg-option" htmlFor="select-bg14" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage15} alt="bg-image" />
-                            <input type="radio" id="select-bg15" {...register("background")} value={bgImage15} />
+                            <input type="radio" id="select-bg15" {...register("background")} value={15} />
                             <label className="radio-label bg-option" htmlFor="select-bg15" />
                         </div>
                         <div className="radio-input-wraper">
                             <img className="bg-image" src={bgImage16} alt="bg-image" />
-                            <input type="radio" id="select-bg16" {...register("background")} value={bgImage16} />
+                            <input type="radio" id="select-bg16" {...register("background")} value={16} />
                             <label className="radio-label bg-option" htmlFor="select-bg16" />
                         </div>
 
@@ -365,8 +382,12 @@ function EventDesign(props: ownProps): JSX.Element {
                     </div>
                 </div> */}
                 <div className="formbold-form-confirm">
-                <button className="formbold-confirm-btn " >חזור אחורה</button>
-                <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button>
+
+                <button className="formbold-design-btn" onClick={() => stepBack()}>חזור אחורה</button>
+                <button type="submit" className="formbold-design-btn active" > שלב הבא</button>
+
+                {/* <button className="formbold-confirm-btn " >חזור אחורה</button> */}
+                {/* <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button> */}
             </div>
             </form >
             <div className="preview-wraper">

@@ -9,7 +9,7 @@ import LoaderEnvelope from "./LoaderEnvelope/LoaderEnvelope";
 
 function SpecificEvent(): JSX.Element {
   const { eventId } = useParams(); 
-  const [eventData, setEventData] = useState({});
+  const [eventData, setEventData] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
 useEffect(() => {
@@ -34,7 +34,7 @@ useEffect(() => {
             :     
             <Invite
             eventData={eventData}
-            background={""}
+            background={eventData.background}
             font={3}
             icon={""}
             image={""}

@@ -92,4 +92,29 @@
     display: flex;
     gap: 15px;
   }
+
+
+
+  .formbold-design-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sec-text-clr);
+    border: 0.5px solid var(--sec-clr);
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #536387;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: all .3s ease-in-out;
+  }
+
+  
+  .formbold-design-btn.active {
+    background: var( --main-clr);
+    color: var(--sec-text-clr);
+  }
 }
+
+
