@@ -69,8 +69,9 @@ function EventDesign(props: ownProps): JSX.Element {
     }
 
     function onSubmit(data: any) {
-        const mergedData = { ...dataPlaceHolder, ...data };
-
+        console.log(data);
+        
+        const mergedData = { ...dataPlaceHolder, ...data, image: imageSrc};
         console.log(mergedData);
     }
 
