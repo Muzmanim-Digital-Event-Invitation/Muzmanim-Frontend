@@ -17,5 +17,5 @@ export interface EventModel {
     imageId: string;
     background: string;
     colorText: string;
-    iconId: number;
+    iconId: string;
 }

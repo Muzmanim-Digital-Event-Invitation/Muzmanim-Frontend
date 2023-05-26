@@ -19,7 +19,7 @@ useEffect(() => {
   if (eventId) {
     servicesFunctions.getEventDataByIdForGuests(eventId).then((res: EventModel) => {
       setEventData(res);
-      console.log(res.eventDate);
+      console.log(res.iconId);
       setIsLoading(false);
     });
   }
@@ -35,8 +35,8 @@ useEffect(() => {
             <Invite
             eventData={eventData}
             background={eventData.background}
-            font={3}
-            icon={""}
+            font={eventData.font}
+            icon={eventData.iconId}
             image={""}
             />     
         }
