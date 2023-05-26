@@ -5,12 +5,10 @@ import { TbWashDrycleanOff } from 'react-icons/tb';
 import { MdOutlineOutdoorGrill, MdEventAvailable, MdOutlineMilitaryTech } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
-import TextField from '@mui/material/TextField';
 import { BsCheck } from "react-icons/bs";
 import { HiXMark } from "react-icons/hi2";
-import { useParams } from "react-router-dom";
 import { servicesFunctions } from "../../Services/ServicesFunctions";
-import { EventModel } from "../../Models/EventModel";
+import { useLocation } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { GuestModel } from "../../Models/GuestModel";
@@ -26,7 +24,9 @@ interface ownProps {
 function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
   const { register, handleSubmit, watch } = useForm();
-
+  const location = useLocation();
+  const isDisabled = location.pathname === "/NewEvent";
+  
   const [guestsCounter, setGuestsCounter] = useState<number>(1);
 
   const handleAcceptChange = (event : any) => {
@@ -36,7 +36,21 @@ function Invite(props: ownProps): JSX.Element {
   //   console.log(data); // Access the form data here as an object
   // };
 
+  useEffect(() => {
+    if(props.eventData.regular === 0) {
+      props.eventData.regular = false
+    }
+    if(props.eventData.vegan === 0) {
+      props.eventData.vegan = false
+    }
+
+  },[guestsCounter])
   function onSubmit(data: any) {
+    if (!isDisabled) {
+      console.log("disabled");
+      
+      return; 
+    }
 
     const foodChoices: any = {
       regular: 0,
@@ -45,29 +59,30 @@ function Invite(props: ownProps): JSX.Element {
       kids: 0,
     };
   
-    for (const key in data) {
-      if (key.startsWith('guest_food_choice_')) {
-        foodChoices[data[key]]++;
+    if(isAccepted){
+
+      for (const key in data) {
+        if (key.startsWith('guest_food_choice_')) {
+          foodChoices[data[key]]++;
+        }
       }
+      
     }
-  
-    console.log(foodChoices);
-  console.log(data);
 
 
   
   const formData : GuestModel = {
-    eventId: props.eventData.id, // or wherever you're storing the event ID
+    eventId: props.eventData.id, 
     firstName: data.firstName,
     lastName: data.lastName,
-    guestsAmount: guestsCounter, // assuming this is being managed correctly elsewhere in your component
+    guestsAmount: guestsCounter, 
     phone: data.phone,
-    isComing: true, // or however you're determining this
+    isComing: isAccepted,
     vegetarian: foodChoices.vegetarian,
     vegan: foodChoices.vegan,
     kids: foodChoices.kids,
     regular: foodChoices.regular,
-    notes: data.notes || "", // if you have a notes field in your form, else leave as empty string
+    notes: data.notes || "", 
   };
 
   console.log(formData);
@@ -206,22 +221,7 @@ function Invite(props: ownProps): JSX.Element {
         <div key={index} className="guests-food-radio">
           <div className="guest_number_title">אורח {index + 1}:</div>
 
-          {/* {props.eventData.regular === 1 && (
-          <div className="radio-input-wraper-guest-food">
-            <input
-              type="radio"
-              name={`guest_food_choice_${index}`}
-              id={`regular_${index}`}
-              value="regular" // add this
-              {...register(`guest_food_choice_${index}`)}
-            />
-            <label className="radio-label" htmlFor={`regular_${index}`}>
-              <BsCheck /> מנה רגילה
-            </label>
-          </div>
-        )} */}
-
-          {props.eventData.regular === 1 && (
+          { props.eventData.regular && (
             <div className="radio-input-wraper-guest-food">
               <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`regular_${index}`}>
@@ -230,7 +230,7 @@ function Invite(props: ownProps): JSX.Element {
             </div>
           )}
         
-          {props.eventData.vegetarian === 1 && (
+          { props.eventData.vegetarian && (
             <div className="radio-input-wraper-guest-food">
               <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`vegetarian_${index}`}>
@@ -239,7 +239,7 @@ function Invite(props: ownProps): JSX.Element {
             </div>
           )}
 
-          {props.eventData.vegan === 1 && (
+          { props.eventData.vegan && (
             <div className="radio-input-wraper-guest-food">
               <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`vegan_${index}`}>
@@ -248,7 +248,7 @@ function Invite(props: ownProps): JSX.Element {
             </div>
           )}
 
-          {props.eventData.kids === 1 && (
+          { props.eventData.kids && (
             <div className="radio-input-wraper-guest-food">
               <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`kids_${index}`}>
@@ -268,8 +268,8 @@ function Invite(props: ownProps): JSX.Element {
 
 
             </div>
-            <button className="submit_guest_form" type="submit">מאשר
-            
+            <button className={`submit_guest_form `} type="submit" disabled={isDisabled}>מאשר  
+
             <div className="star-1">
                         <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
                     </div>
