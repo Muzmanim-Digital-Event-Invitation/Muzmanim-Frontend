@@ -200,14 +200,14 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
                   <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegan" className="formbold-form-label">
                       {" "}
-                      צמחוני{" "}
+                      טבעוני{" "}
                     </label>
                     <input id="vegan" type="checkbox"  {...register("vegan", { value: false })} defaultChecked={eventType && eventType.vegan ? true : false} />
                   </div>
                   <div className="formbold-checkbox-wrapper">
                     <label htmlFor="vegetarian" className="formbold-form-label">
                       {" "}
-                      טבעוני{" "}
+                      צמחוני{" "}
                     </label>
                     <input id="vegetarian" type="checkbox"   {...register("vegetarian", { value: false })} defaultChecked={eventType && eventType.vegetarian ? true : false} />
                   </div>

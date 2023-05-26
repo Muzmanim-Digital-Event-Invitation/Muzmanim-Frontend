@@ -58,6 +58,8 @@ function Invite(props: ownProps): JSX.Element {
             <h1>הזמנה!</h1>
           )}
         </header>
+        <body>
+
         <div className="free-text-section">
           {props.eventData.eventType == 1 ? (
             <p>אנחנו מתרגשים להזמינכם ליום הולדתי אשמח לראותכם</p>
@@ -100,6 +102,8 @@ function Invite(props: ownProps): JSX.Element {
             </div>
           </div>
         </div>
+        </body>
+
         <footer>
           <div>
             <h2 className="h2_title">אישור הגעה</h2>

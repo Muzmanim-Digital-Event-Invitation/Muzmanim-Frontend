@@ -29,13 +29,9 @@ useEffect(() => {
 
     return (
         <div className="SpecificEvent">
-			{/* פה יהיה העיצוב לפי הטופס האחרון של דניאל */}
-
             {isLoading ? 
-          
           <LoaderEnvelope/>
             :     
-            
             <Invite
             eventData={eventData}
             background={""}
