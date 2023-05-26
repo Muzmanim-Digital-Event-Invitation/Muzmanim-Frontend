@@ -12,6 +12,9 @@ import { useParams } from "react-router-dom";
 import { servicesFunctions } from "../../Services/ServicesFunctions";
 import { EventModel } from "../../Models/EventModel";
 
+import { useForm } from 'react-hook-form';
+import { GuestModel } from "../../Models/GuestModel";
+
 interface ownProps {
     eventData: any;
     background: string;
@@ -22,13 +25,54 @@ interface ownProps {
 
 function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
- 
+  const { register, handleSubmit, watch } = useForm();
+
   const [guestsCounter, setGuestsCounter] = useState<number>(1);
 
   const handleAcceptChange = (event : any) => {
     setIsAccepted(event.target.value === 'accept');
   };
+  // const onSubmit = (data: any) => {
+  //   console.log(data); // Access the form data here as an object
+  // };
 
+  function onSubmit(data: any) {
+
+    const foodChoices: any = {
+      regular: 0,
+      vegetarian: 0,
+      vegan: 0,
+      kids: 0,
+    };
+  
+    for (const key in data) {
+      if (key.startsWith('guest_food_choice_')) {
+        foodChoices[data[key]]++;
+      }
+    }
+  
+    console.log(foodChoices);
+  console.log(data);
+
+
+  
+  const formData : GuestModel = {
+    eventId: props.eventData.id, // or wherever you're storing the event ID
+    firstName: data.firstName,
+    lastName: data.lastName,
+    guestsAmount: guestsCounter, // assuming this is being managed correctly elsewhere in your component
+    phone: data.phone,
+    isComing: true, // or however you're determining this
+    vegetarian: foodChoices.vegetarian,
+    vegan: foodChoices.vegan,
+    kids: foodChoices.kids,
+    regular: foodChoices.regular,
+    notes: data.notes || "", // if you have a notes field in your form, else leave as empty string
+  };
+
+  console.log(formData);
+  
+  }
     return (
       <div
         className="Invite"
@@ -109,15 +153,15 @@ function Invite(props: ownProps): JSX.Element {
             <h2 className="h2_title">אישור הגעה</h2>
             <p className="p_desc">נשמח לראותכם בין אורחינו</p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="first_last_name_container">
-              <input type="text" placeholder="שם פרטי" />
-              <input type="text" placeholder="שם משפחה" />
+              <input type="text" placeholder="שם פרטי" {...register("firstName")} />
+              <input type="text" placeholder="שם משפחה"  {...register("lastName")} />
             </div>
             <div className="phone_container">
-              <input type="number" placeholder="מספר נייד" />
+              <input type="number" placeholder="מספר נייד"  {...register("phone")}  />
             </div>
-            <div>
+            <div className="counter_accept_notes_container">
               <div className="guests_count_container">
                 <p> כמה אתם?</p>
                 <div className="counter_btns">
@@ -153,44 +197,60 @@ function Invite(props: ownProps): JSX.Element {
               </div>
 
 
+   
 
-   {isAccepted && props.eventData.food && (
+{isAccepted && props.eventData.food && (
   <div className="guest_food_choice">
     <div className="form-section">
       {[...Array(guestsCounter)].map((_, index) => (
         <div key={index} className="guests-food-radio">
           <div className="guest_number_title">אורח {index + 1}:</div>
 
-          {props.eventData.regular && (
+          {/* {props.eventData.regular === 1 && (
+          <div className="radio-input-wraper-guest-food">
+            <input
+              type="radio"
+              name={`guest_food_choice_${index}`}
+              id={`regular_${index}`}
+              value="regular" // add this
+              {...register(`guest_food_choice_${index}`)}
+            />
+            <label className="radio-label" htmlFor={`regular_${index}`}>
+              <BsCheck /> מנה רגילה
+            </label>
+          </div>
+        )} */}
+
+          {props.eventData.regular === 1 && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`regular_${index}`}>
-                <BsCheck /> מנה רגילה
+                <BsCheck />  מנה רגילה
               </label>
             </div>
           )}
-
-          {props.eventData.vegetarian && (
+        
+          {props.eventData.vegetarian === 1 && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`vegetarian_${index}`}>
                 <BsCheck /> צמחוני
               </label>
             </div>
           )}
 
-          {props.eventData.vegan && (
+          {props.eventData.vegan === 1 && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`vegan_${index}`}>
                 <BsCheck /> טבעוני
               </label>
             </div>
           )}
 
-          {props.eventData.kids && (
+          {props.eventData.kids === 1 && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} />
               <label className="radio-label" htmlFor={`kids_${index}`}>
                 <BsCheck /> מנת ילדים
               </label>
@@ -201,78 +261,12 @@ function Invite(props: ownProps): JSX.Element {
     </div>
   </div>
 )}
-
-
-{/* {isAccepted && props.eventData.food && (
-  <div className="guest_food_choice">
-    <div className="form-section">
-      {[...Array(guestsCounter)].map((_, index) => (
-        <div key={index} className="guests-food-radio">
-          <div className="guest_number_title">אורח {index + 1}:</div>
-
-          {props.eventData.regular && (
-            <div className="radio-input-wraper-guest-food">
-              <input
-                type="radio"
-                name={`guest_food_choice_${index}`}
-                id={`regular_${index}`}
-                defaultChecked
-              />
-              <label className="radio-label" htmlFor={`regular_${index}`}>
-                <BsCheck /> מנה רגילה
-              </label>
+            <div className="guests_notes_container">
+              <label htmlFor="notes">הערות / ברכה :</label>
+              <textarea name="notes" id="notes" cols={20} rows={3}  {...register(`notes`)}></textarea>
             </div>
-          )}
-
-          {props.eventData.vegetarian && (
-            <div className="radio-input-wraper-guest-food">
-              <input
-                type="radio"
-                name={`guest_food_choice_${index}`}
-                id={`vegetarian_${index}`}
-                defaultChecked
-              />
-              <label className="radio-label" htmlFor={`vegetarian_${index}`}>
-                <BsCheck /> צמחוני
-              </label>
-            </div>
-          )}
-
-          {props.eventData.vegan && (
-            <div className="radio-input-wraper-guest-food">
-              <input
-                type="radio"
-                name={`guest_food_choice_${index}`}
-                id={`vegan_${index}`}
-                defaultChecked
-              />
-              <label className="radio-label" htmlFor={`vegan_${index}`}>
-                <BsCheck /> טבעוני
-              </label>
-            </div>
-          )}
-
-          {props.eventData.kids && (
-            <div className="radio-input-wraper-guest-food">
-              <input
-                type="radio"
-                name={`guest_food_choice_${index}`}
-                id={`kids_${index}`}
-                defaultChecked
-              />
-              <label className="radio-label" htmlFor={`kids_${index}`}>
-                <BsCheck /> מנת ילדים
-              </label>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-)} */}
 
 
-            
             </div>
             <button className="submit_guest_form" type="submit">מאשר
             
@@ -303,3 +297,73 @@ function Invite(props: ownProps): JSX.Element {
 }
 
 export default Invite;
+
+
+
+           {/* <>
+      {isAccepted && props.eventData.food && (
+        <div className="guest_food_choice">
+          <div className="form-section">
+            {[...Array(guestsCounter)].map((_, index) => (
+              <div key={index} className="guests-food-radio">
+                <div className="guest_number_title">אורח {index + 1}:</div>
+
+                <div className="radio-input-wraper-guest-food">
+                  <input
+                    type="radio"
+                    name={`guest_food_choice_${index}`}
+                    id={`regular_${index}`}
+                    value="regular"
+                    {...register(`guest_food_choice_${index}`)}
+                  />
+                  <label className="radio-label" htmlFor={`regular_${index}`}>
+                    <BsCheck /> מנה רגילה
+                  </label>
+                </div>
+
+
+                <div className="radio-input-wraper-guest-food">
+                  <input
+                    type="radio"
+                    name={`guest_food_choice_${index}`}
+                    id={`vegetarian_${index}`}
+                    value="vegetarian"
+                    {...register(`guest_food_choice_${index}`)}
+                  />
+                  <label className="radio-label" htmlFor={`vegetarian_${index}`}>
+                    <BsCheck /> צמחוני
+                  </label>
+                </div>
+
+                <div className="radio-input-wraper-guest-food">
+                  <input
+                    type="radio"
+                    name={`guest_food_choice_${index}`}
+                    id={`vegan_${index}`}
+                    value="vegan"
+                    {...register(`guest_food_choice_${index}`)}
+                  />
+                  <label className="radio-label" htmlFor={`vegan_${index}`}>
+                    <BsCheck /> טבעוני
+                  </label>
+                </div>
+
+                <div className="radio-input-wraper-guest-food">
+                  <input
+                    type="radio"
+                    name={`guest_food_choice_${index}`}
+                    id={`kids_${index}`}
+                    value="kids"
+                    {...register(`guest_food_choice_${index}`)}
+                  />
+                  <label className="radio-label" htmlFor={`kids_${index}`}>
+                    <BsCheck /> מנת ילדים
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <button onClick={handleSubmit(onSubmit)}>Submit</button>
+    </> */}
