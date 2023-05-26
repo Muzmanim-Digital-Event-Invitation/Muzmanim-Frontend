@@ -31,7 +31,8 @@ function EventType({ stepNumber, setStepNumber }: { stepNumber: number, setStepN
 
   useEffect(() => {
     console.log(eventType);
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   }, [])
 
   function onSubmit(data: any) {
