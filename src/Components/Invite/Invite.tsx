@@ -8,7 +8,7 @@ import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 import { BsCheck } from "react-icons/bs";
 import { HiXMark } from "react-icons/hi2";
 import { servicesFunctions } from "../../Services/ServicesFunctions";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { GuestModel } from "../../Models/GuestModel";
@@ -34,6 +34,7 @@ import bgImage13 from "../../assets/invitation-bg-13.png"
 import bgImage14 from "../../assets/invitation-bg-14.png"
 import bgImage15 from "../../assets/invitation-bg-15.png"
 import bgImage16 from "../../assets/invitation-bg-16.png"
+import { config } from "../../Services/config";
 
 interface ownProps {
     eventData: any;
@@ -54,7 +55,8 @@ function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
   const { register, handleSubmit, watch } = useForm();
   const location = useLocation();
-  const isDisabled = location.pathname === "/NewEvent";
+
+  const { eventId } = useParams();
   
   const [guestsCounter, setGuestsCounter] = useState<number>(1);
 
@@ -71,12 +73,14 @@ function Invite(props: ownProps): JSX.Element {
     }
 
   },[guestsCounter])
+
   function onSubmit(data: any) {
-    if (!isDisabled) {
+    if (!eventId) {
       console.log("disabled");
       
       return; 
     }
+    
 
     const foodChoices: any = {
       regular: 0,
@@ -134,7 +138,11 @@ function Invite(props: ownProps): JSX.Element {
       >
         {props.image ? (
           <div className="image">
-            <img src={userSelectedTopImage ?? props.image} alt="" />
+            {/* <img src={userSelectedTopImage ?? config.IMAGE_URL + props.image } alt="" /> */}
+            <img src={userSelectedTopImage ?? (props.image?.startsWith('data:image') ? props.image : config.IMAGE_URL + props.image)} alt="" />
+
+            {/* <img src={userSelectedTopImage ?? config.IMAGE_URL + props.image ?? props.image} alt="" /> */}
+
           </div>
         ) : (
           <div style={{ paddingTop: "20px" }}> </div>
@@ -182,7 +190,7 @@ function Invite(props: ownProps): JSX.Element {
             {props.icon === "<BsGenderMale/>" && <BsGenderMale />}
             {props.icon === "<BsTrophy/>" && <BsTrophy />}
           </span>
-          <span className="name">{props.eventData.name2}</span>
+          <span className="name">{props.eventData.name2 === "undefined" ? ""  : props.eventData.name2 }</span>
         </div>
         <div className="details-section">
           <div className="time">
@@ -303,7 +311,7 @@ function Invite(props: ownProps): JSX.Element {
 
 
             </div>
-            <button className={`submit_guest_form `} type="submit" disabled={isDisabled}>מאשר  
+            <button className={`submit_guest_form `} type="submit">מאשר  
 
             <div className="star-1">
                         <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
