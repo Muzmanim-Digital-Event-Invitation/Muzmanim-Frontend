@@ -231,7 +231,7 @@ function Invite(props: ownProps): JSX.Element {
                   }
                   >+</button>
                   <div>{guestsCounter}</div>
-                  <button onClick={(e) => {
+                  <button  disabled={guestsCounter === 1} onClick={(e) => {
                     e.preventDefault(),
                     setGuestsCounter(guestsCounter - 1)}
                   }>-</button>
