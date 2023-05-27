@@ -116,6 +116,8 @@ function Invite(props: ownProps): JSX.Element {
   };
 
   console.log(formData);
+
+  servicesFunctions.submitEventForm(formData, eventId);
   
   }
 
