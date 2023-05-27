@@ -8,11 +8,11 @@ import CopyLinkButton from "./CopyLinkButton/CopyLinkButton";
 import { servicesFunctions } from "../../../../Services/ServicesFunctions";
 import { EventModel } from "../../../../Models/EventModel";
 import { GuestModel } from "../../../../Models/GuestModel";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EventManagement(): JSX.Element {
-    // let { id } = useParams();
-    const id = "zyp9aclhc3qhr4";
+    let { id } = useParams();
+    // const id = "zyp9aclhc3qhr4";
     const [event, setEvent] = useState<EventModel>()
     const [guests, setGuests] = useState<GuestModel[]>()
     const navigate = useNavigate();

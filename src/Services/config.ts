@@ -6,6 +6,8 @@ class Config {
 
     BASE_URL = "http://localhost:4000";
     WEB_URL = "http://localhost:5173";
+    IMAGE_URL = "https://muzmanim.s3.amazonaws.com/"
+
     // BASE_URL = "https://muzmanim.herokuapp.com"
 
     
