@@ -37,7 +37,7 @@ useEffect(() => {
             background={eventData.background}
             font={eventData.font}
             icon={eventData.iconId}
-            image={""}
+            image={eventData.imageId}
             />     
         }
         </div>

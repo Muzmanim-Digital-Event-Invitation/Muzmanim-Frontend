@@ -3,8 +3,8 @@ export interface EventModel {
     userEmail?: string;
     eventType: number;
     hallName: string;
-    name1: number;
-    name2?: number;
+    name1: string;
+    name2?: string;
     food: boolean;
     vegetarian: boolean;
     vegan: boolean;
@@ -18,4 +18,6 @@ export interface EventModel {
     background: string;
     colorText: string;
     iconId: string;
+    image: File;
+
 }
