@@ -5,19 +5,19 @@ import { servicesFunctions } from "../../../Services/ServicesFunctions";
 import { EventModel } from "../../../Models/EventModel";
 import { config } from "../../../Services/config";
 
+
+
+import eventTopImage1 from "../../../assets/eventTopImage1.jpg"
+import eventTopImage2 from "../../../assets/eventTopImage2.jpg";
+import eventTopImage3 from "../../../assets/eventTopImage3.jpg";
+
+
+
 function Dashboard(): JSX.Element {
     const navigate = useNavigate();
     const [events, setEvents] = useState<EventModel[]>();
 
-    // const eventTypeMapping : any = {
-    //     1: "יום הולדת",
-    //     2: "חתונה",
-    //     3: "ברית",
-    //     4: "על האש",
-    //     5: "אחר...",
-    //     // Add more mappings as needed
-    //   };
-
+   
     useEffect(() => {
         servicesFunctions.getEventByUser().then((res) => {
             setEvents(res);
@@ -26,6 +26,10 @@ function Dashboard(): JSX.Element {
         } )
     }, [])
 
+    const eventTopImages = [eventTopImage1, eventTopImage2, eventTopImage3]; 
+
+    // const userSelectedTopImage = eventTopImages[Number(event.imageId) - 1]; 
+    
     return (
         <div className="Dashboard">
             <h1>איזור אישי</h1>
@@ -36,6 +40,10 @@ function Dashboard(): JSX.Element {
                 {events?.map((event : EventModel) => (
                 <div className="event_card" onClick={() => navigate("/EventManagement/" + event.id)}>
                     <div className="card_details">
+                        
+                        <img src={eventTopImages[Number(event.imageId) - 1] ?? config.IMAGE_URL + event.imageId} alt="" />
+
+                        <img src="" alt="" />
                         <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
                         <h3>{event.name1}</h3>
                         <h3>{config.eventTypeMapping[event.eventType].label}</h3>

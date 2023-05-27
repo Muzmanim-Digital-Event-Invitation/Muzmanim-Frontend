@@ -140,9 +140,11 @@ function Invite(props: ownProps): JSX.Element {
       >
         {props.image ? (
           <div className="image">
-            {/* <img src={userSelectedTopImage ?? config.IMAGE_URL + props.image } alt="" /> */}
+            {props.image == "undefined" ? 
+            <></> :
             <img src={userSelectedTopImage ?? (props.image?.startsWith('data:image') ? props.image : config.IMAGE_URL + props.image)} alt="" />
-
+             }
+          {/* <img src={userSelectedTopImage ?? config.IMAGE_URL + props.image } alt="" /> */}
             {/* <img src={userSelectedTopImage ?? config.IMAGE_URL + props.image ?? props.image} alt="" /> */}
 
           </div>
@@ -231,7 +233,9 @@ function Invite(props: ownProps): JSX.Element {
                   }
                   >+</button>
                   <div>{guestsCounter}</div>
-                  <button  disabled={guestsCounter === 1} onClick={(e) => {
+
+                  <button disabled={guestsCounter === 1} onClick={(e) => {
+
                     e.preventDefault(),
                     setGuestsCounter(guestsCounter - 1)}
                   }>-</button>
