@@ -9,6 +9,15 @@ import { servicesFunctions } from "../../../../Services/ServicesFunctions";
 import { EventModel } from "../../../../Models/EventModel";
 import { GuestModel } from "../../../../Models/GuestModel";
 import { useNavigate, useParams } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 function EventManagement(): JSX.Element {
     let { id } = useParams();
@@ -28,6 +37,25 @@ function EventManagement(): JSX.Element {
             setGuests(res)
         })
     }, [])
+
+
+    
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAccept = () => {
+    // Call the function that deletes the invitation here
+    // deleteInvitationFunction();
+    servicesFunctions.deleteEventById(id).then(() => navigate("/dashboard"))
+    setOpen(false);
+  };
 
 
     function calculateComingGuestsCount(guests : GuestModel[]) {
@@ -157,9 +185,35 @@ function EventManagement(): JSX.Element {
               ))}
             </tbody>
           </table>
+              {guests?.length == 0 ? <div style={{textAlign: "center", margin: "10px auto"}}>עדיין אין אישורי הגעה</div> : <></>}
         </div>
+
+        <button className="delete_event_btn btn" onClick={handleClickOpen}> <DeleteIcon/> מחיקת הזמנה </button>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"האם את/ה בטוח?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+           מחיקת ההזמנה אינה ניתנת לשחזור
+          </DialogContentText>
+        </DialogContent>
+          <div style={{display: "flex", justifyContent: "center", gap: "15px", marginBottom: "15px"}}>
+
+            <button className="accept_delete_event delete_event_btn" onClick={handleAccept}>
+            מאשר/ת
+            </button>
+            <button className="cancel_delete_event delete_event_btn" onClick={handleClose}>
+            ביטול
+            </button>
+          </div>
+       
+      </Dialog>
       </div>
     );
 }
-
 export default EventManagement;
+
