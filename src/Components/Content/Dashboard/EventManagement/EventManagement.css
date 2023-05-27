@@ -213,3 +213,45 @@
 .EventManagement tr:not(:first-child):hover {
     background-color: rgb(245, 245, 245);
 }
+
+
+
+.EventManagement .delete_event_btn {
+    background-color: rgb(255, 59, 59) !important;
+    padding: 14px 40px;
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 100px auto 0 auto;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s;
+    background-color: #fff;
+    color: var(--main-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.EventManagement .delete_event_btn svg {
+    fill: white;
+}
+
+.EventManagement .delete_event_btn:hover {
+background-color: red !important;
+}
+
+
+.delete_event_btn {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+ .accept_delete_event{
+    background-color: red;
+    color: white;
+}

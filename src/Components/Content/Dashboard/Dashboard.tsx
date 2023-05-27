@@ -28,7 +28,6 @@ function Dashboard(): JSX.Element {
 
     const eventTopImages = [eventTopImage1, eventTopImage2, eventTopImage3]; 
 
-    // const userSelectedTopImage = eventTopImages[Number(event.imageId) - 1]; 
     
     return (
         <div className="Dashboard">
@@ -38,10 +37,10 @@ function Dashboard(): JSX.Element {
             </div>
             <div className="events_container">
                 {events?.map((event : EventModel) => (
-                <div className="event_card" onClick={() => navigate("/EventManagement/" + event.id)}>
+                <div key={event.id} className="event_card" onClick={() => navigate("/EventManagement/" + event.id)}>
                     <div className="card_details">
                         
-                        <img src={eventTopImages[Number(event.imageId) - 1] ?? config.IMAGE_URL + event.imageId} alt="" />
+                        <img src={eventTopImages[Number(event.imageId) - 1] ?? (event.imageId === "undefined" ? "" : config.IMAGE_URL + event.imageId)} alt="" />
 
                         <img src="" alt="" />
                         <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>

@@ -53,12 +53,13 @@ const eventTopImages = [eventTopImage1, eventTopImage2, eventTopImage3];
 
 function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch , formState: { errors }} = useForm();
   const location = useLocation();
-
   const { eventId } = useParams();
+  const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
   
-  const [guestsCounter, setGuestsCounter] = useState<number>(1);
+  const [userEventFilledDetails, setUserEventFilledDetails] = useState(JSON.parse(window.localStorage.getItem(eventId)));
+  const [guestsCounter, setGuestsCounter] = useState<number>(userEventFilledDetails.guestsAmount ?? 1);
 
   const handleAcceptChange = (event : any) => {
     setIsAccepted(event.target.value === 'accept');
@@ -117,7 +118,13 @@ function Invite(props: ownProps): JSX.Element {
 
   console.log(formData);
 
-  servicesFunctions.submitEventForm(formData, eventId);
+  servicesFunctions.submitEventForm(formData, eventId).then(() => {
+
+    window.localStorage.setItem(eventId, JSON.stringify(formData))
+    setUserEventFilledDetails(formData)
+
+    setIsFilledForm(true)
+  });
   
   }
 
@@ -210,6 +217,18 @@ function Invite(props: ownProps): JSX.Element {
         </div>
         </body>
 
+{isFilledForm ? 
+
+<footer>
+  <div className="filled_form_container">
+    <p> הטופס נשלח </p>
+      <button onClick={() => {
+        setIsFilledForm(false)
+        setUserEventFilledDetails(JSON.parse(window.localStorage.getItem(eventId)))
+        }}>לעדכון מצב הגעה </button>
+  </div>  
+</footer>
+:
         <footer>
           <div>
             <h2 className="h2_title">אישור הגעה</h2>
@@ -217,11 +236,15 @@ function Invite(props: ownProps): JSX.Element {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="first_last_name_container">
-              <input type="text" placeholder="שם פרטי" {...register("firstName")} />
-              <input type="text" placeholder="שם משפחה"  {...register("lastName")} />
+              <input type="text" placeholder="שם פרטי" {...register("firstName",  { required: true })} defaultValue={userEventFilledDetails.firstName} className={errors.firstName ? 'error_input_guest_form' : ''} />
+              {/* {errors.firstName && <span className="error_message_guest_form">שדה חובה</span>} */}
+              
+              <input type="text" placeholder="שם משפחה"  {...register("lastName",  { required: true })} defaultValue={userEventFilledDetails.lastName} className={errors.lastName ? 'error_input_guest_form' : ''} />
+              {/* {errors.lastName && <span className="error_message_guest_form">שדה חובה</span>} */}
             </div>
             <div className="phone_container">
-              <input type="number" placeholder="מספר נייד"  {...register("phone")}  />
+              <input type="number" placeholder="מספר נייד"  {...register("phone",  { required: true })}  defaultValue={userEventFilledDetails.phone} className={errors.phone ? 'error_input_guest_form' : ''} />
+              {/* {errors.phone && <span className="error_message_guest_form">שדה חובה</span>} */}
             </div>
             <div className="counter_accept_notes_container">
               <div className="guests_count_container">
@@ -250,11 +273,11 @@ function Invite(props: ownProps): JSX.Element {
               <div className="form-section">
                 <div className="guests-accept-radio">
                   <div className="radio-input-wraper-guest accept">
-                    <input type="radio" id="accept" name="guest" value="accept" onChange={handleAcceptChange} />
+                    <input type="radio" id="accept" name="guest" value="accept" onChange={handleAcceptChange} defaultChecked={userEventFilledDetails.isComing} />
                     <label className="radio-label" htmlFor="accept"> <BsCheck /> מגיעים </label>
                   </div>
                   <div className="radio-input-wraper-guest unaccept">
-                    <input type="radio" id="unaccept" name="guest" value="unaccept" onChange={handleAcceptChange} />
+                    <input type="radio" id="unaccept" name="guest" value="unaccept" onChange={handleAcceptChange} defaultChecked={!userEventFilledDetails.isComing} />
                     <label className="radio-label" htmlFor="unaccept"> <HiXMark /> לא מגיעים </label>
                   </div>
                 </div>
@@ -267,12 +290,13 @@ function Invite(props: ownProps): JSX.Element {
   <div className="guest_food_choice">
     <div className="form-section">
       {[...Array(guestsCounter)].map((_, index) => (
+        
         <div key={index} className="guests-food-radio">
           <div className="guest_number_title">אורח {index + 1}:</div>
 
           { props.eventData.regular && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.regular < index} />
               <label className="radio-label" htmlFor={`regular_${index}`}>
                 <BsCheck />  מנה רגילה
               </label>
@@ -281,7 +305,7 @@ function Invite(props: ownProps): JSX.Element {
         
           { props.eventData.vegetarian && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.vegetarian < index} />
               <label className="radio-label" htmlFor={`vegetarian_${index}`}>
                 <BsCheck /> צמחוני
               </label>
@@ -290,7 +314,7 @@ function Invite(props: ownProps): JSX.Element {
 
           { props.eventData.vegan && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.vegan < index}/>
               <label className="radio-label" htmlFor={`vegan_${index}`}>
                 <BsCheck /> טבעוני
               </label>
@@ -299,7 +323,7 @@ function Invite(props: ownProps): JSX.Element {
 
           { props.eventData.kids && (
             <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} />
+              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.kids < index}/>
               <label className="radio-label" htmlFor={`kids_${index}`}>
                 <BsCheck /> מנת ילדים
               </label>
@@ -312,12 +336,12 @@ function Invite(props: ownProps): JSX.Element {
 )}
             <div className="guests_notes_container">
               <label htmlFor="notes">הערות / ברכה :</label>
-              <textarea name="notes" id="notes" cols={20} rows={3}  {...register(`notes`)}></textarea>
+              <textarea name="notes" id="notes" cols={20} rows={3}  {...register(`notes`)} defaultValue={userEventFilledDetails.notes}></textarea>
             </div>
 
 
             </div>
-            <button className={`submit_guest_form `} type="submit">מאשר  
+            <button className={`submit_guest_form `} type="submit">מאשר/ת  
 
             <div className="star-1">
                         <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
@@ -341,6 +365,8 @@ function Invite(props: ownProps): JSX.Element {
 
           </form>
         </footer>
+}
+
       </div>
     );
 }

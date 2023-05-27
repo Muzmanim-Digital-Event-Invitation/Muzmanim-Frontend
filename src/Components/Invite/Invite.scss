@@ -20,13 +20,17 @@
     position: relative;
 
 
-    .image img {
-        object-fit: cover;
-        width: 100%;
-
-        height: 250px;
-    }
+    .image {
+        z-index: 10;
+        img {
+            object-fit: cover;
+            width: 100%;
+            
+            height: 250px;
+        }
+    } 
     header {
+        z-index: 10;
         h1 {
             font-size: min(max(8px, 3vw), 27px);
             text-align: center;
@@ -158,7 +162,7 @@
                     font-size: 12px;
                     font-weight: bold;
                     border: none;
-                 
+                    position: relative;
                 }
                 input::placeholder {
                     justify-content:flex-start ;
@@ -168,6 +172,8 @@
                 input:focus {
                     outline: none;
                 }
+
+             
 
             }
             .phone_container {
@@ -179,12 +185,12 @@
                 input {
                     width: 60%;
                     padding: 3px 8px;
-                    background-color: transparent;
+                    background-color: transparent !important;
                     text-align: right;
                     font-size: 12px;
                     font-weight: bold;
                     border: none;
-                    border-bottom: 1px solid gray;
+                    border-bottom: 1px solid gray !important;
 
                 }
                 input::placeholder {
@@ -695,3 +701,38 @@
     z-index: 1;
     opacity: 1;
 }
+
+.Invite .filled_form_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+        margin: 10px;
+        padding: 6px 12px;
+        background-color: #292929;
+        color: white;
+        border-radius: 5px;
+    }
+}
+
+
+form .error_input_guest_form {
+    box-shadow: 0 0px 2px 1px red ;
+    background-color: red;
+    border-radius: 2px;
+    animation: movingOutline 0.5s;
+}
+
+@keyframes movingOutline {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(2px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
