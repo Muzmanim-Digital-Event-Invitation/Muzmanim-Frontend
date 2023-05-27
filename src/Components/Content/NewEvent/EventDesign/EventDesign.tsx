@@ -42,7 +42,7 @@ function EventDesign(props: ownProps): JSX.Element {
     const [background, setBackground] = useState<string>(null);
     const watchBackground = watch("background", null);
     const watchFont = watch("font", null);
-    const watchIcon = watch("icon", null);
+    const watchIcon = watch("iconId", null);
     const dataPlaceHolder = useSelector((state: any) => state.newEvent)
 
     function colorSelection(e: any) {
@@ -96,11 +96,6 @@ function EventDesign(props: ownProps): JSX.Element {
       
       function stepBack() {
         if (props.stepNumber < 0) return;
-        // const currentData = getValues();
-        // console.log(currentData);
-        // const mergedData = { ...props.eventType, ...currentData };
-        // console.log(mergedData);
-        // dispatch(newEventAction(mergedData));
         props.setStepNumber(props.stepNumber - 1)
     }
 
@@ -116,7 +111,6 @@ function EventDesign(props: ownProps): JSX.Element {
       }, [uploadedImages]);
 
       const handleDelete = () => {
-        // Uncheck all radio buttons
         const radios = document.getElementsByName('image');
         for(let i = 0; i < radios.length; i++){
             (radios[i] as HTMLInputElement).checked = false;
@@ -259,43 +253,43 @@ function EventDesign(props: ownProps): JSX.Element {
                 <h3>אייקון</h3>
                 <div className="icons-section">
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon1" {...register("icon")} value="" />
+                        <input type="radio" id="select-icon1" {...register("iconId")} value="" />
                         <label className="radio-label icon-option" htmlFor="select-icon1"><TbWashDrycleanOff/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon2" {...register("icon")} value="<GiDiamondRing/>" />
+                        <input type="radio" id="select-icon2" {...register("iconId")} value="<GiDiamondRing/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon2"><GiDiamondRing/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon3" {...register("icon")} value="<GiBabyBottle/>" />
+                        <input type="radio" id="select-icon3" {...register("iconId")} value="<GiBabyBottle/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon3"><GiBabyBottle/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon4" {...register("icon")} value="<MdOutlineOutdoorGrill/>" />
+                        <input type="radio" id="select-icon4" {...register("iconId")} value="<MdOutlineOutdoorGrill/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon4"><MdOutlineOutdoorGrill/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon5" {...register("icon")} value="<FaBirthdayCake/>" />
+                        <input type="radio" id="select-icon5" {...register("iconId")} value="<FaBirthdayCake/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon5"><FaBirthdayCake/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon6" {...register("icon")} value="<BsGenderMale/>" />
+                        <input type="radio" id="select-icon6" {...register("iconId")} value="<BsGenderMale/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon6"><BsGenderMale/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon7" {...register("icon")} value="<BsGenderFemale/>" />
+                        <input type="radio" id="select-icon7" {...register("iconId")} value="<BsGenderFemale/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon7"><BsGenderFemale/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon8" {...register("icon")} value="<MdEventAvailable/>" />
+                        <input type="radio" id="select-icon8" {...register("iconId")} value="<MdEventAvailable/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon8"><MdEventAvailable/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon9" {...register("icon")} value="<BsTrophy/>" />
+                        <input type="radio" id="select-icon9" {...register("iconId")} value="<BsTrophy/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon9"><BsTrophy/></label>
                     </div>
                     <div className="radio-input-wraper icon-option">
-                        <input type="radio" id="select-icon10" {...register("icon")} value="<MdOutlineMilitaryTech/>" />
+                        <input type="radio" id="select-icon10" {...register("iconId")} value="<MdOutlineMilitaryTech/>" />
                         <label className="radio-label icon-option" htmlFor="select-icon10"><MdOutlineMilitaryTech/></label>
                     </div>
                 </div>
@@ -354,49 +348,15 @@ function EventDesign(props: ownProps): JSX.Element {
 
 
 
-
-                 {/* <div className="radio-input-wraper">
-                    <img className="image-image" src="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" alt="image-image" />
-                    <input type="radio" id="select-image-1" {...register("image")} value="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" onChange={handleRadioChange} />
-                    <label className="radio-label image-option" htmlFor="select-image-1" />
-                    </div>
-                        <div className="radio-input-wraper">
-                            <img className="image-image" src="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" alt="image-image"  />
-                            <input type="radio" id="select-image-2" {...register("image")} value="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" onChange={handleRadioChange} />
-                            <label className="radio-label image-option" htmlFor="select-image-2" />
-                        </div>
-
-                        <div className="radio-input-wraper">
-                            <img className="image-image" src="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" alt="image-image" />
-                            <input type="radio" id="select-image-3" {...register("image")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" onChange={handleRadioChange} />
-                            <label className="radio-label image-option" htmlFor="select-image-3" />
-                        </div>
-                                 */}
                 </div>
 
                 </div>
-{/* 
-                <div className="form-section">
-                <h3>תמונה</h3>
-                <div className="image-section">
-                    <input type="file" onChange={(e: any) => handleFileUpload(e)} />
-                </div>
-                </div> */}
 
-{/* 
-                <div className="form-section">
-                    <h3>תמונה</h3>
-                    <div className="image-section">
-                        <input type="file" />
-                    </div>
-                </div> */}
                 <div className="formbold-form-confirm">
 
                 <button className="formbold-design-btn" onClick={() => stepBack()}>חזור אחורה</button>
                 <button type="submit" className="formbold-design-btn active" > שלב הבא</button>
 
-                {/* <button className="formbold-confirm-btn " >חזור אחורה</button> */}
-                {/* <button type="submit" className="formbold-confirm-btn active" > שלב הבא</button> */}
             </div>
             </form >
             <div className="preview-wraper">

@@ -80,7 +80,7 @@ function EventManagement(): JSX.Element {
             </div> */}
         <div className="edit_event_btn_container">
           <button className="edit_event_btn btn"  onClick={() => navigate("/EditEventInfo/" + id)}>עריכת פרטי הזמנה</button>
-          <button className="edit_event_btn btn">עריכת עיצוב הזמנה</button>
+          <button className="edit_event_btn btn"  onClick={() => navigate("/EditEventDesign/" + id)} >עריכת עיצוב הזמנה</button>
           <button className="edit_event_btn btn"  onClick={() => navigate("/event/" + id)}>צפייה הזמנה</button>
         </div>
         <div className="share_buttons_container">

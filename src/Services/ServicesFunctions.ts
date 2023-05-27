@@ -126,6 +126,9 @@ async createNewEvent(event: EventModel) {
         formData.append("eventDate", event.eventDate.toString());
         formData.append("eventStartHour", event.eventStartHour.toString());
         formData.append("background", event.background);
+        formData.append("iconId", event.iconId);
+        console.log(event.iconId);
+        
         formData.append("imageId", event.image);
 
         const response = await axios.post(`${config.BASE_URL}/newEvent`, formData, {
