@@ -13,6 +13,11 @@ import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { GuestModel } from "../../Models/GuestModel";
 
+import eventTopImage1 from "../../assets/eventTopImage1.jpg";
+import eventTopImage2 from "../../assets/eventTopImage2.jpg";
+import eventTopImage3 from "../../assets/eventTopImage3.jpg";
+
+
 import bgImage1 from "../../assets/invitation-bg-1.jpg"
 import bgImage2 from "../../assets/invitation-bg-2.jpg"
 import bgImage3 from "../../assets/invitation-bg-3.jpg"
@@ -39,6 +44,9 @@ interface ownProps {
 }
 
 const bgImages = [bgImage1, bgImage2, bgImage3, bgImage4,bgImage5, bgImage6, bgImage7, bgImage8,bgImage9, bgImage10, bgImage11, bgImage12,bgImage13, bgImage14, bgImage15, bgImage16]; 
+
+
+const eventTopImages = [eventTopImage1, eventTopImage2, eventTopImage3]; 
 
 
 
@@ -110,12 +118,11 @@ function Invite(props: ownProps): JSX.Element {
   const userSelectedBgImage = bgImages[Number(props.background) - 1]; 
   console.log(userSelectedBgImage);
   
-  useEffect(() => {
-    
-    console.log(props.background);
-    console.log(userSelectedBgImage);
-  }, [userSelectedBgImage])
+
+  const userSelectedTopImage = eventTopImages[Number(props.image) - 1]; 
+  console.log(userSelectedTopImage);
   
+
     return (
       <div
         className="Invite"
@@ -127,7 +134,7 @@ function Invite(props: ownProps): JSX.Element {
       >
         {props.image ? (
           <div className="image">
-            <img src={props.image} alt="" />
+            <img src={userSelectedTopImage ?? props.image} alt="" />
           </div>
         ) : (
           <div style={{ paddingTop: "20px" }}> </div>

@@ -3,7 +3,6 @@ import bgImage1 from "../../../../assets/invitation-bg-1.jpg";
 import bgImage2 from "../../../../assets/invitation-bg-2.jpg";
 import bgImage3 from "../../../../assets/invitation-bg-3.jpg";
 import bgImage4 from "../../../../assets/invitation-bg-4.jpg";
-
 import bgImage5 from "../../../../assets/invitation-bg-5.png";
 import bgImage6 from "../../../../assets/invitation-bg-6.png";
 import bgImage7 from "../../../../assets/invitation-bg-7.png";
@@ -28,6 +27,7 @@ import { IoMdColorPalette } from 'react-icons/io';
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
 import { useSelector } from "react-redux";
+import { servicesFunctions } from "../../../../Services/ServicesFunctions";
 
 
 interface ownProps {
@@ -45,35 +45,22 @@ function EventDesign(props: ownProps): JSX.Element {
     const watchIcon = watch("icon", null);
     const dataPlaceHolder = useSelector((state: any) => state.newEvent)
 
-    // const dataPlaceHolder = {
-    //     id: 1,
-    //     userEmail: 'hen,daniel47@gmail.com',
-    //     eventType: 'ewdding',
-    //     hallName: 'אולמות דניאל',
-    //     name1: 'דוד ביטון',
-    //     name2: 'סימה עציוני',
-    //     food: true,
-    //     vegetarian: true,
-    //     vegan: true,
-    //     kids: true,
-    //     regular: true,
-    //     city: 'כפר סבא',
-    //     street: 'נלקין 9',
-    //     eventDate: '2023-05-14',
-    //     eventStartHour: '19:00'
-    // }
-
     function colorSelection(e: any) {
         setBgColor(e.target.value);
         setBackground(e.target.value);
     }
 
-    function onSubmit(data: any) {
-        console.log(data);
-        
+    async function onSubmit(data: any) {
+        try {
         const mergedData = { ...dataPlaceHolder, ...data, image: imageSrc};
-        console.log(mergedData);
-    }
+
+          console.log(mergedData);
+          await servicesFunctions.createNewEvent(mergedData);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -349,6 +336,26 @@ function EventDesign(props: ownProps): JSX.Element {
                         </div>
                         ))}
                     <div className="radio-input-wraper">
+                    <img className="image-image" src={"https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7"} alt="image-image" />
+                    <input type="radio" id="select-image-1" {...register("image")} value={1} onChange={handleRadioChange} />
+                    <label className="radio-label image-option" htmlFor="select-image-1" />
+                    </div>
+                        <div className="radio-input-wraper">
+                            <img className="image-image" src="https://img.freepik.com/free-photo/holding-hands_1112-1531.jpg?w=1380&t=st=1684262918~exp=1684263518~hmac=1b75200e65511126c03556aa69439be08257259f27eab67152586f3b8478ac8e" alt="image-image"  />
+                            <input type="radio" id="select-image-2" {...register("image")} value={2} onChange={handleRadioChange} />
+                            <label className="radio-label image-option" htmlFor="select-image-2" />
+                        </div>
+
+                        <div className="radio-input-wraper">
+                            <img className="image-image" src="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" alt="image-image" />
+                            <input type="radio" id="select-image-3" {...register("image")} value={3} onChange={handleRadioChange} />
+                            <label className="radio-label image-option" htmlFor="select-image-3" />
+                        </div>
+
+
+
+
+                 {/* <div className="radio-input-wraper">
                     <img className="image-image" src="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" alt="image-image" />
                     <input type="radio" id="select-image-1" {...register("image")} value="https://img.freepik.com/free-photo/wedding-bouquet-white-roses-with-paniculata_24972-170.jpg?w=1380&t=st=1684262437~exp=1684263037~hmac=92ebe4ad10dd751fed81faf8ddb9d78c6d0c6bce52d1fc314a5fcae817f915f7" onChange={handleRadioChange} />
                     <label className="radio-label image-option" htmlFor="select-image-1" />
@@ -364,8 +371,9 @@ function EventDesign(props: ownProps): JSX.Element {
                             <input type="radio" id="select-image-3" {...register("image")} value="https://img.freepik.com/free-photo/barbecue-grill-party-tasty-food-wooden-desk_176420-1836.jpg?w=1380&t=st=1684262959~exp=1684263559~hmac=9872a80a667870ca0808b3d17c728376ace0b681f8e309b392fe9478ae6c34f0" onChange={handleRadioChange} />
                             <label className="radio-label image-option" htmlFor="select-image-3" />
                         </div>
-                        
+                                 */}
                 </div>
+
                 </div>
 {/* 
                 <div className="form-section">
