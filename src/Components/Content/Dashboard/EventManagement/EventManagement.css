@@ -6,6 +6,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 150px;
 }
 
 .EventManagement .edit_event_btn_container {

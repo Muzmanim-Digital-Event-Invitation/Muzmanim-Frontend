@@ -18,6 +18,8 @@ useEffect(() => {
 
   if (eventId) {
     servicesFunctions.getEventDataByIdForGuests(eventId).then((res: EventModel) => {
+      console.log(res);
+      
       setEventData(res);
       console.log(res.iconId);
       setIsLoading(false);

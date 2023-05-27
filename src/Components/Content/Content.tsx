@@ -8,6 +8,7 @@ import EventManagement from "./Dashboard/EventManagement/EventManagement";
 import SpecificEvent from "./SpecificEvent/SpecificEvent";
 import EditEventInfo from "./Dashboard/EventManagement/EditEvent/EditEventInfo/EditEventInfo";
 import Invite from "../Invite/Invite";
+import EditEventDesign from "./Dashboard/EventManagement/EditEvent/EditEventDesign/EditEventDesign";
 
 function Content(): JSX.Element {
     return (
@@ -18,6 +19,7 @@ function Content(): JSX.Element {
                 <Route path="/newEvent" element={<NewEvent />} />
                 <Route path="/event/:eventId" element={<SpecificEvent />} />
                 <Route path="/EditEventInfo/:id" element={<EditEventInfo />} />
+                <Route path="/EditEventDesign/:id" element={<EditEventDesign />} />
                 <Route path="/EventManagement/:id" element={<EventManagement />} />
                 <Route path="/*" element={<PageNotFound />} />
             </Routes>
