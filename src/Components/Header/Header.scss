@@ -1,72 +1,45 @@
+
+
+.Header .header_logo {
+	width: 180px;
+}
 .Header {
     width: 100%;
+    margin: 0 auto;
+    direction: ltr;
     background-color: var(--main-clr);
+}
 
-    .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        align-items: center;
-        padding: 10px;
+.Header .MuiPaper-root {
+    background-color: var(--color-white) !important;
+    color: var(--sec-text-clr);
+}
 
-        .auth-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+.Header .MuiButtonBase-root{
+    color: var(--sec-text-clr) !important;
+    font-size: 20px;
+}
 
-            .profile-img {
-                width: 40px;
-                height: 40px;
-                padding: 0;
-                border-radius: 60px;
-                background-color: white;
-            }
+.Header .active {
+    font-weight: bold;
+}
 
-            .profile-name {
-                font-weight: 500;
-                color: var(--sec-text-clr);
-            }
-        }
+.Header a {
+    color:  var(--sec-text-clr);
+}
 
-        .nav-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+.Header a:hover {
+    text-decoration: none;
+}
 
-            .nav-link {
-                color: var(--text-clr);
-                background-color: var(--bg-clr);
-
-                &.active {
-                    top: -1px;
-                    background-color: var(--sec-clr);
-
-                    &:active {
-                        top: 0px;
-                    }
-                }
-            }
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            gap: 10px;
-
-            .logo {
-                cursor: pointer;
-                width: 200px;
-                // height: 40px;
-                // background-color: white;
-                // border-radius: 60px;
-            }
-
-            // .logo-text {
-            //     font-family: 'Solitreo', cursive;
-            //     font-size: 2em;
-            //     color: var(--sec-text-clr);
-            // }
-        }
+@media only screen and (max-width: 900px) {
+    .Header {
+        direction: rtl;
     }
+
+    .Header .MuiButtonBase-root{
+        font-size: 27px !important;
+        -ms-flex-pack: start;
+    }
+
 }
