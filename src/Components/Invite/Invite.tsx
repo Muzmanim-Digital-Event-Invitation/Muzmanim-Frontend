@@ -58,8 +58,8 @@ function Invite(props: ownProps): JSX.Element {
   const { eventId } = useParams();
   const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
   
-  const [userEventFilledDetails, setUserEventFilledDetails] = useState(JSON.parse(window.localStorage.getItem(eventId)));
-  const [guestsCounter, setGuestsCounter] = useState<number>(userEventFilledDetails.guestsAmount ?? 1);
+  const [userEventFilledDetails, setUserEventFilledDetails] = useState<GuestModel>(JSON.parse(window.localStorage.getItem(eventId)) ?? {});
+  const [guestsCounter, setGuestsCounter] = useState<number>( userEventFilledDetails.guestsAmount ?? 1);
 
   const handleAcceptChange = (event : any) => {
     setIsAccepted(event.target.value === 'accept');
@@ -273,11 +273,11 @@ function Invite(props: ownProps): JSX.Element {
               <div className="form-section">
                 <div className="guests-accept-radio">
                   <div className="radio-input-wraper-guest accept">
-                    <input type="radio" id="accept" name="guest" value="accept" onChange={handleAcceptChange} defaultChecked={userEventFilledDetails.isComing} />
+                    <input type="radio" id="accept" name="guest" value="accept" onChange={handleAcceptChange} defaultChecked={userEventFilledDetails.isComing } />
                     <label className="radio-label" htmlFor="accept"> <BsCheck /> מגיעים </label>
                   </div>
                   <div className="radio-input-wraper-guest unaccept">
-                    <input type="radio" id="unaccept" name="guest" value="unaccept" onChange={handleAcceptChange} defaultChecked={!userEventFilledDetails.isComing} />
+                    <input type="radio" id="unaccept" name="guest" value="unaccept" onChange={handleAcceptChange} defaultChecked={userEventFilledDetails.isComing == false } />
                     <label className="radio-label" htmlFor="unaccept"> <HiXMark /> לא מגיעים </label>
                   </div>
                 </div>
