@@ -2,7 +2,6 @@
 import "./EventManagement.css";
 import { useEffect, useState } from "react";
 import WhatsappShareButton from "./WhatsappShareButton/WhatsappShareButton";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MassangerShareButton from "./MassangerShareButton/MassangerShareButton";
 import CopyLinkButton from "./CopyLinkButton/CopyLinkButton";
 import { servicesFunctions } from "../../../../Services/ServicesFunctions";
@@ -13,10 +12,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import EditAndDeleteGuestMenu from "./EditAndDeleteGuestMenu/EditAndDeleteGuestMenu";
 
 
 function EventManagement(): JSX.Element {
@@ -25,7 +24,8 @@ function EventManagement(): JSX.Element {
     const [event, setEvent] = useState<EventModel>()
     const [guests, setGuests] = useState<GuestModel[]>()
     const navigate = useNavigate();
-
+    const [refresh, setRefresh] = useState<boolean>(false);
+    
     useEffect(() => {
         console.log(id);
         servicesFunctions.getSpesificEvent(id).then((res) => {
@@ -36,7 +36,7 @@ function EventManagement(): JSX.Element {
             
             setGuests(res)
         })
-    }, [])
+    }, [refresh])
 
 
     
@@ -51,8 +51,6 @@ function EventManagement(): JSX.Element {
   };
 
   const handleAccept = () => {
-    // Call the function that deletes the invitation here
-    // deleteInvitationFunction();
     servicesFunctions.deleteEventById(id).then(() => navigate("/dashboard"))
     setOpen(false);
   };
@@ -179,7 +177,9 @@ function EventManagement(): JSX.Element {
                   <td>{guest.guestsAmount}</td>
                   <td>{guest.phone}</td>
                   <td>
-                    <MoreVertIcon />
+                    {/* <MoreVertIcon /> */}
+                <EditAndDeleteGuestMenu guest={guest} refresh={refresh} setRefresh={setRefresh} id={id}/>
+                       
                   </td>
                 </tr>
               ))}
@@ -195,7 +195,7 @@ function EventManagement(): JSX.Element {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"האם את/ה בטוח?"}</DialogTitle>
+        <DialogTitle  sx={{textAlign: "center"}} id="alert-dialog-title">{"האם את/ה בטוח?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
            מחיקת ההזמנה אינה ניתנת לשחזור
