@@ -1,5 +1,5 @@
 // import { useParams } from "react-router-dom";
-import "./EventManagement.scss";
+import "./EventManagement.css";
 import { useEffect, useState } from "react";
 import WhatsappShareButton from "./WhatsappShareButton/WhatsappShareButton";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
