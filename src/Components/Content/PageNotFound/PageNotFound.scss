@@ -1,62 +1,73 @@
-.PageNotFound {
-	margin-bottom: 350px;
-    margin-top: 150px;
 
-    .pageNotFound_Container{
+
+.PageNotFound {
+    margin: 150px auto;
+    max-width: 1200px;
+    padding: 0 15px;
+
+    .pageNotFound_Container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-self: center;
+        align-items: center;
+        text-align: center;
     }
 
-    .notFoundNumber{
-        color: var( --main-clr);
+    .notFoundNumber {
+        color: var(--main-clr);
         font-size: 140px;
     }
     
-    .notFountText{
-        color: var(  --main-text-clr);
+    .notFountText {
+        color: var(--main-text-clr);
         font-size: 60px;
-    
     }
 
-    .btn{
-        width: 200px;
-        margin: 50px auto;
+    .btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 50px 0;
         border-radius: 20px;
         border: none;
-        padding: 15px ;
+        padding: 15px;
         cursor: pointer;
         font-size: 16px;
         font-weight: 600;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background-color: var(--main-clr);
+            color: #fff;
+        }
     }
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    margin: 0;
+@media only screen and (max-width: 1024px) {
+    .PageNotFound .notFoundNumber {
+        font-size: 100px;
+    }
+
+    .PageNotFound .notFountText {
+        font-size: 50px;
+    }
 }
 
+@media only screen and (max-width: 768px) {
+    .PageNotFound .notFoundNumber {
+        font-size: 80px;
+    }
 
+    .PageNotFound .notFountText {
+        font-size: 40px;
+    }
+}
 
+@media only screen and (max-width: 480px) {
+    .PageNotFound .notFoundNumber {
+        font-size: 60px;
+    }
 
-
-
-
-
-
-
-
-@media only screen and (max-width: 680px) {
- .notFoundNumber{
-    font-size: 60px;
- }
-
- .notFountText{
-    font-size: 40px;
- }
- .pageNotFound_Container{
-    margin-bottom: -350px;
- }
+    .PageNotFound .notFountText {
+        font-size: 30px;
+    }
 }

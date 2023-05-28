@@ -58,7 +58,7 @@ function Invite(props: ownProps): JSX.Element {
   const { eventId } = useParams();
   const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
   
-  const [userEventFilledDetails, setUserEventFilledDetails] = useState(JSON.parse(window.localStorage.getItem(eventId)));
+  const [userEventFilledDetails, setUserEventFilledDetails] = useState(JSON.parse(window.localStorage.getItem(eventId))??{});
   const [guestsCounter, setGuestsCounter] = useState<number>(userEventFilledDetails.guestsAmount ?? 1);
 
   const handleAcceptChange = (event : any) => {
