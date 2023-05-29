@@ -45,9 +45,16 @@
             align-items: center;
             width: 40%;
             mix-blend-mode: multiply;
+
             img {
                 width: 100%;
             }
+        }
+
+        .customers_recommend {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
     }
@@ -176,14 +183,15 @@
         // width: 100%;
 
         .container {
-        width: 100%;
+            width: 100%;
 
         }
 
         // .deatils_container {
         //     width: 100%;
         // }
-        .deatils_container, .image_container {
+        .deatils_container,
+        .image_container {
             width: 100%;
         }
     }
@@ -207,7 +215,7 @@
 
 @media (max-width: 768px) {
     .recommend_container .all_reviews {
-        flex-direction: column ;
+        flex-direction: column;
     }
 }
 
@@ -216,6 +224,3 @@
         width: 90%;
     }
 }
-
-
-

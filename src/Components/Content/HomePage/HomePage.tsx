@@ -59,7 +59,7 @@ function HomePage(): JSX.Element {
             </div>
 
             <div className="container recommend_container">
-                <h1>לקוחות ממליצים</h1>
+                <h1 className="customers_recommend">לקוחות ממליצים</h1>
                 <div className="all_reviews">
                     <div className="review_box">
                         <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
