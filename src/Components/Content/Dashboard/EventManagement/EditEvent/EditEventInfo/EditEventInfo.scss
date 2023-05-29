@@ -167,3 +167,13 @@
     }
     
   }
+
+  @media (max-width: 480px) {
+  
+    .edit_form_container{
+      flex-direction: column;
+      gap: 30px !important;
+
+    }
+  
+  }

@@ -116,6 +116,19 @@ function EventManagement(): JSX.Element {
         </div>
 
         <div className="food_choices_and_guests_container">
+
+          <div className="guests_container">
+            <div className="coming_guests box">
+              <p className="p_number">{calculateComingGuestsCount(guests)}</p>
+              <span className="span_title">אישרו</span>
+            </div>
+            <div className="not_coming_guests box">
+              <p className="p_number">
+                {calculateNotComingGuestsCount(guests)}
+              </p>
+              <span className="span_title">לא אישרו</span>
+            </div>
+          </div>
           <div className="food_choices_container">
             {event?.regular ? 
               <div className="regular_food box">
@@ -143,18 +156,6 @@ function EventManagement(): JSX.Element {
                 <span className="span_title">מנת ילדים</span>
               </div>
             : <></> }
-          </div>
-          <div className="guests_container">
-            <div className="coming_guests box">
-              <p className="p_number">{calculateComingGuestsCount(guests)}</p>
-              <span className="span_title">אישרו</span>
-            </div>
-            <div className="not_coming_guests box">
-              <p className="p_number">
-                {calculateNotComingGuestsCount(guests)}
-              </p>
-              <span className="span_title">לא אישרו</span>
-            </div>
           </div>
         </div>
 

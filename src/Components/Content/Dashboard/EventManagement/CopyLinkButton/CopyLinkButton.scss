@@ -151,3 +151,13 @@
   }
 
 }
+
+@media (max-width: 480px) {
+  .copy_link_btn {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 100px;
+    // padding: 20px;
+  }
+}

@@ -1,5 +1,5 @@
 .EventManagement {
-	display: flex;
+    display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 50px;
@@ -13,6 +13,7 @@
     display: flex;
     gap: 40px;
 }
+
 .EventManagement .edit_event_btn {
     background-color: var(--main-clr);
     padding: 14px 40px;
@@ -29,7 +30,8 @@
     border: 2px dashed var(--main-clr);
     background-color: #fff;
     color: var(--main-clr);
-   }
+}
+
 /* .EventManagement .display_event_btn {
     background-color: var(--main-clr);
     padding: 14px 40px;
@@ -47,19 +49,19 @@
     background-color: #fff;
     color: var(--main-clr);
    } */
-   
-   .EventManagement .edit_event_btn span:last-child {
+
+.EventManagement .edit_event_btn span:last-child {
     display: none;
-   }
-   
-   .EventManagement .edit_event_btn:hover {
+}
+
+.EventManagement .edit_event_btn:hover {
     background-color: var(--main-clr);
     color: white;
-   }
+}
 
 .EventManagement .share_buttons_container {
     display: flex;
-    
+
     gap: 60px;
     /* justify-content: center; */
 }
@@ -70,7 +72,7 @@
     justify-content: space-between;
     /* max-width: 1400px; */
     gap: 50px;
-    
+
     margin-top: 30px;
     width: 60%;
     max-width: 700px;
@@ -88,13 +90,15 @@
     padding: 40px;
     border-radius: 15px;
 
-    box-shadow: 1px 0px 8px 0px #00000025;;
+    box-shadow: 1px 0px 8px 0px #00000025;
+    ;
 }
 
 
 .EventManagement .guests_container {
     /* border: 1px solid black; */
-    box-shadow: 1px 0px 8px 0px #00000025;;
+    box-shadow: 1px 0px 8px 0px #00000025;
+    ;
     border-radius: 15px;
     display: flex;
     gap: 60px;
@@ -119,6 +123,7 @@
     color: red;
     font-weight: bold;
 }
+
 .EventManagement .coming_guests .p_number {
     font-weight: bold;
     color: rgb(22, 189, 22);
@@ -160,7 +165,8 @@
     width: 80vw;
     /* background-color: black; */
     /* box-shadow: 1px 0px 8px 0px #00000025; */
-    position: relative; /* Add this line */
+    position: relative;
+    /* Add this line */
 
 }
 
@@ -168,7 +174,8 @@
     position: sticky;
     top: 0;
     background-color: var(--main-clr);
-    z-index: 1; /* Add this line */
+    z-index: 1;
+    /* Add this line */
 }
 
 .EventManagement th {
@@ -203,11 +210,11 @@
     border-top-left-radius: 20px;
 }
 
-.EventManagement tr:last-child > td:first-child {
+.EventManagement tr:last-child>td:first-child {
     border-bottom-right-radius: 20px;
 }
 
-.EventManagement tr:last-child > td:last-child {
+.EventManagement tr:last-child>td:last-child {
     border-bottom-left-radius: 20px;
 }
 
@@ -242,7 +249,7 @@
 }
 
 .EventManagement .delete_event_btn:hover {
-background-color: red !important;
+    background-color: red !important;
 }
 
 
@@ -252,57 +259,65 @@ background-color: red !important;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
- .accept_delete_event{
+
+.accept_delete_event {
     background-color: red;
     color: white;
 }
 
 @media (max-width: 1024px) {
     .EventManagement .edit_event_btn_container {
-         /* flex-direction: column; */
+        /* flex-direction: column; */
         align-items: center;
         gap: 20px;
     }
-    
+
     .EventManagement .food_choices_and_guests_container {
-         /* flex-direction: column; */
+        /* flex-direction: column; */
     }
-    
-    .EventManagement .edit_event_btn {
+
+    /* .EventManagement .edit_event_btn {
         width: 80%;
+    } */
+
+    .edit_event_btn_container{
+        width: 90%;
     }
-    
     .EventManagement table {
         width: 90vw;
     }
+
+   
 }
 
 @media (max-width: 768px) {
     .EventManagement .edit_event_btn_container {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        /* flex-direction: column; */
+        /* align-items: center; */
+        /* gap: 10px; */
     }
-    
-    .EventManagement .food_choices_and_guests_container {
-         flex-direction: column;
+
+    /* .EventManagement .food_choices_and_guests_container {
+        flex-direction: column;
         gap: 12px;
         width: 95%;
-    }
-    
-    .EventManagement .edit_event_btn {
+    } */
+
+    /* .EventManagement .edit_event_btn {
         width: 90%;
-    }
-    
+    } */
+
     .EventManagement table {
         width: 100vw;
     }
-    .EventManagement .table_guests_container{
+
+    .EventManagement .table_guests_container {
         width: 95%;
     }
-    .share_buttons_container{
-         flex-direction: column;
-    }
+
+    /* .share_buttons_container {
+        flex-direction: column;
+    } */
 
 }
 
@@ -312,23 +327,51 @@ background-color: red !important;
         align-items: center;
         gap: 10px;
     }
-    
+
     .EventManagement .food_choices_and_guests_container {
         display: flex;
         flex-direction: column !important;
-        
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        width: 100%;
+
     }
-    
+
+    .EventManagement .food_choices_container {
+        width: 80%;
+        padding: 10px;
+    }
+
+    .EventManagement .guests_container {
+        width: 35%;
+        padding: 10px;
+        gap: 32px;
+
+
+
+    }
+
     .EventManagement .edit_event_btn {
         width: 100%;
     }
-    
+
     .EventManagement table {
         width: 100%;
     }
 
-    .EventManagement .share_buttons_container{
-        gap: 10px;
+    .EventManagement .share_buttons_container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        gap: 5px;
     }
-}
 
+    .EventManagement .table_guests_container {
+        width: 100%;
+    }
+
+
+}
