@@ -40,7 +40,7 @@ function Header(): JSX.Element {
             if (window.location.pathname === "/" || window.location.pathname === "/home") {
                 navigate("/dashboard");
             }
-            window.location.reload();
+            // window.location.reload();
 
 
         } catch (e: any) {

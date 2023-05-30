@@ -32,7 +32,7 @@
     header {
         z-index: 10;
         h1 {
-            font-size: min(max(8px, 3vw), 27px);
+            font-size: 27px;
             text-align: center;
             margin-top: 20px;
         }
@@ -47,7 +47,7 @@
 
 
         p {
-            font-size: min(max(4px, 2vw), 14px);
+            font-size: 14px;
             text-align: center;
         }
     }
@@ -384,6 +384,7 @@
     justify-content: center;
     max-width: 250px ;
     align-items: center;
+    margin: 0 auto;
 
     .guest_number_title {
         display: flex;
@@ -736,3 +737,13 @@ form .error_input_guest_form {
       transform: translateY(0);
     }
   }
+
+
+  @media only screen and (max-width: 1200px) {
+    .Invite .guest_food_choice .guests-food-radio {
+        gap: 7px;
+    }
+    .Invite .guest_food_choice .radio-input-wraper--guest-food {
+    width: 64px;
+    }  
+}

@@ -16,6 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import EditAndDeleteGuestMenu from "./EditAndDeleteGuestMenu/EditAndDeleteGuestMenu";
+import LoaderEnvelope from "../../SpecificEvent/LoaderEnvelope/LoaderEnvelope";
 
 
 function EventManagement(): JSX.Element {
@@ -25,12 +26,16 @@ function EventManagement(): JSX.Element {
     const [guests, setGuests] = useState<GuestModel[]>()
     const navigate = useNavigate();
     const [refresh, setRefresh] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+
     
     useEffect(() => {
-        console.log(id);
-        servicesFunctions.getSpesificEvent(id).then((res) => {
-            setEvent(res)
-        })
+      setIsLoading(true)
+      console.log(id);
+      servicesFunctions.getSpesificEvent(id).then((res) => {
+        setEvent(res)
+        setIsLoading(false)
+      })
         servicesFunctions.guestsByEvent(id).then((res) => {
             console.log(res);
             
@@ -99,11 +104,17 @@ function EventManagement(): JSX.Element {
       }, 0) ?? 0;
 
     return (
+      <div>
+
+      {isLoading ? 
+        <LoaderEnvelope/> :
 
       <div className="EventManagement">
         {/* <div>
                     <button className="display_event_btn btn">לצפייה בזמנה</button>
             </div> */}
+
+   
         <div className="edit_event_btn_container">
           <button className="edit_event_btn btn"  onClick={() => navigate("/EditEventInfo/" + id)}>עריכת פרטי הזמנה</button>
           <button className="edit_event_btn btn"  onClick={() => navigate("/EditEventDesign/" + id)} >עריכת עיצוב הזמנה</button>
@@ -214,7 +225,10 @@ function EventManagement(): JSX.Element {
        
       </Dialog>
       </div>
-    );
+    }
+      </div>
+
+      );
 }
 export default EventManagement;
 
