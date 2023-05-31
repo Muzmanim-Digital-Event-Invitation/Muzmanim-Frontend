@@ -69,13 +69,16 @@
 
 .EventManagement .food_choices_and_guests_container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center;
     /* max-width: 1400px; */
     gap: 50px;
-
+    align-items: baseline;
     margin-top: 30px;
     width: 60%;
     max-width: 700px;
+    text-align: center;
+
 
 }
 
@@ -89,6 +92,7 @@
     text-align: center;
     padding: 40px;
     border-radius: 15px;
+    height: 70px;
 
     box-shadow: 1px 0px 8px 0px #00000025;
     ;
@@ -98,11 +102,13 @@
 .EventManagement .guests_container {
     /* border: 1px solid black; */
     box-shadow: 1px 0px 8px 0px #00000025;
-    ;
     border-radius: 15px;
     display: flex;
     gap: 60px;
+    height: 70px;
     padding: 40px;
+    justify-content: center;
+    align-items: baseline;
 }
 
 
@@ -163,10 +169,7 @@
     border-radius: 20px;
     max-width: 700px;
     width: 80vw;
-    /* background-color: black; */
-    /* box-shadow: 1px 0px 8px 0px #00000025; */
     position: relative;
-    /* Add this line */
 
 }
 
@@ -272,14 +275,6 @@
         gap: 20px;
     }
 
-    .EventManagement .food_choices_and_guests_container {
-        /* flex-direction: column; */
-    }
-
-    /* .EventManagement .edit_event_btn {
-        width: 80%;
-    } */
-
     .edit_event_btn_container{
         width: 90%;
     }
@@ -291,37 +286,22 @@
 }
 
 @media (max-width: 768px) {
-    .EventManagement .edit_event_btn_container {
-        /* flex-direction: column; */
-        /* align-items: center; */
-        /* gap: 10px; */
-    }
-
-    /* .EventManagement .food_choices_and_guests_container {
-        flex-direction: column;
-        gap: 12px;
-        width: 95%;
-    } */
-
-    /* .EventManagement .edit_event_btn {
-        width: 90%;
-    } */
-
     .EventManagement table {
         width: 100vw;
     }
-
     .EventManagement .table_guests_container {
         width: 95%;
     }
 
-    /* .share_buttons_container {
-        flex-direction: column;
-    } */
+    .EventManagement .food_choices_container {
+        padding: 40px 60px;
+        font-size: 12px;
+    }
 
+    
 }
 
-@media (max-width: 480px) {
+@media (max-width: 530px) {
     .EventManagement .edit_event_btn_container {
         flex-direction: column;
         align-items: center;
@@ -334,14 +314,15 @@
         gap: 15px;
         justify-content: center;
         align-items: center;
-        font-size: 15px;
+        font-size: 12px;
         width: 100%;
 
     }
 
     .EventManagement .food_choices_container {
-        width: 80%;
+        width: 70%;
         padding: 10px;
+        /* font-size: 9px; */
     }
 
     .EventManagement .guests_container {
@@ -373,5 +354,33 @@
         width: 100%;
     }
 
+    .EventManagement .WhatsappShareButton .whatsapp_share_btn {
+        width: 95px;
+        height: 40px !important;
+        padding: 0 !important;
+        font-size: 12px !important;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
 
+    .EventManagement .massanger_share_btn {
+        width: 95px;
+        height: 40px !important;
+        padding: 0 !important;
+        font-size: 12px !important;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .EventManagement .CopyLinkButton .share_container .copy_link_btn {
+        width: 95px;
+        height: 40px !important;
+        padding: 0 !important;
+        font-size: 12px !important;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
 }

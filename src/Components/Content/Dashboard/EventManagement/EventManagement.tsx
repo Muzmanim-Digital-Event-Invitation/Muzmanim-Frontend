@@ -171,6 +171,7 @@ function EventManagement(): JSX.Element {
         </div>
 
         <div className="table_guests_container">
+          
           <table>
             <thead>
               <tr>
