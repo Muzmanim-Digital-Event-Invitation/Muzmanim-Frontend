@@ -63,6 +63,7 @@
                 img {
                     width: 100%;
                     border-radius: var(--big-radius)   var(--big-radius) 0 0;
+                    height: 200px;
 
                 }
             }
@@ -95,6 +96,11 @@
             transform: translate(-50%, 50%);
             opacity: 1;
         }
+    }
+
+
+    .no_image_first_h3_child {
+        margin-top: 140px;
     }
 }
 

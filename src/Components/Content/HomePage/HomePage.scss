@@ -197,13 +197,28 @@
     }
 
 
+
+
 }
 
 @media (max-width: 768px) {
-    .features_container .all_features {
-        flex-direction: column;
+    .HomePage .features_container .all_features
+    {
+
+        .feature_box {
+            
+            height: 100px;
+            width: 110px;
+            gap: 10px;
+            img {
+                width: 40px;
+            }
+            h3 {
+                font-size: 12px;
+            }
+        }
     }
-}
+ }
 
 @media (max-width: 768px) {
     .examples_container .imgs_container {
@@ -267,7 +282,7 @@
             }
         }
             .features_container {
-                width: 190px;
+                width: 70%;
         }
     }
     
