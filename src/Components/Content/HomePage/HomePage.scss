@@ -195,6 +195,8 @@
             width: 100%;
         }
     }
+
+
 }
 
 @media (max-width: 768px) {
@@ -223,4 +225,50 @@
     .container {
         width: 90%;
     }
+
+
+
+    .HomePage {
+       
+    
+    
+        .welcome_container {
+           
+
+    
+            .deatils_container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                width: 50%;
+                text-align: center;
+    
+                h1 {
+                    color: var(--main-clr);
+                    font-size: 1.5em;
+                    width: 200px;
+                    margin-top: 30px;
+                }
+                
+                p {
+                    font-size: 1em;
+                    width: 200px;
+                    margin-bottom: 20px;
+                }
+                
+                .create_invitation_btn {
+                    width: 170px;
+                    height: 40px;
+                    font-size: 1em;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+            .features_container {
+                width: 190px;
+        }
+    }
+    
 }

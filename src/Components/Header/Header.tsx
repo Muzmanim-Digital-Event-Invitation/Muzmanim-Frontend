@@ -40,7 +40,7 @@ function Header(): JSX.Element {
             if (window.location.pathname === "/" || window.location.pathname === "/home") {
                 navigate("/dashboard");
             }
-            // window.location.reload();
+            window.location.reload();
 
 
         } catch (e: any) {
@@ -212,6 +212,7 @@ function Header(): JSX.Element {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
+
                                 {/* {settings.map((setting) => ( */}
                                 {/* <MenuItem key={"2"} onClick={() => {
                                     handleCloseUserMenu()
@@ -251,6 +252,7 @@ function Header(): JSX.Element {
                         <Typography onClick={logoutGoogle} textAlign="center">התנתק</Typography>
                         // <button className="btn" onClick={logoutGoogle}> התנתק</button>
                     )}
+
 
                             </Menu>
                         </Box>

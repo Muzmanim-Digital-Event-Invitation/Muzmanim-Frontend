@@ -97,3 +97,16 @@
         }
     }
 }
+
+@media (max-width: 530px) {
+
+    .Dashboard {
+
+        
+        .create_event_btn {
+            width: 200px;
+            height: 40px;
+            font-size: 15px;
+        }
+    } 
+}
