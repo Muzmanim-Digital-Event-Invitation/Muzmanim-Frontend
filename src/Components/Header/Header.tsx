@@ -23,7 +23,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as RouterLink } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 
 
@@ -40,7 +40,7 @@ function Header(): JSX.Element {
             if (window.location.pathname === "/" || window.location.pathname === "/home") {
                 navigate("/dashboard");
             }
-            window.location.reload();
+            // window.location.reload();
 
 
         } catch (e: any) {
@@ -53,6 +53,10 @@ function Header(): JSX.Element {
 
     };
 
+    useEffect(() => {
+        console.log(isLogin);
+        
+    })
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -133,17 +137,17 @@ function Header(): JSX.Element {
 
                             >
 
-                                <MenuItem sx={{ justifyContent: 'flex-end', WebkitJustifyContent: 'flex-end' }} onClick={handleCloseNavMenu} component={RouterLink} to="/">
+                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/">
                                     בית
                                 </MenuItem>
 
-                                <MenuItem sx={{ justifyContent: 'flex-end', WebkitJustifyContent: 'flex-end' }} onClick={handleCloseNavMenu} component={RouterLink} to="/dashboard">
+                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/dashboard">
                                     אזור אישי
                                 </MenuItem>
 
 
 
-                                <MenuItem sx={{ justifyContent: 'flex-end', WebkitJustifyContent: 'flex-end' }} onClick={handleCloseNavMenu} component={RouterLink} to="/games">
+                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/games">
                                     סתם מילה
                                 </MenuItem>
 

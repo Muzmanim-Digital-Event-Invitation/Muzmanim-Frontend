@@ -104,6 +104,29 @@ class ServicesFunctions {
     }
   }
 
+
+  
+  async Register(token: string) {
+    try {
+      const response = await fetch(`${config.BASE_URL}/register`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Origin": "*",
+          authorization: token,
+        },
+      }).then((res) => res.json());
+      console.log(response);
+      
+      return response;
+    } catch (e: any) {
+      console.log(e);
+      return false;
+    }
+  }
+
+
   
   // async createNewEvent(event: EventModel) {
   //   try {

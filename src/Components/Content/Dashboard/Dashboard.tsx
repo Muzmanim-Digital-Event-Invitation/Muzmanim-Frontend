@@ -49,9 +49,12 @@ function Dashboard(): JSX.Element {
                 events.map((event: EventModel) => (
                     <div key={event.id} className="event_card" onClick={() => navigate("/EventManagement/" + event.id)}>
                     <div className="card_details">
+                        {event.imageId === "undefined" ? 
+                        <></>
+                        :
                         <img src={eventTopImages[Number(event.imageId) - 1] ?? (event.imageId === "undefined" ? "" : config.IMAGE_URL + event.imageId)} alt="" />
-                        <img src="" alt="" />
-                        <h3>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
+                        }
+                        <h3 className={event.imageId === "undefined" ? "no_image_first_h3_child"  : ""}>{servicesFunctions.extractDateFromISOString(event.eventDate.toString())}</h3>
                         <h3>{event.name1}</h3>
                         <h3>{config.eventTypeMapping[event.eventType]?.label}</h3>
                     </div>
