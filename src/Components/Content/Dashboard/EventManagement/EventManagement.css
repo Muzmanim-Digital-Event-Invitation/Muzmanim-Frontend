@@ -1,3 +1,6 @@
+.EventManagement_Container {
+width: 100%;
+}
 .EventManagement {
     display: flex;
     flex-direction: column;
@@ -282,6 +285,10 @@
         width: 90vw;
     }
 
+    .EventManagement .edit_event_btn {
+    width: 60% !important;
+    }
+
    
 }
 
@@ -290,7 +297,7 @@
         width: 100vw;
     }
     .EventManagement .table_guests_container {
-        width: 95%;
+        width: 90%;
     }
 
     .EventManagement .food_choices_container {
@@ -348,10 +355,6 @@
         flex-direction: row;
         width: 100%;
         gap: 5px;
-    }
-
-    .EventManagement .table_guests_container {
-        width: 100%;
     }
 
     .EventManagement .WhatsappShareButton .whatsapp_share_btn {
