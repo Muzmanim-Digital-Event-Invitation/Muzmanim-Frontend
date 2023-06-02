@@ -104,7 +104,7 @@ function EventManagement(): JSX.Element {
       }, 0) ?? 0;
 
     return (
-      <div>
+      <div className="EventManagement_Container">
 
       {isLoading ? 
         <LoaderEnvelope/> :
