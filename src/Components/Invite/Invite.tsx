@@ -319,8 +319,9 @@ foodPreferences = foodPreferences.map((item) => {
                 </div>
               </div>
 
-              
+
               {isAccepted && props.eventData.food && (
+                
   <div className="guest_food_choice">
     <div className="form-section">
       {[...Array(guestsCounter)].map((_, index) => (
@@ -328,7 +329,7 @@ foodPreferences = foodPreferences.map((item) => {
         <div key={index} className="guests-food-radio">
           <div className="guest_number_title">אורח {index + 1}:</div>
 
-          { props.eventData.regular ? (
+          { props.eventData.regular  ? (
             <div className="radio-input-wraper-guest-food">
             <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} defaultChecked={foodPreferences[index] === 'regular'} />
               <label className="radio-label" htmlFor={`regular_${index}`}>
