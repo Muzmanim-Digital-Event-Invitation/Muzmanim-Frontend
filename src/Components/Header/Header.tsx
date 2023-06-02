@@ -25,12 +25,17 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link as RouterLink } from "react-router-dom";
 import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import { makeStyles } from "@mui/material";
 
 
 function Header(): JSX.Element {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLogin = useSelector((state: any) => state.authSlice)
+
+
+
 
     function loginGoogle(credentialResponse: any) {
         // const details: any = jwtDecode(credentialResponse.credential)
@@ -55,7 +60,7 @@ function Header(): JSX.Element {
 
     useEffect(() => {
         console.log(isLogin);
-        
+
     })
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -137,17 +142,17 @@ function Header(): JSX.Element {
 
                             >
 
-                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/">
+                                <MenuItem sx={{ WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/">
                                     בית
                                 </MenuItem>
 
-                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/dashboard">
+                                <MenuItem sx={{ WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/dashboard">
                                     אזור אישי
                                 </MenuItem>
 
 
 
-                                <MenuItem sx={{WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/games">
+                                <MenuItem sx={{ WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/games">
                                     סתם מילה
                                 </MenuItem>
 
@@ -240,22 +245,40 @@ function Header(): JSX.Element {
                                         <Typography textAlign="center" sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}><span >התחבר</span> <LoginButton /></Typography>
                                     </MenuItem>
                                 } */}
-                    {!isLogin ? (
-                        <GoogleOAuthProvider clientId="615150774728-8oo11iin9i3pfhoej96k8e4ikg0kk1o2.apps.googleusercontent.com">
-                            <GoogleLogin
-                                onSuccess={credentialResponse => {
-                                    loginGoogle(credentialResponse);
-                                    console.log(credentialResponse);
-                                }}
-                                onError={() => {
-                                    console.log('Login Failed');
-                                }}
-                            />
-                        </GoogleOAuthProvider>
-                    ) : (
-                        <Typography onClick={logoutGoogle} textAlign="center">התנתק</Typography>
-                        // <button className="btn" onClick={logoutGoogle}> התנתק</button>
-                    )}
+
+
+                                {!isLogin ? (
+                                    <Typography textAlign="center">
+                                        התחבר
+                                    <GoogleOAuthProvider clientId="615150774728-8oo11iin9i3pfhoej96k8e4ikg0kk1o2.apps.googleusercontent.com">
+                                        <GoogleLogin
+                                            onSuccess={credentialResponse => {
+                                                loginGoogle(credentialResponse);
+                                                console.log(credentialResponse);
+                                            }}
+                                            onError={() => {
+                                                console.log('Login Failed');
+                                            }}
+                                        />
+                                    </GoogleOAuthProvider>
+                                    </Typography>
+                                ) : (
+                                    <Typography
+                                        onClick={logoutGoogle}
+                                        textAlign="center"
+                                        style={{
+                                            width: '150px',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        התנתק
+                                    </Typography>
+                                    // <Typography onClick={logoutGoogle} textAlign="center">התנתק</Typography>
+                                    // <button className="btn" onClick={logoutGoogle}> התנתק</button>
+                                )}
+
+
+
 
 
                             </Menu>

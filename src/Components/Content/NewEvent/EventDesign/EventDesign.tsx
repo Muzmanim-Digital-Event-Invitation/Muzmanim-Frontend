@@ -28,6 +28,7 @@ import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
 import { useSelector } from "react-redux";
 import { servicesFunctions } from "../../../../Services/ServicesFunctions";
+import { useNavigate } from "react-router-dom";
 
 
 interface ownProps {
@@ -44,6 +45,7 @@ function EventDesign(props: ownProps): JSX.Element {
     const watchFont = watch("font", null);
     const watchIcon = watch("iconId", null);
     const dataPlaceHolder = useSelector((state: any) => state.newEvent)
+    const navigate = useNavigate();
 
     function colorSelection(e: any) {
         setBgColor(e.target.value);
@@ -55,7 +57,8 @@ function EventDesign(props: ownProps): JSX.Element {
         const mergedData = { ...dataPlaceHolder, ...data, image: imageSrc};
 
           console.log(mergedData);
-          await servicesFunctions.createNewEvent(mergedData);
+          await servicesFunctions.createNewEvent(mergedData)
+          navigate("/dashboard")
         } catch (error) {
           console.log(error);
         }
