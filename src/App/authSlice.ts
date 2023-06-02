@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 import { servicesFunctions } from "../Services/ServicesFunctions";
 
-const token = window.localStorage.getItem('MuzmanimLogged');
+const token = window.localStorage.getItem('MuzmanimLoggedToken');
 let initialState = null;
 
 if (token) {
@@ -15,12 +15,12 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         loginRedux: (state, action) => {
-            if (!window.localStorage.getItem('MuzmanimLogged')) {
+            if (!window.localStorage.getItem('MuzmanimLoggedToken')) {
                 console.log("test register");
                 
                 servicesFunctions.Register(action.payload).then(() => {
                                   
-                    window.localStorage.setItem('MuzmanimLogged', action.payload);
+                    window.localStorage.setItem('MuzmanimLoggedToken', action.payload);
                     const { email, name, picture } : any= jwtDecode(action.payload);
                     console.log({email, name, picture});
                     state =  { email, name, picture };
@@ -29,7 +29,7 @@ const authSlice = createSlice({
             }
             console.log("test login");
             
-        window.localStorage.setItem('MuzmanimLogged', action.payload);
+        window.localStorage.setItem('MuzmanimLoggedToken', action.payload);
         const { email, name, picture } : any= jwtDecode(action.payload);
         console.log({email, name, picture});
         state =  { email, name, picture };
@@ -37,7 +37,7 @@ const authSlice = createSlice({
         },
 
         logoutRedux: () => {
-            window.localStorage.removeItem('MuzmanimLogged');
+            window.localStorage.removeItem('Token');
             return null;
         },
 
