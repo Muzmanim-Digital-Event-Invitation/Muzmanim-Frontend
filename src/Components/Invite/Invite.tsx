@@ -76,6 +76,12 @@ function Invite(props: ownProps): JSX.Element {
 
   },[guestsCounter])
 
+
+  useEffect(() => {
+    if(userEventFilledDetails){
+      setIsAccepted(userEventFilledDetails.isComing)
+    }
+  }, [])
   function onSubmit(data: any) {
     if (!eventId) {
       console.log("disabled");
@@ -126,7 +132,7 @@ function Invite(props: ownProps): JSX.Element {
 
     setIsFilledForm(true)
   });
-  
+  window.location.reload();
   }
 
   const userSelectedBgImage = bgImages[Number(props.background) - 1]; 
@@ -136,6 +142,35 @@ function Invite(props: ownProps): JSX.Element {
   const userSelectedTopImage = eventTopImages[Number(props.image) - 1]; 
   console.log(userSelectedTopImage);
   
+
+
+// test to guests good 
+let foodPreferences = new Array(guestsCounter).fill("");
+
+let regularCount = userEventFilledDetails.regular;
+let vegetarianCount = userEventFilledDetails.vegetarian;
+let veganCount = userEventFilledDetails.vegan;
+let kidsCount = userEventFilledDetails.kids;
+
+foodPreferences = foodPreferences.map((item) => {
+  if (regularCount > 0) {
+    regularCount--;
+    return "regular";
+  }
+  if (vegetarianCount > 0) {
+    vegetarianCount--;
+    return "vegetarian";
+  }
+  if (veganCount > 0) {
+    veganCount--;
+    return "vegan";
+  }
+  if (kidsCount > 0) {
+    kidsCount--;
+    return "kids";
+  }
+  return item;
+});
 
     return (
       <div
@@ -284,10 +319,60 @@ function Invite(props: ownProps): JSX.Element {
                 </div>
               </div>
 
+              
+              {isAccepted && props.eventData.food && (
+  <div className="guest_food_choice">
+    <div className="form-section">
+      {[...Array(guestsCounter)].map((_, index) => (
+        
+        <div key={index} className="guests-food-radio">
+          <div className="guest_number_title">אורח {index + 1}:</div>
+
+          { props.eventData.regular ? (
+            <div className="radio-input-wraper-guest-food">
+            <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} defaultChecked={foodPreferences[index] === 'regular'} />
+              <label className="radio-label" htmlFor={`regular_${index}`}>
+                <BsCheck />  מנה רגילה
+              </label>
+            </div>
+          ) : null}
+        
+          { props.eventData.vegetarian ? (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} defaultChecked={foodPreferences[index] === 'vegetarian'} />
+              <label className="radio-label" htmlFor={`vegetarian_${index}`}>
+                <BsCheck /> צמחוני
+              </label>
+            </div>
+          ) : null}
+
+          { props.eventData.vegan  ? (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} defaultChecked={foodPreferences[index] === 'vegan'}/>
+              <label className="radio-label" htmlFor={`vegan_${index}`}>
+                <BsCheck /> טבעוני
+              </label>
+            </div>
+          ) : null}
+
+          { props.eventData.kids ? (
+            <div className="radio-input-wraper-guest-food">
+              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} defaultChecked={foodPreferences[index] === 'kids'}/>
+              <label className="radio-label" htmlFor={`kids_${index}`}>
+                <BsCheck /> מנת ילדים
+              </label>
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
 
    
 
-{isAccepted && props.eventData.food && (
+{/* {isAccepted && props.eventData.food && (
   <div className="guest_food_choice">
     <div className="form-section">
       {[...Array(guestsCounter)].map((_, index) => (
@@ -334,7 +419,7 @@ function Invite(props: ownProps): JSX.Element {
       ))}
     </div>
   </div>
-)}
+)} */}
             <div className="guests_notes_container">
               <label htmlFor="notes">הערות / ברכה :</label>
               <textarea name="notes" id="notes" cols={20} rows={3}  {...register(`notes`)} defaultValue={userEventFilledDetails.notes}></textarea>
