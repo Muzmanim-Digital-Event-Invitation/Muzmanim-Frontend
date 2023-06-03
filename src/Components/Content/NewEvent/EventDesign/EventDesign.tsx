@@ -26,10 +26,17 @@ import { useEffect, useState } from "react";
 import { IoMdColorPalette } from 'react-icons/io';
 import { useForm } from "react-hook-form";
 import Invite from "../../../Invite/Invite";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { servicesFunctions } from "../../../../Services/ServicesFunctions";
 import { useNavigate } from "react-router-dom";
 
+
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { loginRedux } from "../../../../App/authSlice";
 
 interface ownProps {
     stepNumber: number;
@@ -46,13 +53,34 @@ function EventDesign(props: ownProps): JSX.Element {
     const watchIcon = watch("iconId", null);
     const dataPlaceHolder = useSelector((state: any) => state.newEvent)
     const navigate = useNavigate();
+    const isLogin = useSelector((state: any) => state.authSlice)
+    const [openRegister, setOpenRegister] = useState<boolean>(false);
+    const dispatch = useDispatch();
+
+    const handleClickOpenRegister = () => {
+        setOpenRegister(true);
+    };
+  
+    const handleCloseRegister = () => {
+        setOpenRegister(false);
+        handleSubmit(onSubmit)();
+    };
+  
 
     function colorSelection(e: any) {
         setBgColor(e.target.value);
         setBackground(e.target.value);
     }
 
+
+    // trigger function thats open pop up said you must be login, he will register, than i will trigger onsubmit function.
+
     async function onSubmit(data: any) {
+        if(!isLogin){
+            handleClickOpenRegister()
+            return;
+        }
+
         try {
         const mergedData = { ...dataPlaceHolder, ...data, image: imageSrc};
 
@@ -123,6 +151,27 @@ function EventDesign(props: ownProps): JSX.Element {
         setImageSrc(null);
     };
       
+
+    
+
+     function loginGoogle(credentialResponse: any) {
+        try {
+             dispatch(loginRedux(credentialResponse.credential));  // Wait for the action to complete
+    
+            // Now the token should be in local storage, and you can submit the form
+            setTimeout(() => {
+                // Now the token should be in local storage, and you can submit the form
+              handleCloseRegister()
+                console.log("test");
+                
+            }, 2000); // 1000 
+
+        } catch (e: any) {
+            console.log(e);
+        }
+    }
+    
+
     return (
         <div className="EventDesign">
             <form className="design-form" onSubmit={handleSubmit(onSubmit)}>
@@ -373,6 +422,42 @@ function EventDesign(props: ownProps): JSX.Element {
             </div>
 
             
+
+            <Dialog
+                open={openRegister}
+                onClose={handleCloseRegister}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle  sx={{textAlign: "center"}} id="alert-dialog-title">{"עליך להתחבר על מנת להמשיך "}</DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                <GoogleOAuthProvider clientId="615150774728-8oo11iin9i3pfhoej96k8e4ikg0kk1o2.apps.googleusercontent.com">
+                                        <GoogleLogin
+                                            onSuccess={credentialResponse => {
+                                                loginGoogle(credentialResponse);
+                                                console.log(credentialResponse);
+                                            }}
+                                            onError={() => {
+                                                console.log('Login Failed');
+                                            }}
+                                        />
+                </GoogleOAuthProvider>
+                </DialogContentText>
+                </DialogContent>
+                <div style={{display: "flex", justifyContent: "center", gap: "15px", marginBottom: "15px"}}>
+
+                    <button className="cancel_delete_event delete_event_btn" onClick={handleCloseRegister}>
+
+                        {isLogin ? 
+                        "המשך"
+                        :
+                    "סגור"
+                        }
+                    </button>
+                </div>
+            
+              </Dialog>
         </div>
     );
 }

@@ -37,7 +37,7 @@ const authSlice = createSlice({
         },
 
         logoutRedux: () => {
-            window.localStorage.removeItem('Token');
+            window.localStorage.removeItem('MuzmanimLoggedToken');
             return null;
         },
 
