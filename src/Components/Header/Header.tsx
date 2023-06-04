@@ -152,11 +152,6 @@ function Header(): JSX.Element {
 
 
 
-                                <MenuItem sx={{ WebkitJustifyContent: 'right' }} onClick={handleCloseNavMenu} component={RouterLink} to="/games">
-                                    סתם מילה
-                                </MenuItem>
-
-
                             </Menu>
 
                         </Box>
@@ -178,13 +173,6 @@ function Header(): JSX.Element {
                             <img src={logo} style={{ cursor: 'pointer' }} width={150} alt="" onClick={() => navigate("/")} />
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', marginRight: '15px' }}>
-
-
-                            <MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/games">
-                                סתם מילה
-                            </MenuItem>
-
-
 
                             <MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/dashboard">
                                 אזור אישי

@@ -10,12 +10,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { servicesFunctions } from "../../../../../Services/ServicesFunctions";
 import Dialog from '@mui/material/Dialog';
-import { useParams } from "react-router-dom";
+import EditGuestModal from "./EditGuestModal/EditGuestModal";
+import { EventModel } from "../../../../../Models/EventModel";
 
 
-function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id }: { guest: GuestModel, refresh: boolean, setRefresh: (e: boolean) => void, id: string }): JSX.Element {
+function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id, event }: { guest: GuestModel, refresh: boolean, setRefresh: (e: boolean) => void, id: string, event: EventModel }): JSX.Element {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [deleteGuestOpen, setDeleteGuestOpen] = useState(false);
+    const [editGuestOpen, setEditGuestOpen] = useState(false);
 
     const handleClickOpenGuestDelete = () => {
       setDeleteGuestOpen(true);
@@ -32,6 +34,26 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id }: { guest: Gu
 
 
       setDeleteGuestOpen(false);
+    };
+  
+
+    
+  
+    const handleClickOpenGuestEdit = () => {
+      setEditGuestOpen(true);
+    };
+  
+    const handleCloseGuestEdit = () => {
+      setEditGuestOpen(false);
+    };
+  
+    const handleAcceptEdit = () => {
+      // servicesFunctions.deleteGuestById(guest.id, id).then(() => {
+        setRefresh(!refresh);
+      // })
+
+
+      setEditGuestOpen(false);
     };
   
   
@@ -73,7 +95,7 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id }: { guest: Gu
                             open={Boolean(anchorEl)}
                             onClose={handleCloseGuestTool}
                           >
-                            <MenuItem onClick={handleCloseGuestTool}>עריכה</MenuItem>
+                            <MenuItem onClick={handleClickOpenGuestEdit}>עריכה</MenuItem>
                             <MenuItem onClick={handleClickOpenGuestDelete}>מחיקה</MenuItem>
                           </Menu>
         
@@ -104,6 +126,57 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id }: { guest: Gu
                             </div>
                         
                         </Dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+{/* edit guest  */}
+
+                        <Dialog
+                            open={editGuestOpen}
+                            onClose={handleCloseGuestEdit}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                          <DialogTitle sx={{textAlign: "center"}} id="alert-dialog-title">{"האם את/ה בטוח?"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+
+                            באישור תמחק/י את המוזמן: {guest.firstName} {guest.lastName}
+                            </DialogContentText>
+                            </DialogContent>
+
+
+                            <EditGuestModal guest={guest} event={event}/>
+
+
+
+
+
+
+
+
+                            <div style={{display: "flex", justifyContent: "center", gap: "15px", marginBottom: "15px"}}>
+
+                                <button className="accept_delete_event delete_event_btn" onClick={handleAcceptEdit}>
+                                מאשר/ת
+                                </button>
+                                <button className="cancel_delete_event delete_event_btn" onClick={handleCloseGuestEdit}>
+                                ביטול
+                                </button>
+                            </div>
+                        
+
+                        </Dialog>
+
                         </div>
         
         </div>

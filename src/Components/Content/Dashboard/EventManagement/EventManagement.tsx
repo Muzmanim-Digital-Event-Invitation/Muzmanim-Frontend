@@ -203,7 +203,7 @@ function EventManagement(): JSX.Element {
                     <td>{guest.lastName}</td>
                     <td>{guest.guestsAmount}</td>
                     <td>{guest.phone}</td>
-                    <td>{guest.notes ? <div>
+                    <td title={guest.notes}>{guest.notes ? <div>
                       <MailOutlineIcon onClick={handleOpenNote} />
                       <Dialog open={openNote} onClose={handleCloseNote} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">הודעה מאת :{guest.firstName}</DialogTitle>
@@ -214,7 +214,7 @@ function EventManagement(): JSX.Element {
                     </div> : <MailOutlineIcon style={{ opacity: "20%" }} />}</td>
                     <td>
                       {/* <MoreVertIcon /> */}
-                      <EditAndDeleteGuestMenu guest={guest} refresh={refresh} setRefresh={setRefresh} id={id} />
+                      <EditAndDeleteGuestMenu guest={guest} refresh={refresh} setRefresh={setRefresh} id={id} event={event}/>
 
                     </td>
                   </tr>

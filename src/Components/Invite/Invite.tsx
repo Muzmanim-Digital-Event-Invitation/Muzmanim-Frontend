@@ -371,56 +371,6 @@ foodPreferences = foodPreferences.map((item) => {
 )}
 
 
-   
-
-{/* {isAccepted && props.eventData.food && (
-  <div className="guest_food_choice">
-    <div className="form-section">
-      {[...Array(guestsCounter)].map((_, index) => (
-        
-        <div key={index} className="guests-food-radio">
-          <div className="guest_number_title">אורח {index + 1}:</div>
-
-          { props.eventData.regular ? (
-            <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`regular_${index}`} value="regular" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.regular < index} />
-              <label className="radio-label" htmlFor={`regular_${index}`}>
-                <BsCheck />  מנה רגילה
-              </label>
-            </div>
-          ) : null}
-        
-          { props.eventData.vegetarian ? (
-            <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegetarian_${index}`} value="vegetarian" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.vegetarian < index} />
-              <label className="radio-label" htmlFor={`vegetarian_${index}`}>
-                <BsCheck /> צמחוני
-              </label>
-            </div>
-          ) : null}
-
-          { props.eventData.vegan  ? (
-            <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`vegan_${index}`} value="vegan" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.vegan < index}/>
-              <label className="radio-label" htmlFor={`vegan_${index}`}>
-                <BsCheck /> טבעוני
-              </label>
-            </div>
-          ) : null}
-
-          { props.eventData.kids ? (
-            <div className="radio-input-wraper-guest-food">
-              <input type="radio" name={`guest_food_choice_${index}`} id={`kids_${index}`} value="kids" {...register(`guest_food_choice_${index}`)} defaultChecked={userEventFilledDetails.kids < index}/>
-              <label className="radio-label" htmlFor={`kids_${index}`}>
-                <BsCheck /> מנת ילדים
-              </label>
-            </div>
-          ) : null}
-        </div>
-      ))}
-    </div>
-  </div>
-)} */}
             <div className="guests_notes_container">
               <label htmlFor="notes">הערות / ברכה :</label>
               <textarea name="notes" id="notes" cols={20} rows={3}  {...register(`notes`)} defaultValue={userEventFilledDetails.notes}></textarea>
