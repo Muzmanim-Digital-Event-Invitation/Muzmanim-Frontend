@@ -146,11 +146,10 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id, event }: { gu
                             aria-labelledby="alert-dialog-title"
                             aria-describedby="alert-dialog-description"
                         >
-                          <DialogTitle sx={{textAlign: "center"}} id="alert-dialog-title">{"האם את/ה בטוח?"}</DialogTitle>
+                          <DialogTitle sx={{textAlign: "center"}} id="alert-dialog-title">{"עריכת אורח"}</DialogTitle>
                             <DialogContent>
                             <DialogContentText id="alert-dialog-description">
 
-                            באישור תמחק/י את המוזמן: {guest.firstName} {guest.lastName}
                             </DialogContentText>
                             </DialogContent>
 

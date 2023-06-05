@@ -18,9 +18,9 @@ function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}
     const { register, handleSubmit, watch , formState: { errors }} = useForm();
     const location = useLocation();
     const { eventId } = useParams();
-    const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
+    // const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
     
-    const [userEventFilledDetails, setUserEventFilledDetails] = useState<GuestModel>(JSON.parse(window.localStorage.getItem(eventId)) ?? {});
+    const [userEventFilledDetails, setUserEventFilledDetails] = useState<GuestModel>(guest);
     const [guestsCounter, setGuestsCounter] = useState<number>( guest.guestsAmount ?? 1);
   
   
@@ -92,7 +92,7 @@ function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}
       window.localStorage.setItem(eventId, JSON.stringify(formData))
       setUserEventFilledDetails(formData)
   
-      setIsFilledForm(true)
+      // setIsFilledForm(true)
     });
     window.location.reload();
     }
@@ -129,6 +129,10 @@ foodPreferences = foodPreferences.map((item) => {
 });
 
 
+useEffect(() =>{
+  console.log(event);
+  
+})
     return (
         <div className="EditGuestModal">
 			 <form onSubmit={handleSubmit(onSubmit)}>
