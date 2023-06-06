@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { BsCheck } from "react-icons/bs";
 import { HiXMark } from "react-icons/hi2";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { GuestModel } from "../../../../../../Models/GuestModel";
 import { servicesFunctions } from "../../../../../../Services/ServicesFunctions";
 import "./EditGuestModal.scss";
@@ -15,10 +15,8 @@ import { EventModel } from "../../../../../../Models/EventModel";
 function EditGuestModal({guest, event, handleAcceptEdit, handleCloseGuestEdit}: { guest: GuestModel, event: EventModel, handleAcceptEdit : () => void, handleCloseGuestEdit: () => void}): JSX.Element {
     
     const [isAccepted, setIsAccepted] = useState(false);
-    const { register, handleSubmit, watch , formState: { errors }} = useForm();
-    const location = useLocation();
+    const { register, handleSubmit , formState: { errors }} = useForm();
     const { id } = useParams();
-    // const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
     
     const [userEventFilledDetails, setUserEventFilledDetails] = useState<GuestModel>(guest);
     const [guestsCounter, setGuestsCounter] = useState<number>( guest.guestsAmount ?? 1);
@@ -94,10 +92,8 @@ function EditGuestModal({guest, event, handleAcceptEdit, handleCloseGuestEdit}: 
   
       setUserEventFilledDetails(formData)
   
-      // setIsFilledForm(true)
       handleAcceptEdit();
     });
-    // window.location.reload();
     }
 
     
@@ -137,14 +133,11 @@ foodPreferences = foodPreferences.map((item) => {
 			 <form onSubmit={handleSubmit(onSubmit)}>
             <div className="first_last_name_container">
               <input type="text" placeholder="שם פרטי" {...register("firstName",  { required: true })} defaultValue={guest.firstName} className={errors.firstName ? 'error_input_guest_form' : ''} />
-              {/* {errors.firstName && <span className="error_message_guest_form">שדה חובה</span>} */}
               
               <input type="text" placeholder="שם משפחה"  {...register("lastName",  { required: true })} defaultValue={guest.lastName} className={errors.lastName ? 'error_input_guest_form' : ''} />
-              {/* {errors.lastName && <span className="error_message_guest_form">שדה חובה</span>} */}
             </div>
             <div className="phone_container">
               <input type="number" placeholder="מספר נייד"  {...register("phone",  { required: true })}  defaultValue={guest.phone} className={errors.phone ? 'error_input_guest_form' : ''} />
-              {/* {errors.phone && <span className="error_message_guest_form">שדה חובה</span>} */}
             </div>
             <div className="counter_accept_notes_container">
               <div className="guests_count_container">

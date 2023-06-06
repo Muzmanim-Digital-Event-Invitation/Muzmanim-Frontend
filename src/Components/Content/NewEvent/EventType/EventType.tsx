@@ -4,16 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
 import { newEventAction } from "../../../../App/newEventSlice";
 import { config } from "../../../../Services/config";
-
-
-
-import * as React from 'react';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
-// import { ThemeProvider } from "@emotion/react";
-// import { createTheme } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem, createTheme, ThemeProvider } from '@mui/material';
 
 

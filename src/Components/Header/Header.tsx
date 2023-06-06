@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 import { GoogleLogin } from '@react-oauth/google';
@@ -16,17 +15,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import { BsSun } from "react-icons/bs";
 import { CiSettings } from "react-icons/ci";
 import { AiOutlineMenu } from "react-icons/ai";
-// import { MdDarkMode } from "react-icons/md";
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as RouterLink } from "react-router-dom";
 import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/material";
 
 
 function Header(): JSX.Element {
