@@ -1,5 +1,15 @@
 .EditGuestModal {
 	
+
+
+    .accept_delete_event {
+        background-color: var(--main-clr);
+    }
+    
+    .delete_event_btn {
+        margin-top: 30px;
+
+    }
     form {
         display: flex;
         flex-direction: column;

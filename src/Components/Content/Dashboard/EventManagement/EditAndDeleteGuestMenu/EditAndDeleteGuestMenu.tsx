@@ -154,7 +154,7 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id, event }: { gu
                             </DialogContent>
 
 
-                            <EditGuestModal guest={guest} event={event}/>
+                            <EditGuestModal guest={guest} event={event} handleAcceptEdit={handleAcceptEdit} handleCloseGuestEdit={handleCloseGuestEdit} />
 
 
 
@@ -162,16 +162,6 @@ function EditAndDeleteGuestMenu( { guest, refresh, setRefresh, id, event }: { gu
 
 
 
-
-                            <div style={{display: "flex", justifyContent: "center", gap: "15px", marginBottom: "15px"}}>
-
-                                <button className="accept_delete_event delete_event_btn" onClick={handleAcceptEdit}>
-                                מאשר/ת
-                                </button>
-                                <button className="cancel_delete_event delete_event_btn" onClick={handleCloseGuestEdit}>
-                                ביטול
-                                </button>
-                            </div>
                         
 
                         </Dialog>

@@ -130,7 +130,7 @@ function EventManagement(): JSX.Element {
 
           <div className="edit_event_btn_container">
             <button className="edit_event_btn btn" onClick={() => navigate("/EditEventInfo/" + id)}>עריכת פרטי הזמנה</button>
-            <button className="edit_event_btn btn" onClick={() => navigate("/EditEventDesign/" + id)} >עריכת עיצוב הזמנה</button>
+            {/* <button className="edit_event_btn btn" onClick={() => navigate("/EditEventDesign/" + id)} >עריכת עיצוב הזמנה</button> */}
             <button className="edit_event_btn btn" onClick={() => navigate("/event/" + id)}>צפייה הזמנה</button>
           </div>
           <div className="share_buttons_container">
@@ -161,15 +161,15 @@ function EventManagement(): JSX.Element {
                 </div>
                 : <></>}
 
-              {event?.vegan ?
-                <div className="vegan_food box">
-                  <p className="p_number">{veganFoodCount}</p>
+              {event?.vegetarian ?
+                <div className="vegetarian_food box">
+                  <p className="p_number">{vegetarianFoodCount}</p>
                   <span className="span_title">צמחוני</span>
                 </div>
                 : <></>}
-              {event?.vegetarian ?
-                <div className="vegetarian_food box" >
-                  <p className="p_number">{vegetarianFoodCount}</p>
+              {event?.vegan ?
+                <div className="vegan_food box" >
+                  <p className="p_number">{veganFoodCount}</p>
                   <span className="span_title">טבעוני</span>
                 </div>
                 : <></>}

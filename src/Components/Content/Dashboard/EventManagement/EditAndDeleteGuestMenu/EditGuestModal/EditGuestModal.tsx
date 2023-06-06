@@ -12,12 +12,12 @@ import { EventModel } from "../../../../../../Models/EventModel";
 
 
 
-function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}): JSX.Element {
+function EditGuestModal({guest, event, handleAcceptEdit, handleCloseGuestEdit}: { guest: GuestModel, event: EventModel, handleAcceptEdit : () => void, handleCloseGuestEdit: () => void}): JSX.Element {
     
     const [isAccepted, setIsAccepted] = useState(false);
     const { register, handleSubmit, watch , formState: { errors }} = useForm();
     const location = useLocation();
-    const { eventId } = useParams();
+    const { id } = useParams();
     // const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
     
     const [userEventFilledDetails, setUserEventFilledDetails] = useState<GuestModel>(guest);
@@ -44,12 +44,15 @@ function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}
         setIsAccepted(userEventFilledDetails.isComing)
       }
     }, [])
-    function onSubmit(data: any) {
-      if (!eventId) {
-        console.log("disabled");
-        
-        return; 
-      }
+
+    useEffect(() => {
+      console.log(id)
+
+    })
+
+    function onSubmit(data: any, event: any) {
+      event.preventDefault();
+
       
   
       const foodChoices: any = {
@@ -72,7 +75,7 @@ function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}
   
     
     const formData : GuestModel = {
-      eventId: event.id, 
+      eventId: id, 
       firstName: data.firstName,
       lastName: data.lastName,
       guestsAmount: guestsCounter, 
@@ -87,14 +90,14 @@ function EditGuestModal({guest, event }: { guest: GuestModel, event: EventModel}
   
     console.log(formData);
   
-    servicesFunctions.submitEventForm(formData, eventId).then(() => {
+    servicesFunctions.editGuestInfo(formData, id).then(() => {
   
-      window.localStorage.setItem(eventId, JSON.stringify(formData))
       setUserEventFilledDetails(formData)
   
       // setIsFilledForm(true)
+      handleAcceptEdit();
     });
-    window.location.reload();
+    // window.location.reload();
     }
 
     
@@ -129,10 +132,6 @@ foodPreferences = foodPreferences.map((item) => {
 });
 
 
-useEffect(() =>{
-  console.log(event);
-  
-})
     return (
         <div className="EditGuestModal">
 			 <form onSubmit={handleSubmit(onSubmit)}>
@@ -243,27 +242,18 @@ useEffect(() =>{
 
 
             </div>
-            <button className={`submit_guest_form `} type="submit">מאשר/ת  
 
-            <div className="star-1">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-                    <div className="star-2">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-                    <div className="star-3">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-                    <div className="star-4">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-                    <div className="star-5">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-                    <div className="star-6">
-                        <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style={{ shapeRendering: 'geometricPrecision', textRendering: 'geometricPrecision', imageRendering: 'auto', fillRule: 'evenodd', clipRule: 'evenodd' }} version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" className="fil0"></path></g></svg>
-                    </div>
-            </button>
+            
+
+            <div style={{display: "flex", justifyContent: "center", gap: "15px", marginBottom: "15px"}}>
+
+              <button className="accept_delete_event delete_event_btn" type="submit" >
+              מאשר/ת
+              </button>
+              <button className="cancel_delete_event delete_event_btn" onClick={handleCloseGuestEdit}>
+              ביטול
+              </button>
+              </div>
 
           </form>
         </div>

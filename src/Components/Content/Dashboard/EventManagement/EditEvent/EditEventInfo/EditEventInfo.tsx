@@ -13,10 +13,18 @@ function EditEventInfo(): JSX.Element {
   const { id } = useParams();
   const [event, setEvent] = useState<EventModel>();
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
-  const [isFood, setIsFood] = useState<boolean>();
+  // const [isFood, setIsFood] = useState<boolean>();
+  const [isFood, setIsFood] = useState<boolean>(event && event.food ? true : false);
   const [eventTypeNumber, setEventTypeNumber] = useState(event && event.eventType ? event.eventType : "");
+
+  const [isChangedFood, setisChangedFood] = useState<boolean>(false);
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    console.log(isFood);
+    
+  }, [isFood])  
 
   useEffect(() => {
     console.log(id);
@@ -116,7 +124,12 @@ function EditEventInfo(): JSX.Element {
                 id="demo-select-small"
                 value={eventTypeNumber}
                 label="בחר סוג אירוע"
-                onChange={(e: any) => setEventTypeNumber(e.target.value)}
+                onChange={(e: any) => 
+                  {
+                    setEventTypeNumber(e.target.value)
+                                
+                  }}
+
                               >
                 {options.map((option) => (
                 <MenuItem key={option.value} value={option.value}   sx={{ gap: '10px' }}
@@ -211,9 +224,10 @@ function EditEventInfo(): JSX.Element {
                           type="checkbox"
                           id="supportCheckbox"
                           className="formbold-input-checkbox"
-                          checked={event && event.food ? true : false}
+                          defaultChecked={isFood}
                           {...register("food")}
-                          onClick={() => setIsFood(!event.food)}
+                          
+                          onClick={() => setIsFood(!isFood)}
                         />
 
                         <div className="formbold-checkbox-inner">
@@ -238,12 +252,16 @@ function EditEventInfo(): JSX.Element {
                   </div>
                 </div>
 
+                    {isChangedFood? 
+                      <p style={{marginBottom: "10px", color: "red"}}>שים לב - שינוי סוג המנות עלול לפגום בנתונים</p>
+                    : <></>}
+
                 {isFood ? (
                   <div
                     className="formbold-form-label"
                     style={{ display: "flex", gap: "40px" }}
                   >
-                    <div className="formbold-checkbox-wrapper">
+                    <div className="formbold-checkbox-wrapper" onClick={(() => setisChangedFood(true))}>
                       <label htmlFor="regular" className="formbold-form-label">
                         {" "}
                         מנה רגילה{" "}
@@ -255,7 +273,7 @@ function EditEventInfo(): JSX.Element {
                         defaultChecked={event && event.regular ? true : false}
                       />
                     </div>
-                    <div className="formbold-checkbox-wrapper">
+                    <div className="formbold-checkbox-wrapper" onClick={(() => setisChangedFood(true))}>
                       <label htmlFor="vegan" className="formbold-form-label">
                         {" "}
                         צמחוני{" "}
@@ -267,7 +285,7 @@ function EditEventInfo(): JSX.Element {
                         defaultChecked={event && event.vegan ? true : false}
                       />
                     </div>
-                    <div className="formbold-checkbox-wrapper">
+                    <div className="formbold-checkbox-wrapper" onClick={(() => setisChangedFood(true))}>
                       <label
                         htmlFor="vegetarian"
                         className="formbold-form-label"
@@ -284,7 +302,7 @@ function EditEventInfo(): JSX.Element {
                         }
                       />
                     </div>
-                    <div className="formbold-checkbox-wrapper">
+                    <div className="formbold-checkbox-wrapper" onClick={(() => setisChangedFood(true))}>
                       <label htmlFor="kids" className="formbold-form-label">
                         {" "}
                         מנת ילדים{" "}

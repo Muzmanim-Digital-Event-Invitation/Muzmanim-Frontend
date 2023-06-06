@@ -208,6 +208,27 @@ async createNewEvent(event: EventModel) {
       
     }
   }
+  async editGuestInfo(guestInfo: GuestModel, eventId: string) {
+    try {
+      const response = await fetch(`${config.BASE_URL}/editGuest/${eventId}`, {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Origin": "*",
+          authorization: "" + window.localStorage.getItem("MuzmanimLoggedToken"),
+        },
+        body: JSON.stringify( guestInfo ),
+      }).then((res) => res.json());
+      console.log(response);
+      return true;
+    } catch (e: any) {
+      console.log(e);
+      toastsFunctions.toastError(e);
+      return false;
+      
+    }
+  }
 
 
   async guestsByEvent(eventId: string): Promise<GuestModel[]> {
