@@ -1,6 +1,9 @@
 import "./HomePage.scss";
 import listImg from "./list.png"
 import liveImg from "./live.png"
+import one from "./1.png"
+import two from "./2.png"
+import three from "./3.png"
 import whatsappImg from "./whatsapp.png"
 import gpsImg from "./gps.png"
 import { useNavigate } from "react-router-dom";
@@ -52,9 +55,12 @@ function HomePage(): JSX.Element {
             <div className="container examples_container">
                 <h1>עיצובים לדוגמה</h1>
                 <div className="imgs_container">
-                    <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" />
-                    <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" />
-                    <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" />
+                    <img src={one} />
+                    <img src={two} />
+                    <img src={three} />
+                    {/* <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" /> */}
+                    {/* <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" /> */}
+                    {/* <img src="https://img.freepik.com/free-psd/smartphone-mock-up-isolated_1310-1576.jpg?w=1380&t=st=1683308910~exp=1683309510~hmac=cb0cdbd7a66730151888fa78f5fd03b2a7fca38c0bf56eb6cd5b0217f6bf2c1f" alt="" /> */}
                 </div>
             </div>
 
