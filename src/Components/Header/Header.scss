@@ -8,6 +8,11 @@
     margin: 0 auto;
     direction: ltr;
     background-color: var(--main-clr);
+
+
+    .MuiTypography-root {
+        padding: 0 20px;
+    }
 }
 
 .Header .MuiPaper-root {
