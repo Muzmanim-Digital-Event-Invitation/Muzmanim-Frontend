@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./SpecificEvent.css";
 import { useParams } from "react-router-dom";
 import { EventModel } from "../../../Models/EventModel";

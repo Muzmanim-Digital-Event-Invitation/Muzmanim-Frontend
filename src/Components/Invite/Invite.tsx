@@ -8,7 +8,7 @@ import { BsGenderFemale, BsGenderMale, BsTrophy } from 'react-icons/bs';
 import { BsCheck } from "react-icons/bs";
 import { HiXMark } from "react-icons/hi2";
 import { servicesFunctions } from "../../Services/ServicesFunctions";
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { GuestModel } from "../../Models/GuestModel";
@@ -53,8 +53,7 @@ const eventTopImages = [eventTopImage1, eventTopImage2, eventTopImage3];
 
 function Invite(props: ownProps): JSX.Element {
   const [isAccepted, setIsAccepted] = useState(false);
-  const { register, handleSubmit, watch , formState: { errors }} = useForm();
-  const location = useLocation();
+  const { register, handleSubmit , formState: { errors }} = useForm();
   const { eventId } = useParams();
   const [isFilledForm, setIsFilledForm] = useState<boolean>(!!window.localStorage.getItem(eventId))
   

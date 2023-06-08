@@ -1,6 +1,4 @@
 
-import { useState } from "react";
-import EventDesign from "../../../../NewEvent/EventDesign/EventDesign";
 import "./EditEventDesign.css";
 
 

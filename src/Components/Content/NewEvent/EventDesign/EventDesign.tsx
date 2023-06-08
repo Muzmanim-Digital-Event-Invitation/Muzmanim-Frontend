@@ -130,10 +130,6 @@ function EventDesign(props: ownProps): JSX.Element {
         props.setStepNumber(props.stepNumber - 1)
     }
 
-    function stepForward() {
-        props.setStepNumber(props.stepNumber + 1)
-    }
-    
       useEffect(() => {
         if (uploadedImages.length > 0) {
           const radios = document.getElementsByName('image');
@@ -141,17 +137,7 @@ function EventDesign(props: ownProps): JSX.Element {
         }
       }, [uploadedImages]);
 
-      const handleDelete = () => {
-        const radios = document.getElementsByName('image');
-        for(let i = 0; i < radios.length; i++){
-            (radios[i] as HTMLInputElement).checked = false;
-        }
-    
-        // Clear image source
-        setImageSrc(null);
-    };
-      
-
+ 
     
 
      function loginGoogle(credentialResponse: any) {

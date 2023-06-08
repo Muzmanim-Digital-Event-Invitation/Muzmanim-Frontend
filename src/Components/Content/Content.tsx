@@ -7,7 +7,6 @@ import NewEvent from "./NewEvent/NewEvent";
 import EventManagement from "./Dashboard/EventManagement/EventManagement";
 import SpecificEvent from "./SpecificEvent/SpecificEvent";
 import EditEventInfo from "./Dashboard/EventManagement/EditEvent/EditEventInfo/EditEventInfo";
-import Invite from "../Invite/Invite";
 import EditEventDesign from "./Dashboard/EventManagement/EditEvent/EditEventDesign/EditEventDesign";
 
 function Content(): JSX.Element {
