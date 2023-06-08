@@ -4,6 +4,12 @@ import liveImg from "./live.png"
 import one from "./1.png"
 import two from "./2.png"
 import three from "./3.png"
+import a from "./a.png"
+import b from "./b.png"
+import c from "./c.png"
+import d from "./d.png"
+import e from "./e.png"
+
 import whatsappImg from "./whatsapp.png"
 import gpsImg from "./gps.png"
 import { useNavigate } from "react-router-dom";
@@ -68,29 +74,29 @@ function HomePage(): JSX.Element {
                 <h1 className="customers_recommend">לקוחות ממליצים</h1>
                 <div className="all_reviews">
                     <div className="review_box">
-                        <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
-                        <h3>אלי מ</h3>
-                        <p>בדיקה שדג הרע דגכ ש דיקה שדג הרע דגכ ש</p>
+                        <img className="review_img" src={a} alt="" />
+                        <h3>אלי</h3>
+                        <p>"כלי מצויין, לא יודע איך הייתי מסתדר בלי! . ועוד בחינם!"</p>
                     </div>
                     <div className="review_box">
-                        <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
-                        <h3>אלי מ</h3>
-                        <p>בדיקה שדג הרע דגכ ש דיקה שדג הרע דגכ ש</p>
+                        <img className="review_img" src={b} alt="" />
+                        <h3>נעה</h3>
+                        <p>“פלטפורמה יוצאת דופן!. הופך את ארגון המסיבה לנוח”</p>
                     </div>
                     <div className="review_box">
-                        <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
-                        <h3>אלי מ</h3>
-                        <p>בדיקה שדג הרע דגכ ש דיקה שדג הרע דגכ ש</p>
+                        <img className="review_img" src={c} alt="" />
+                        <h3>שרית</h3>
+                        <p>“מושלם למסיבות!, מעקב וניהול  אירוע. לא יכול להיות פשוט יותר!”</p>
                     </div>
                     <div className="review_box">
-                        <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
-                        <h3>אלי מ</h3>
-                        <p>"בדיקה שדג הרע דגכ ש דיקה שדג הרע דגכ ש"</p>
+                        <img className="review_img" src={d} alt="" />
+                        <h3>חן</h3>
+                        <p>"עיצובים מסוגננים וכלי ניהול רב עוצמה. ממליצה בחום!"</p>
                     </div>
                     <div className="review_box">
-                        <img className="review_img" src="https://img.freepik.com/free-photo/portrait-modern-man_23-2147960990.jpg?w=826&t=st=1683301544~exp=1683302144~hmac=9f157f4ec6d97e06e824bb6dd43a396f1b743ce3ce93c3a45f463bcc927fd61c" alt="" />
-                        <h3>אלי מ</h3>
-                        <p>"ממשק נוח וקל לתפעול!!"</p>
+                        <img className="review_img" src={e} alt="" />
+                        <h3>רמי</h3>
+                        <p>"ללא התעסקות מיותרת קל ופשוט, ממליץ!"</p>
                     </div>
                 </div>
             </div>
