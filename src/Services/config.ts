@@ -4,8 +4,10 @@ import { MdOutdoorGrill } from 'react-icons/md'; // Import the desired icons
 
 class Config {
 
-    BASE_URL = "http://localhost:4000";
-    WEB_URL = "http://localhost:5173";
+    // BASE_URL = "http://localhost:4000";
+    BASE_URL = "https://muzmanim-server-8d3387c14ec0.herokuapp.com/";
+    // WEB_URL = "http://localhost:5173";
+    WEB_URL = "https://inquisitive-kleicha-5bb2a2.netlify.app/";
     IMAGE_URL = "https://muzmanim.s3.amazonaws.com/"
 
     // BASE_URL = "https://muzmanim.herokuapp.com"
