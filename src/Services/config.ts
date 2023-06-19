@@ -7,7 +7,7 @@ class Config {
     // BASE_URL = "http://localhost:4000";
     BASE_URL = "https://muzmanim-server-8d3387c14ec0.herokuapp.com";
     // WEB_URL = "http://localhost:5173";
-    WEB_URL = "https://inquisitive-kleicha-5bb2a2.netlify.app";
+    WEB_URL = "https://muzmanim-app.co";
     IMAGE_URL = "https://muzmanim.s3.amazonaws.com/"
 
     // BASE_URL = "https://muzmanim.herokuapp.com"
