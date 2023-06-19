@@ -131,7 +131,7 @@ function Invite(props: ownProps): JSX.Element {
 
     setIsFilledForm(true)
   });
-  window.location.reload();
+  // window.location.reload();
   }
 
   const userSelectedBgImage = bgImages[Number(props.background) - 1]; 
