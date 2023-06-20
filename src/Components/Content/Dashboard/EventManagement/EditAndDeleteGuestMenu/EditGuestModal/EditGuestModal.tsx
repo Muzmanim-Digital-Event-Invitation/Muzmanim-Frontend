@@ -73,7 +73,7 @@ function EditGuestModal({guest, event, handleAcceptEdit, handleCloseGuestEdit}: 
   
     
     const formData : GuestModel = {
-      id: data.id,
+      id: guest.id,
       eventId: id, 
       firstName: data.firstName,
       lastName: data.lastName,
