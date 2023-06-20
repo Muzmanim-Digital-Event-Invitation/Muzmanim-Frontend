@@ -13,7 +13,8 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 // import Dialog from '@material-ui/core/Dialog';
 // import DialogContent from '@material-ui/core/DialogContent';
 // import DialogTitle from '@material-ui/core/DialogTitle';
-
+import acceptIcon from "../../../../assets/accept.png";
+import errorIcon from "../../../../assets/close.png";
 
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -202,7 +203,13 @@ function EventManagement(): JSX.Element {
                   <tr key={guest.id}>
                     <td>{guest.firstName}</td>
                     <td>{guest.lastName}</td>
-                    <td>{guest.guestsAmount}</td>
+                    <td className="isComing_td">
+                    {Number(guest.isComing) == 1 ? 
+                    <img className="icon_coming" src={acceptIcon} alt="" /> : 
+                    <img className="icon_coming" src={errorIcon} alt="" />
+                  }
+                  {guest.guestsAmount}
+                    </td>
                     <td>{guest.phone}</td>
                     <td title={guest.notes}>{guest.notes ? <div>
                       <MailOutlineIcon onClick={handleOpenNote} />

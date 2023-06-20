@@ -386,4 +386,22 @@ width: 100%;
         align-items: center;
         display: flex;
     }
+
+
+
+}
+/* 
+table tbody tr td .isComing_td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: row;
+} */
+table tbody tr td .icon_coming {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    left: 5px;
+    bottom: 0.5px;
 }
