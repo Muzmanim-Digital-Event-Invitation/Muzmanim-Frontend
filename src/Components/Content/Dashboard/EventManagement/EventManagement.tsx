@@ -91,14 +91,15 @@ function EventManagement(): JSX.Element {
     if (!guests || !Array.isArray(guests)) {
       return 0;
     }
-
+  
     return guests.reduce(function (count, guest) {
-      if (!guest.isComing) {
-        return count++;
+      if (Number(guest.isComing) === 0) {
+        return count + 1;
       }
       return count;
     }, 0);
   }
+  
 
   const regularFoodCount = guests?.reduce((count, guest) => {
     return count + guest.regular;
